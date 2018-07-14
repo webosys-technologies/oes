@@ -156,13 +156,13 @@
           </a>
         </li> 
        
-<!--          <li>
+          <li>
           <a href="<?php echo base_url(); ?>admin/Users">
             <i class="fa fa-users"></i> <span>Users</span>
             <span class="pull-right-container">
             </span>
           </a>
-        </li> -->
+        </li> 
        
        
 <!--         <li>

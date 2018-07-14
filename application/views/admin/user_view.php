@@ -123,7 +123,7 @@
 
       //Ajax Load data from ajax
       $.ajax({
-        url : "<?php echo site_url('index.php/admin/Users/ajax_edit/')?>/" + id,
+        url : "<?php echo site_url('admin/Users/ajax_edit/')?>/" + id,
         type: "GET",
         dataType: "JSON",
         success: function(data)
@@ -158,11 +158,11 @@
       var url;
       if(save_method == 'add')
       {
-        url = "<?php echo site_url('index.php/admin/Users/user_add')?>";
+        url = "<?php echo site_url('admin/Users/user_add')?>";
       }
       else
       {
-        url = "<?php echo site_url('index.php/admin/Users/user_update')?>";
+        url = "<?php echo site_url('admin/Users/user_update')?>";
       }
 
        // ajax adding data to database
@@ -200,7 +200,7 @@
 
       //Ajax Load data from ajax
       $.ajax({
-        url : "<?php echo site_url('index.php/admin/Users/ajax_edit/')?>/" + id,        
+        url : "<?php echo site_url('admin/Users/ajax_edit/')?>/" + id,        
         type: "GET",
                
         dataType: "JSON",
@@ -239,11 +239,16 @@
 
     function delete_user(id)
     {
-      if(confirm('Are you sure delete this data?'))
-      {
+     $("#delete_user").attr('onclick','delete_menu('+id+')');
+     $("#delete_modal").modal("show");
+    }
+    
+    function delete_menu(id)
+    {
+      
         // ajax delete data from database
           $.ajax({
-            url : "<?php echo site_url('index.php/admin/Users/user_delete')?>/"+id,
+            url : "<?php echo site_url('admin/Users/user_delete')?>/"+id,
             type: "POST",
             dataType: "JSON",
             success: function(data)
@@ -258,7 +263,7 @@
             }
         });
 
-      }
+      
     }
 
   </script>
@@ -461,3 +466,26 @@
   <!-- End Bootstrap modal -->
 
 </div>
+   
+    <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog"  style="height:100px;" id="delete_dialog">
+    <div class="modal-content">
+      <div style="background:#3c8dbc;" class="modal-header">
+          
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <center><h4 style="color:white" class="modal-title" style="" id="myModalLabel"><strong>Center</strong></h4></center>
+      </div>
+      <div  style="background:#F2F3F4" style="height:100px;" class="modal-body">
+          <div class="row">
+              <div class="col-md-10 col-md-offset-2">
+                  <label style="color:black">Are you sure want to delete this center ?</label> <br>
+                  <button class="btn btn-default" id="delete_user">Yes</button>
+                  <button class="btn btn-default" data-dismiss="modal">No</button>
+          
+                  </div>              
+                 </div>
+      </div>
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

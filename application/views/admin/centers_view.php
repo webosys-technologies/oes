@@ -4,14 +4,20 @@
   .modal fade{
     display: block !important;
 }
-.modal-dialog{
+#modal_dialog,#modal_dialog1{
      width: 700px;
       overflow-y: initial !important
 }
-.modal-body{
+#modal_body,#modal_body1{
   height: 450px;
   overflow-y: auto;
 }
+
+/*#delete_dialog{
+     width: 700px;
+      overflow-y: initial !important
+}*/
+
 
 
 </style>
@@ -247,7 +253,7 @@ function view_center(id)
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
-            alert('Error get data from ajax 1');
+//            alert('Error get data from ajax 1');
         }
     });
     }
@@ -296,7 +302,7 @@ function view_center(id)
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
-            alert('Error get data from ajax 1');
+//            alert('Error get data from ajax 1');
         }
     });
     }
@@ -308,7 +314,8 @@ function view_center(id)
         var val=center_form();
         
         if(val)
-        {      
+        {
+            $("#btnSave").attr("disabled",true);
       var url;
       if(save_method == 'add')
       {
@@ -333,6 +340,8 @@ function view_center(id)
                //if success close modal and reload ajax table
                $('#modal_form').modal('hide');
               location.reload();// for reload a page
+                 }else{
+                      $("#btnSave").attr("disabled",false);
                  }
                  if(data.email_err)
                  {
@@ -346,6 +355,7 @@ function view_center(id)
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
+                $("#btnSave").attr("disabled",false);
 //                alert('Error adding / update data');
             }
         });
@@ -354,8 +364,13 @@ function view_center(id)
 
     function delete_center(id)
     {
-      if(confirm('Are you sure delete this data?'))
-      {
+        $("#delete_center").attr('onclick','delete_menu('+id+')');
+     $("#delete_modal").modal('show');
+    }
+
+    function delete_menu(id)
+    {
+       
         // ajax delete data from database
           $.ajax({
             url : "<?php echo site_url('admin/Centers/center_delete')?>/"+id,
@@ -369,13 +384,12 @@ function view_center(id)
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
-                alert('Error deleting data');
+//                alert('Error deleting data');
             }
         });
 
-      }
+      
     }
-
 
    function show_password() {
   
@@ -402,7 +416,7 @@ function view_center(id)
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <center><h3 class="modal-title">Center Form</h3></center>
       </div>
-      <div class="modal-body form">    
+      <div class="modal-body form" id="modal_body">    
 
           <div class="panel-body">
                             <form action="#" name="form_student" id="form" class="form-horizontal">
@@ -452,8 +466,8 @@ function view_center(id)
 				
                                 </div>
                                 <div class="col-md-6 col-xs-12 col-sm-6">
-                            <label for="subject">Password<span style="color:red">*</span><input type="checkbox" name="ch" id="chkpass" onclick="show_password()" ></label>
-                              <input class="form-control" name="center_password" value="" id="password" required="" minlength="8" placeholder="Password" type="text" readonly="true" />
+                            <label for="subject">Password<span style="color:red">*</span></label>
+                              <input class="form-control" name="center_password" value="" id="password" required="" minlength="8" placeholder="Password" type="text"/>
                                 <span class="text-danger" id="password_err"></span>
           
                                  </div>
@@ -575,7 +589,7 @@ function view_center(id)
        <center> <h3 class="modal-title">Course Form</h3></center>
       </div>
          <form action="#" name="form_student" id="form2" class="form-horizontal">
-      <div class="modal-body form">
+      <div class="modal-body form" id="modal_body1">
        
           <div class="box-body" id="chalan">
                             
@@ -608,13 +622,36 @@ function view_center(id)
           </div>
         </div>
           <div class="modal-footer">
-            <button type="button" id="btnSave" onclick="printchalan()"  class="btn btn-success">Print</button>
+            <button type="button" id="" onclick="printchalan()"  class="btn btn-success">Print</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
           </div>
           </form>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div>
+  
+  <div class="modal fade" id="delete_modal" style="height:50px;"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div style="background:#3c8dbc;" class="modal-header">
+          
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <center><h4 style="color:white" class="modal-title" style="" id="myModalLabel"><strong>Delete User</strong></h4></center>
+      </div>
+      <div  style="background:#F2F3F4" style="height:50px;" class="modal-body">
+          <div class="row">
+              <div class="col-md-10 col-md-offset-2">
+                  <label style="color:black">Are you sure want to delete this User ?</label> <br>
+                  <button class="btn btn-default" id="delete_center">Yes</button>
+                  <button class="btn btn-default" data-dismiss="modal">No</button>
+          
+                  </div>              
+                 </div>
+      </div>
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
   </body>
 </html>
