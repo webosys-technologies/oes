@@ -2,58 +2,9 @@
  var alpha_exp=/^[a-zA-Z]+$/;
  var space_exp=/\s/;
   var den_space_beg=/^[a-zA-Z ]*$/;
-
-function sub_center_validation()
-{
-    
-         if ($("#fullname").val() == ""){
-            $("#text_field1_error").html("Please Enter Full Name");
-          }else{
-              var fullname="true";
-              $("#text_field1_error").html("");
-          }
-          
-          if ($("#sub_center_name").val() == ""){
-            $("#text_field2_error").html("Please Enter Sub Center Name");
-          }else{
-              var center_name="true";
-              $("#text_field2_error").html("");
-          }
-          
-          if ($("#center_id").val() == ""){
-              
-            $("#select1_error").html("Please Select Center Name");
-          }else{
-              var center_id="true";
-              $("#select1_error").html("");
-          }
-          
-        if(fullname=="true" && center_name=="true" && center_id=="true")
-          {
-             return true;
-        }else{
-            return false;
-        }
-        }   
+ 
         
-        function center_validation()
-        {
-            if ($("#fullname").val() == ""){
-            $("#text_field1_error").html("Please Enter Full Name");
-          }else{
-              var fullname="true";
-              $("#text_field1_error").html("");
-          }
-          
-          
-          
-          if(fullname=="true" && center_name=="true" && center_id=="true")
-          {
-             return true;
-        }else{
-            return false;
-        }
-    }
+       
         function book_validation()
         {          
           

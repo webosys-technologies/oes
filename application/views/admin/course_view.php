@@ -150,7 +150,7 @@
 
       //Ajax Load data from ajax
       $.ajax({
-        url : "<?php echo site_url('index.php/admin/Courses/ajax_edit/')?>/" + id,
+        url : "<?php echo site_url('admin/Courses/ajax_edit/')?>/" + id,
         type: "GET",
         dataType: "JSON",
         success: function(data)
@@ -222,14 +222,15 @@
         var val=form_validation();
         if(val)
         {
+            $("#btnSave").attr("disabled",true);
       var url;
       if(save_method == 'add')
       {
-          url = "<?php echo site_url('index.php/admin/Courses/course_add')?>";
+          url = "<?php echo site_url('admin/Courses/course_add')?>";
       }
       else
       {
-        url = "<?php echo site_url('index.php/admin/Courses/course_update')?>";
+        url = "<?php echo site_url('admin/Courses/course_update')?>";
       }
 
        // ajax adding data to database
@@ -240,9 +241,13 @@
             dataType: "JSON",
             success: function(data)
             {
-               //if success close modal and reload ajax table
+               if(data.status)
+               {
                $('#modal_form').modal('hide');
-            location.reload();// for reload a page
+                location.reload();// for reload a page
+               }else{
+                   $("#btnSave").attr("disabled",false);
+               }
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
@@ -258,7 +263,7 @@
       {
         // ajax delete data from database
           $.ajax({
-            url : "<?php echo site_url('index.php/admin/Courses/course_delete')?>/"+id,
+            url : "<?php echo site_url('admin/Courses/course_delete')?>/"+id,
             type: "POST",
             dataType: "JSON",
             success: function(data)

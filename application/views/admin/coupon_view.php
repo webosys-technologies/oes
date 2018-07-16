@@ -184,7 +184,7 @@ $("#myName").on("keyup", function() {
        
       //Ajax Load data from ajax
       $.ajax({
-        url : "<?php echo site_url('index.php/admin/Coupon/ajax_edit/')?>/" + id,        
+        url : "<?php echo site_url('admin/Coupon/ajax_edit/')?>/" + id,        
         type: "GET",
                
         dataType: "JSON",
@@ -223,7 +223,7 @@ $("#myName").on("keyup", function() {
 
       //Ajax Load data from ajax
       $.ajax({
-        url : "<?php echo site_url('index.php/admin/Coupon/ajax_edit/')?>/" + id,        
+        url : "<?php echo site_url('admin/Coupon/ajax_edit/')?>/" + id,        
         type: "GET",
                
         dataType: "JSON",
@@ -316,16 +316,18 @@ $("#myName").on("keyup", function() {
         var val=form_validation();
         
         if(val==true)
-        {        
+        {   
+           $("#btnSave").attr('disabled',true); 
+            
         var data = new FormData(document.getElementById("form"));
           var url;
       if(save_method == 'add')
       {
-        url = "<?php echo site_url('index.php/admin/Coupon/coupon_add')?>";
+        url = "<?php echo site_url('admin/Coupon/coupon_add')?>";
       }
       else
       {
-        url = "<?php echo site_url('index.php/admin/Coupon/coupon_update')?>";
+        url = "<?php echo site_url('admin/Coupon/coupon_update')?>";
       }
 
        // ajax adding data to database
@@ -342,10 +344,11 @@ $("#myName").on("keyup", function() {
                
                if(json.error)
                {
+                 $("#btnSave").attr('disabled',false); 
                   $("#code_error").html(json.error);  
                }else{
                $('#modal_form').modal('hide');
-              location.reload();// for reload a page
+                location.reload();// for reload a page
                }
             
             },
@@ -363,7 +366,7 @@ $("#myName").on("keyup", function() {
       {
         // ajax delete data from database
           $.ajax({
-            url : "<?php echo site_url('index.php/admin/Coupon/coupon_delete')?>/"+id,
+            url : "<?php echo site_url('admin/Coupon/coupon_delete')?>/"+id,
             type: "POST",
             //dataType: "JSON",
             success: function(data)

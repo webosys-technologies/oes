@@ -111,14 +111,17 @@
 
     function add_user()
     {
+        $(".err").html("");
       save_method = 'add';
       $('#form')[0].reset(); // reset form on modals
       $('#modal_form').modal('show'); // show bootstrap modal
       $('.modal-title').text('Add User'); // Set Title to Bootstrap modal title
+      
     }
 
     function edit_user(id)
     {
+        $(".err").html("");
       save_method = 'update';
      $('#form')[0].reset(); // reset form on modals
 
@@ -129,7 +132,7 @@
         dataType: "JSON",
         success: function(data)
         {
-            alert(data.user_password);
+           
 //            $("#append_city").remove();     
             $('[name="id"]').val(data.user_id);
             $('[name="fname"]').val(data.user_fname);
@@ -159,6 +162,7 @@
         var val=user_form();
         if(val)
         {
+            $("#btnSave").attr("disabled",true);
       var url;
       if(save_method == 'add')
       {
@@ -177,17 +181,34 @@
             dataType: "JSON",
             success: function(data)
             {
+                if(data.email_err)
+                {
+                    $("#email_err").html(data.email_err);
+                }else{
+                     $("#email_err").html("");
+                }
+                
+                if(data.mobile_err)
+                {
+                    $("#mobile_err").html(data.mobile_err);
+                }else{
+                     $("#mobile_err").html("");
+                }
+                
+                
                 if(data.status)
                 {
-                alert(data.msg);
+//                alert(data.msg);
                //if success close modal and reload ajax table
                $('#modal_form').modal('hide');
               location.reload();// for reload a page
                  }
                  else
                  {
-                      alert(data.error);
+                     $("#btnSave").attr("disabled",false); 
                  }
+                 
+                
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
@@ -260,7 +281,7 @@
             {
                
                location.reload();
-               alert(data.msg);
+//               alert(data.msg);
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
@@ -406,14 +427,14 @@
               <label class="control-label col-md-3">First Name</label>
               <div class="col-md-9">
                 <input name="fname" id="fname" placeholder="First name" class="form-control" type="text" style="">
-                <span class="text-danger" id="fname_err"></span>
+                <span class="text-danger err"  id="fname_err"></span>
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-3">Last Name</label>
               <div class="col-md-9">
                 <input name="lname" id="lname" placeholder="Last Name" class="form-control" type="text" style="">
-                <span class="text-danger" id="lname_err"></span>
+                <span class="text-danger err"  id="lname_err"></span>
               </div>
             </div>
             <div class="form-group">
@@ -429,14 +450,14 @@
               <label class="control-label col-md-3">Mobile</label>
               <div class="col-md-9">
                   <input name="mobile" id="mobile" maxlength="11" placeholder="Mobile" class="form-control" type="text">
-                <span class="text-danger" id="mobile_err"></span>
+                <span class="text-danger err" id="mobile_err"></span>
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-3">Email</label>
               <div class="col-md-9">
                 <input name="email" id="email" placeholder="Email" class="form-control" type="email">
-                <span class="text-danger" id="email_err"></span>
+                <span class="text-danger err" id="email_err"></span>
               </div>
             </div>
 
@@ -444,7 +465,7 @@
               <label class="control-label col-md-3">Password</label>
               <div class="col-md-9">
                 <input name="password" id="password" placeholder="Password" class="form-control" type="password">
-                <span class="text-danger" id="password_err"></span>
+                <span class="text-danger err" id="password_err"></span>
               </div>
             </div>
             <div class="form-group">

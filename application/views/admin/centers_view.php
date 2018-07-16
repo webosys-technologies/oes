@@ -260,6 +260,7 @@ function view_center(id)
 
     function add_student()
     {
+        $(".err").html("");
       save_method = 'add';
       $('#form')[0].reset(); // reset form on modals
       $('#modal_form').modal('show'); // show bootstrap modal
@@ -268,6 +269,8 @@ function view_center(id)
 
     function edit_center(id)
     {
+        
+        $(".err").html("");
       save_method = 'update';
      $('#form')[0].reset(); // reset form on modals
 
@@ -346,11 +349,15 @@ function view_center(id)
                  if(data.email_err)
                  {
                      $("#email_err").html(data.email_err);
+                 }else{
+                      $("#email_err").html("");
                  }
                  
                  if(data.mobile_err)
                  {
                      $("#mobile_err").html(data.mobile_err);
+                 }else{
+                     $("#mobile_err").html("");
                  }
             },
             error: function (jqXHR, textStatus, errorThrown)
@@ -427,14 +434,14 @@ function view_center(id)
                             <div class="col-md-6 col-xs-12 col-sm-6">
                                 
 					<label for="name">First Name</label><span style="color:red">*</span>
-					<input class="form-control" name="center_fname" id="fname" placeholder="First Name" required="" type="text"  value="" /><span class="text-danger" id="fname_err" style=""></span>
+					<input class="form-control" name="center_fname" id="fname" placeholder="First Name" required="" type="text"  value="" /><span class="text-danger err" id="fname_err" style=""></span>
 					
 				
                              </div>
                           <div class="col-md-6 col-xs-12 col-sm-6">
 				
 					<label for="name">Last Name</label><span style="color:red">*</span>
-                                        <input class="form-control" name="center_lname" id="lname" required="" placeholder="Last Name" type="text" value=""><span class="text-danger" id="lname_err" style=""></span>
+                                        <input class="form-control" name="center_lname" id="lname" required="" placeholder="Last Name" type="text" value=""><span class="text-danger err" id="lname_err" style=""></span>
 			</div>
                         </div>
                              </div>
@@ -445,7 +452,7 @@ function view_center(id)
                     <div class="col-md-6 col-xs-12 col-sm-6">
                                 <label for="name">Center Name</label><span style="color:red">*</span>
 					<input class="form-control" name="center_name" id="center_name" required="" placeholder="Enter Center Name" type="text" value="" style="text-transform:uppercase" />
-                                         <span class="text-danger" id="center_name_err"></span>
+                                         <span class="text-danger err" id="center_name_err"></span>
                    				
                     </div>
                      <div class="col-md-6 col-xs-12 col-sm-6">
@@ -453,7 +460,7 @@ function view_center(id)
 				
 					<label for="email">Email ID</label><span style="color:red">*</span>
 					<input class="form-control" name="center_email" id="email" required="" placeholder="Email-ID" type="text" value="" />
-                                        <span class="text-danger" id="email_err"></span>
+                                        <span class="text-danger err" id="email_err"></span>
                           	</div>
                     </div>
                     </div>
@@ -462,13 +469,13 @@ function view_center(id)
                             <div class="col-md-6 col-xs-12 col-sm-6" >
                                  	<label for="mobile">Mobile</label><span style="color:red">*</span>
 					<input class="form-control" name="center_mobile" id="mobile" required="" minlength="10" maxlength="11" placeholder="Enter Mobile Number" type="text" value="" />
-                    <span class="text-danger" id="mobile_err"></span>			
+                    <span class="text-danger err"  id="mobile_err"></span>			
 				
                                 </div>
                                 <div class="col-md-6 col-xs-12 col-sm-6">
                             <label for="subject">Password<span style="color:red">*</span></label>
                               <input class="form-control" name="center_password" value="" id="password" required="" minlength="8" placeholder="Password" type="text"/>
-                                <span class="text-danger" id="password_err"></span>
+                                <span class="text-danger err" id="password_err"></span>
           
                                  </div>
                                 </div>
@@ -542,7 +549,7 @@ function view_center(id)
                                  <div class="col-md-6 col-xs-12 col-sm-6" >
 					<label for="text">Pincode</label><span style="color:red">*</span>
 					<input class="form-control" name="center_pincode" id="pincode" maxlength="6" placeholder="Enter Pincode" type="text" value="" />
-                                        <span class="text-danger" id="pincode_err"></span>
+                                        <span class="text-danger" class="err" id="pincode_err"></span>
 					
                             </div>
                                

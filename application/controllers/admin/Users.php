@@ -33,9 +33,10 @@ class Users extends CI_Controller
 
 	public function user_add()
 	{
-//                $val=validation();
-//                if($val)
-//                {
+                   $form=$this->input->post();
+                $val=  $this->validation($form);
+                if(!is_array($val))
+                {
             	$data= array(
                 'user_fname' => strtoupper($this->input->post('fname')),
                 'user_lname' => strtoupper($this->input->post('lname')),
@@ -56,11 +57,40 @@ class Users extends CI_Controller
                 $this->session->set_flashdata('success','User Added Successfully');
                 echo json_encode(array("status" => TRUE,
                                        'msg'=>'User added successfully...!'));
-//                }
-	}
+
+                }else{
+                    echo json_encode($val);
+                }
+        }
         
-        function validation()
+        function validation($form)
         {
+            $email="";
+            $mobile="";
+            if($this->User_model->check_email_exist($form['email']))
+            {
+                $email=false;
+                $err['email_err']="Email Already Exist";
+
+            }else{
+                $email=true;
+            }
+            
+            if($this->User_model->check_mobile_exist($form['mobile']))
+            {
+                $mobile=false;
+                $err['mobile_err']="Mobile Already Exist";
+
+            }else{
+                $mobile=true;
+            }
+            
+            if($email==true && $mobile==true)
+            {
+                return true;
+            }else{
+                return $err;
+            }
             
         }
 

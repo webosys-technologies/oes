@@ -29,7 +29,33 @@ class User_model extends CI_Model
      
   
     }
-
+    
+    public function check_email_exist($email)
+    {
+        $this->db->from($this->table);
+        $this->db->where('user_email',$email);
+        $query=$this->db->get();
+        if($query->num_rows()>0)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public function check_mobile_exist($mobile)
+    {
+        $this->db->from($this->table);
+        $this->db->where('user_mobile',$mobile);
+        $query=$this->db->get();
+        if($query->num_rows()>0)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     public function getall_email()
     {
         $this->db->select('user_email');

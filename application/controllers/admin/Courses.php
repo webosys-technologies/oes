@@ -28,7 +28,7 @@ class Courses extends CI_Controller {
     }
 
 	
-	public function course_add()
+	      public function course_add()
 		{
                         $date=date('Y-m-d');
 			$data = array(
@@ -42,22 +42,12 @@ class Courses extends CI_Controller {
 				);
 			$insert = $this->Courses_model->course_add($data);
 
-			$book=array(
-					'book_name' => 'No Book',
-					'course_id' => $insert,
-					'book_price' => 0,
-                                        'book_created_at' => date('Y-m-d'),
-					'book_status' => 1,
-			);
-
-
-			$insert = $this->Books_model->book_add($book);
-                        if($insert)
-                {
+		
                 $this->session->set_flashdata('success', 'Course Added Successfully');
-                }
+               
 			echo json_encode(array("status" => TRUE));
 		}
+                
 		public function ajax_edit($id)
 		{
 			$data = $this->Courses_model->get_by_id($id);
@@ -69,19 +59,19 @@ class Courses extends CI_Controller {
 
 		public function course_update()
             {
-                     $date=date('Y-m-d');
+                     
 		$data = array(
 					'course_name' => $this->input->post('name'),
 					'course_duration' => $this->input->post('duration'),
 					'course_reexam_fees' => $this->input->post('reexam_fees'),
 					'course_fees' => $this->input->post('fees'),
-					'course_created_at' => $date,
+					
                                         'course_created_by' => 'admin',
                                         'course_status' => $this->input->post('status'),
                                         'course_id'=>$this->input->post('id')
 				);
                 
-                $this->student_course_date_update($data);
+                
 		$result=$this->Courses_model->course_update(array('course_id' => $this->input->post('id')), $data);
                  if($result)
                 {

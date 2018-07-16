@@ -36,8 +36,8 @@ class Index extends CI_Controller
 		if ($this->form_validation->run() == false)
         {
 			
-		$maha_cities['cities']=$this->Cities_model->getall_cities("Maharashtra");	
-                $this->load->view('center/signup',$maha_cities);     
+		
+                $this->load->view('center/signup');     
                 
                     
         }
