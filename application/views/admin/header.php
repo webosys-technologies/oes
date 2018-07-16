@@ -163,6 +163,30 @@
             </span>
           </a>
         </li> 
+        
+         <li>
+          <a href="<?php echo base_url(); ?>admin/Courses">
+            <i class="fa fa-users"></i> <span>Courses</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li> 
+        
+         <li>
+          <a href="<?php echo base_url(); ?>admin/Question">
+            <i class="fa fa-users"></i> <span>Questions</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+        
+         <li>
+          <a href="<?php echo base_url(); ?>admin/Coupon">
+            <i class="fa fa-users"></i> <span>Coupons</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li> 
        
        
 <!--         <li>
