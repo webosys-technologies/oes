@@ -16,7 +16,7 @@ class Index extends CI_Controller
         
         function login()
     {
-             $user_LoggedIn = $this->session->userdata('ccc_user_LoggedIn');
+             $user_LoggedIn = $this->session->userdata('oes_user_LoggedIn');
         
         if(isset($user_LoggedIn) || $user_LoggedIn == TRUE)
         {
@@ -67,12 +67,12 @@ class Index extends CI_Controller
                 {
                     $sessionArray = array(
                         
-                         'ccc_user_id' => $res->user_id,
-                    'ccc_user_fname' => $res->user_fname,
-                    'ccc_user_lname' => $res->user_lname,
-                    'ccc_user_email' => $res->user_email,
-                    'ccc_user_mobile' =>$res->user_mobile,
-                    'ccc_user_LoggedIn' => true
+                         'oes_user_id' => $res->user_id,
+                    'oes_user_fname' => $res->user_fname,
+                    'oes_user_lname' => $res->user_lname,
+                    'oes_user_email' => $res->user_email,
+                    'oes_user_mobile' =>$res->user_mobile,
+                    'oes_user_LoggedIn' => true
                                     );
                                     
                     $this->session->set_userdata($sessionArray);  
@@ -107,7 +107,7 @@ class Index extends CI_Controller
     
         
 //        $this->session->sess_destroy();
-         $this->session->unset_userdata('ccc_user_LoggedIn'); 
+         $this->session->unset_userdata('oes_user_LoggedIn'); 
         redirect('admin/Index/login');  
     }
     public function user_profile_pic()

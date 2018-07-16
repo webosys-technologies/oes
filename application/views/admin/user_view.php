@@ -1,4 +1,5 @@
-
+<script src="<?php echo base_url("assets/js/form_validation.js"); ?>">
+</script>
 <style type="text/css">
   .modal fade{
     display: block !important;
@@ -155,6 +156,9 @@
 
     function save()
     {
+        var val=user_form();
+        if(val)
+        {
       var url;
       if(save_method == 'add')
       {
@@ -190,6 +194,7 @@
                 alert('Error adding / update data');
             }
         });
+    }
     }
     
     
@@ -400,13 +405,15 @@
             <div class="form-group">
               <label class="control-label col-md-3">First Name</label>
               <div class="col-md-9">
-                <input name="fname" placeholder="First name" class="form-control" type="text" style="text-transform:uppercase">
+                <input name="fname" id="fname" placeholder="First name" class="form-control" type="text" style="">
+                <span class="text-danger" id="fname_err"></span>
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-3">Last Name</label>
               <div class="col-md-9">
-                <input name="lname" placeholder="Last Name" class="form-control" type="text" style="text-transform:uppercase">
+                <input name="lname" id="lname" placeholder="Last Name" class="form-control" type="text" style="">
+                <span class="text-danger" id="lname_err"></span>
               </div>
             </div>
             <div class="form-group">
@@ -421,20 +428,23 @@
             <div class="form-group">
               <label class="control-label col-md-3">Mobile</label>
               <div class="col-md-9">
-                <input name="mobile" placeholder="Mobile" class="form-control" type="text">
+                  <input name="mobile" id="mobile" maxlength="11" placeholder="Mobile" class="form-control" type="text">
+                <span class="text-danger" id="mobile_err"></span>
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-3">Email</label>
               <div class="col-md-9">
-                <input name="email" placeholder="Email" class="form-control" type="email">
+                <input name="email" id="email" placeholder="Email" class="form-control" type="email">
+                <span class="text-danger" id="email_err"></span>
               </div>
             </div>
 
             <div class="form-group">
               <label class="control-label col-md-3">Password</label>
               <div class="col-md-9">
-                <input name="password" placeholder="Password" class="form-control" type="password">
+                <input name="password" id="password" placeholder="Password" class="form-control" type="password">
+                <span class="text-danger" id="password_err"></span>
               </div>
             </div>
             <div class="form-group">

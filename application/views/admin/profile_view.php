@@ -48,7 +48,7 @@
 
         
          <?php
-          if(isset($user_info))
+          if(isset($user_data))
           {
               
           }
@@ -59,20 +59,20 @@
       <!-- left column -->
       <div class="col-md-3">
         
-           <img src='<?php if($user_info->user_profile_pic){echo base_url(); echo $user_info->user_profile_pic;}else{ echo base_url()."profile_pic/boss.png"; }?>' width="100px" hieght="100px" class="img-circle" alt="User Image"/>
+          <img src='<?php if(file_exists($user_data->user_profile_pic)){echo base_url(); echo $user_data->user_profile_pic;}else{ echo base_url()."profile_pic/boss.png"; }?>' width="100px" hieght="100px" class="img-circle" alt="User Image"/>
              &nbsp;&nbsp;
           <!--<input id="files"  type="file">-->
-            <h4><?php echo $user_info->user_fname." ".$user_info->user_lname;?></h4>      
+            <h4><?php echo $user_data->user_fname." ".$user_data->user_lname;?></h4>      
         </div>
       
      
       <div class="col-md-9">
             
-          <label> <span class="glyphicon glyphicon-user ">&nbsp; </span>Name :</label><?php echo $user_info->user_fname."&nbsp;".$user_info->user_lname;?><br>
-          <label> <span class="glyphicon glyphicon-envelope">&nbsp;</span>Email :</label><?php echo $user_info->user_email;?><br>
-          <label> <span class="glyphicon glyphicon-phone">&nbsp;</span>Mobile :</label><?php echo $user_info->user_mobile;?><br>
-          <label> <span class="glyphicon glyphicon-user"></span>&nbsp;Gender :</label><?php echo $user_info->user_gender ;?><br>
-          <h4><a href="#" data-toggle="collapse" data-target="#demo" onclick="edit_profile(<?php echo $user_info->user_id ; ?>)">Edit Pofile?</a></h4>
+          <label> <span class="glyphicon glyphicon-user ">&nbsp; </span>Name :</label><?php echo $user_data->user_fname."&nbsp;".$user_data->user_lname;?><br>
+          <label> <span class="glyphicon glyphicon-envelope">&nbsp;</span>Email :</label><?php echo $user_data->user_email;?><br>
+          <label> <span class="glyphicon glyphicon-phone">&nbsp;</span>Mobile :</label><?php echo $user_data->user_mobile;?><br>
+          <label> <span class="glyphicon glyphicon-user"></span>&nbsp;Gender :</label><?php echo $user_data->user_gender ;?><br>
+          <h4><a href="#" data-toggle="collapse" data-target="#demo" onclick="edit_profile(<?php echo $user_data->user_id ; ?>)">Edit Pofile?</a></h4>
   
                
                    

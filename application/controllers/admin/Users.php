@@ -7,18 +7,17 @@ class Users extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		if(!is_admin_LoggedIn($this->session->userdata('ccc_user_LoggedIn')))
-                {
-                    redirect('admin/index');
-                }
-
+		if(!is_admin_LoggedIn($this->session->userdata('oes_user_LoggedIn')))
+     {
+         redirect('admin/index');
+     }
 	}
 
 	public function index()
 	{
 		       
           $data['user']=$this->User_model->getall_user();
-          $uid=$this->session->userdata('ccc_user_id');
+          $uid=$this->session->userdata('oes_user_id');
           
             $result['user_data']=get_user_info($uid);
             $result['system']=$this->System_model->get_info();
@@ -34,7 +33,9 @@ class Users extends CI_Controller
 
 	public function user_add()
 	{
-
+//                $val=validation();
+//                if($val)
+//                {
             	$data= array(
                 'user_fname' => strtoupper($this->input->post('fname')),
                 'user_lname' => strtoupper($this->input->post('lname')),
@@ -52,10 +53,16 @@ class Users extends CI_Controller
 
 
                 $res=$this->pic_upload($data);
-                
+                $this->session->set_flashdata('success','User Added Successfully');
                 echo json_encode(array("status" => TRUE,
                                        'msg'=>'User added successfully...!'));
+//                }
 	}
+        
+        function validation()
+        {
+            
+        }
 
 	public function ajax_edit($id)
 	{

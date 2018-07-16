@@ -10,35 +10,24 @@ class Profile extends CI_Controller
 	{
 		parent::__construct();
 
-      
-          $this->load->model('User_model');
-          $this->load->model('System_model');
-
-        $this->load->helper('url');
-
+      if(!is_admin_LoggedIn($this->session->userdata('oes_user_LoggedIn')))
+     {
+         redirect('admin/index');
+     }
 	}
 
 	public function index()
 	{  
 
-        $user_LoggedIn=$this->session->userdata('user_LoggedIn');
-        if(isset($user_LoggedIn) || $user_LoggedIn == TRUE)
-        {
+      
          
-          $uid=$this->session->userdata('user_id');
+          $uid=$this->session->userdata('oes_user_id');
             $result['system']=$this->System_model->get_info();
-            $result['user_info']=$this->User_model->get_user_by_id($uid);
+            $result['user_data']=get_user_info($uid);
                   
             $this->load->view('admin/header',$result);        
       		$this->load->view('admin/profile_view',$result);
             $this->load->view('admin/footer',$result);
-
-
-
-        }
-        else{
-          redirect('admin/Dashboard');
-        }
 
 
 	}
@@ -72,7 +61,7 @@ class Profile extends CI_Controller
         
         function pic_upload($data)
     {   
-      $id=$data['user_id'];
+                                     $id=$data['user_id'];
        
                                    $new_file=$data['user_fname'].mt_rand(100,999);
        

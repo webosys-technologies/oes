@@ -18,7 +18,7 @@ class Dashboard extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-       if(!is_admin_LoggedIn($this->session->userdata('ccc_user_LoggedIn')))
+       if(!is_admin_LoggedIn($this->session->userdata('oes_user_LoggedIn')))
      {
          redirect('admin/index');
      }
@@ -30,7 +30,7 @@ class Dashboard extends CI_Controller
     public function index()
     {      
         
-            $uid=$this->session->userdata('ccc_user_id');
+            $uid=$this->session->userdata('oes_user_id');
             $result['user_data']=get_user_info($uid);             
             $result['centers']=$this->Centers_model->getall();  
             $result['users']=$this->User_model->getall_user();  

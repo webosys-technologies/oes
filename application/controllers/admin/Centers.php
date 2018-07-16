@@ -9,7 +9,7 @@ class Centers extends CI_Controller
 	{
 		parent::__construct();
                 
-     if(!is_admin_LoggedIn($this->session->userdata('ccc_user_LoggedIn')))
+     if(!is_admin_LoggedIn($this->session->userdata('oes_user_LoggedIn')))
      {
          redirect('admin/index');
      }
@@ -20,7 +20,7 @@ class Centers extends CI_Controller
     {
           
 
-             $uid=$this->session->userdata('ccc_user_id');
+             $uid=$this->session->userdata('oes_user_id');
              $data['centers']=$this->Centers_model->getall();       
          
             $result['user_data']=get_user_info($uid);

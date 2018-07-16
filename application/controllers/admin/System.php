@@ -9,27 +9,16 @@ class System extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-       
-
-        $this->load->model('User_model');
-        $this->load->model('System_model');
-        $this->load->library('session');
-        $this->load->helper(array('form', 'url','file'));
-
-        
-
-
-		
+       if(!is_admin_LoggedIn($this->session->userdata('oes_user_LoggedIn')))
+     {
+         redirect('admin/index');
+     }
 	}
 
 	public function index()
 	{  
 
-
-        $user_LoggedIn=$this->session->userdata('user_LoggedIn');
-
-        if(isset($user_LoggedIn) || $user_LoggedIn == TRUE)
-        { 
+ 
             $id=$this->session->userdata('user_id');
 //            $data['system_data']=$this->System_model->getall_systems();
              $data['system_data']=$this->System_model->get_system_by_id($id);
@@ -39,12 +28,7 @@ class System extends CI_Controller
             $this->load->view('admin/system_view',$data);
            $this->load->view('admin/footer');
 
-          }
-        else{
-          redirect('admin/index/login');
-        }
-
-
+        
 	}
  
 

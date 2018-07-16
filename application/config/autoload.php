@@ -135,4 +135,7 @@ $autoload['language'] = array();
 $autoload['model'] = array('User_model',
                            'Centers_model',
                             'System_model',
-                            'Location_model');
+                            'Location_model',
+                            'Courses_model',
+                            'Questions_model',
+                            'Coupons_model');
