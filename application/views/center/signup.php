@@ -12,36 +12,34 @@
 <script>
     $(document).ready(function() {
 
-//  $("#state").change(function() {
-//
-//    var el = $(this) ;
-//
-//    if(el.val() === "Maharashtra" ) {
-//var state=el.val();
-//           
-//       $.ajax({
-//        url : "<?php echo site_url('index.php/center/Index/show_cities')?>/" + state,        
-//        type: "GET",
-//               
-//        dataType: "JSON",
-//        success: function(data)
-//        {
-//         
-//           $.each(data,function(i,row)
-//           {
-//            
-//               $("#city_name").append('<option value="'+ row.city_name +'">' + row.city_name + '</option>');
-//           }
-//           );
-//        },
-//        error: function (jqXHR, textStatus, errorThrown)
-//        {
-//          alert('Error...!');
-//        }
-//      });
-//    }
-//     
-//  });
+       $('#state').change(function() {
+        // alert();
+   var el = $(this) ;
+              $('#city').html("");
+              $("#city").append('<option value="">--Select City--</option>');              
+var state=el.val();
+        if(state)
+        {
+          // alert(state);            
+      $.ajax({
+       url : "<?php echo site_url('index.php/admin/Index/show_cities')?>/" + state,        
+       type: "GET",              
+       dataType: "JSON",
+       success: function(data)
+       {        
+          $.each(data,function(i,row)
+          {          
+              $('#city').append('<option value="'+ row.cityName +'">' + row.cityName+'</option>');
+          }
+          );
+       },
+       error: function (jqXHR, textStatus, errorThrown)
+       {
+//         alert('Error...!');
+       }
+     });
+     }    
+ });
 
 });
  
@@ -165,24 +163,22 @@
                                  <div class="col-md-6" >
                                 <div class="form-group">
                                 <label for="text">State</label><span style="color:red">*</span>
-                                <select name="center_state" id="state" class="form-control" required>
-                                    <option value="">-- Select State --</option>
-                                  <option value="Maharashtra">Maharashtra</option>
+                               <select name="center_state" id="state" class="form-control">
+                                     <option value="">-- Select State --</option>
+                                     <?php $result=$this->Location_model->getall(); 
+                                            foreach($result as $res)
+                                            {
+                                                echo '<option value="'.$res->stateID.'">'.$res->stateName.'</option>';
+                                            }
+                                       ?>                              
                                 </select>
                                 </div>
                                 </div>
                                 <div class="col-md-6">                            
                                 <div class="form-group">
                                 <label for="text">City</label><span style="color:red">*</span>
-                                <select required class="form-control" id="city_name" name="center_city">
-                                  <option value="">-- Select City --</option>
-                                 <?php 
-                                            foreach($cities as $row)
-                                            { 
-                                              echo '<option value="'.$row->city_name.'">'.$row->city_name.'</option>';
-                                            }
-                                            ?>
-                                  <!--<option id="city_names"></option>-->
+                                <select class="form-control" id="city" name="center_city">
+                                  <option value="">-- Select City --</option>                                 
                                 </select>
                                 </div>
                                 </div>

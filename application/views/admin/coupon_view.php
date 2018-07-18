@@ -168,6 +168,7 @@ $("#myName").on("keyup", function() {
        $("#valid_from_error").html("");
        $("#valid_to_error").html("");
        $("#limit_error").html("");
+       $("#stud_limit_error").html("");
        $("#code_error").html("");
     }
 
@@ -178,6 +179,7 @@ $("#myName").on("keyup", function() {
        $("#center_name_error").html("");
        $("#perc_error").html("");            
        $("#valid_from_error").html("");
+       $("#stud_limit_error").html("");
        $("#valid_to_error").html("");
        $("#limit_error").html("");
        $("#code_error").html("");
@@ -494,8 +496,9 @@ $("#myName").on("keyup", function() {
                                     <div class="form-group">
                                         <label for="lname">Coupon Code</label>
                                         <input type="text" placeholder="Coupon Code" class="form-control required email" id="coupon_code"  name="coupon_code" maxlength="128" style="text-transform:uppercase" required>
+                                   <span style="color:red" id="code_error"></span>
                                     </div>
-                                    <span style="color:red" id="code_error"></span>
+                                    
                                 </div>
                             </div>   
               
@@ -505,16 +508,16 @@ $("#myName").on("keyup", function() {
                                     <div class="form-group">
                                         <label for="limit">Coupon Limit</label>
                                         <input type="number" placeholder="Coupon Limit" class="form-control required"  id="limit" name="limit" min="0" maxlength="128"  required>
-                                    </div>   
-                                   <span style="color:red" id="limit_error"></span>
+                                        <span style="color:red" id="limit_error"></span>
+                                    </div>                                      
                                 </div>
                               
                                 <div class="col-md-5 col-md-offset-1">                                
                                     <div class="form-group">
                                         <label for="limit">Min Student </label>
                                         <input type="number" placeholder="Minimum Student Limit" class="form-control required"  id="stud_limit" name="stud_limit" min="0" maxlength="128" required>
-                                    </div>   
-                                   <span style="color:red" id="stud_limit_error"></span>
+                                    <span style="color:red" id="stud_limit_error"></span>
+                                    </div>                                   
                                 </div>
                               
                           </div>
@@ -524,8 +527,8 @@ $("#myName").on("keyup", function() {
                                     <div class="form-group">
                                         <label for="lname">Coupon Percentage</label>
                                         <input type="text" placeholder="Coupon Percentage" class="form-control required email" id="coupon_perc"  name="coupon_perc" maxlength="128"  required>
-                                    </div>
-                                  <span style="color:red" id="perc_error"></span>
+                                   <span style="color:red" id="perc_error"></span>
+                                    </div>                                  
                                 </div>
                                  </div>
               
@@ -534,16 +537,16 @@ $("#myName").on("keyup", function() {
                                     <div class="form-group">
                                         <label for="fname">Valid From</label>
                                          <input type="date" class="form-control required" id="valid_from" name="valid_from" maxlength="128"   style="text-transform:uppercase" required>
-                                    </div> 
-                                      <span style="color:red" id="valid_from_error"></span>
+                                    <span style="color:red" id="valid_from_error"></span>
+                                    </div>                                      
                                     </div>
                                  <div class="row">
                                   <div class="col-md-5 col-md-offset-1">                                
                                     <div class="form-group">
                                         <label for="fname">Valid To</label>
                                       <input type="date" class="form-control required" id="valid_to" name="valid_to" maxlength="128"   style="text-transform:uppercase" required>                   
-                                    </div> 
-                                      <span style="color:red" id="valid_to_error"></span>
+                                     <span style="color:red" id="valid_to_error"></span>
+                                    </div>                                      
                                     </div>
                                  </div>
                                  </div>

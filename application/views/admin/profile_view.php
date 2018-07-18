@@ -140,7 +140,7 @@ $("#img").change(function (e) {
 
       //Ajax Load data from ajax
       $.ajax({
-        url : "<?php echo site_url('index.php/admin/Profile/ajax_edit/')?>/" + id,        
+        url : "<?php echo site_url('admin/Profile/ajax_edit/')?>/" + id,        
         type: "GET",
                
         dataType: "JSON",
@@ -174,7 +174,7 @@ $("#img").change(function (e) {
 
       var url;
       
-        url = "<?php echo site_url('index.php/admin/Profile/user_update')?>";
+        url = "<?php echo site_url('admin/Profile/user_update')?>";
       
 
        // ajax adding data to database

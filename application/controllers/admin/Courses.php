@@ -35,7 +35,7 @@ class Courses extends CI_Controller {
 					'course_name' => $this->input->post('name'),
 					'course_duration' => $this->input->post('duration'),
 					'course_fees' => $this->input->post('fees'),
-					'course_reexam_fees' => $this->input->post('reexam_fees'),
+//					'course_reexam_fees' => $this->input->post('reexam_fees'),
 					'course_created_at' => $date,
                                         'course_created_by' => 'admin',
                                         'course_status' => $this->input->post('status'),
@@ -63,10 +63,10 @@ class Courses extends CI_Controller {
 		$data = array(
 					'course_name' => $this->input->post('name'),
 					'course_duration' => $this->input->post('duration'),
-					'course_reexam_fees' => $this->input->post('reexam_fees'),
+//					'course_reexam_fees' => $this->input->post('reexam_fees'),
 					'course_fees' => $this->input->post('fees'),
 					
-                                        'course_created_by' => 'admin',
+//                                        'course_created_by' => 'admin',
                                         'course_status' => $this->input->post('status'),
                                         'course_id'=>$this->input->post('id')
 				);

@@ -62,7 +62,7 @@
 					<th>NAME</th>
 					<th>DURATION</th>
 					<th>FEES</th>
-          <th width="12%">REEXAM FEES</th>
+          <!--<th width="12%">REEXAM FEES</th>-->
 					<th>CREATED AT</th>
           <th>CREATED BY</th>
           <th>STATUS</th>
@@ -78,7 +78,7 @@
                                         <td><?php echo $course->course_name;?></td>
                                         <td><?php echo $course->course_duration.' '.'Month' ;?></td>
                                        <td><?php echo $course->course_fees;?></td>
-                                       <td><?php echo $course->course_reexam_fees;?></td>
+                                       <!--<td><?php echo $course->course_reexam_fees;?></td>-->
                                        <td><?php echo $course->course_created_at;?></td>
                                        <td><?php echo $course->course_created_by;?></td>
                                        <td>
@@ -194,6 +194,8 @@
           if ($("#fees").val() == ""){
              $("#fees_error").html("Please Enter Fees");
 //         return false;
+          }else if(isNaN($("#fees").val())){
+               $("#fees_error").html("Invalid Fees");
           }else{
                  var fees="true";         
                    $("#fees_error").html("");
@@ -303,25 +305,34 @@
             </div>
             <div class="form-group">
               <label class="control-label col-md-3">Duration</label>
-              <div class="col-md-9">
-                <input name="duration" id="duration" placeholder="duration" class="form-control" type="number">
+              <div class="col-md-9"> 
+                  <select class="form-control" name="duration" id="duration">
+                      <option value="">Select Duration</option>
+                      <option value="1">1 Month</option><option value="2">2 Month</option>
+                      <option value="3">3 Month</option><option value="4">4 Month</option>
+                      <option value="5">5 Month</option><option value="6">6 Month</option>
+                      <option value="7">7 Month</option><option value="8">8 Month</option>
+                      <option value="9">9 Month</option><option value="10">10 Month</option>
+                      <option value="11">11 Month</option><option value="12">12 Month</option>                      
+                  </select>
+                <!--<input name="duration" id="duration" placeholder="duration" class="form-control" type="number">-->
                 <span id="duration_error" style="color:red"></span>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3">Fees</label>
+              <label class="control-label col-md-3">Exam Fees</label>
               <div class="col-md-9">
-                <input name="fees" placeholder="fees" id="fees" class="form-control" type="text">
+                <input name="fees" placeholder="Fees In Rupees" id="fees" class="form-control" type="text">
                 <span id="fees_error" style="color:red"></span>
               </div>
             </div>
-            <div class="form-group">
+<!--            <div class="form-group">
               <label class="control-label col-md-3">Reexam Fees</label>
               <div class="col-md-9">
                 <input name="reexam_fees" id="reexam_fees" placeholder="fees" class="form-control" type="text">
                 <span id="reexam_error"style="color:red"></span>
               </div>
-            </div>
+            </div>-->
               <div class="form-group">
               <label class="control-label col-md-3">Status</label>
               <div class="col-md-9">

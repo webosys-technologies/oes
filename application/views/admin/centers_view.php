@@ -526,9 +526,7 @@ function view_center(id)
                                             {
                                                 echo '<option value="'.$res->stateID.'">'.$res->stateName.'</option>';
                                             }
-                                       ?>
-                                            
-                                 
+                                       ?>                              
                                 </select>
                                 </div>
                                 
@@ -536,8 +534,7 @@ function view_center(id)
                                
                                 <label for="text">City</label><span style="color:red">*</span>
                                 <select class="form-control" id="city" name="center_city">
-                                  <option value="">-- Select City --</option>
-                                 
+                                  <option value="">-- Select City --</option>                                 
                                 </select>
                                 </div>
                                 </div>
