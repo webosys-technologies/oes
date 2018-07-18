@@ -33,15 +33,6 @@ function is_center_LoggedIn( $center_LoggedIn)
         }
 }
 
-function is_recruiter_LoggedIn($recruiter_LoggedIn)
-{
-     if(isset($recruiter_LoggedIn) || $recruiter_LoggedIn == TRUE)
-        {
-           return true;
-        }else{
-             return false;            
-        }
-}
 
 function get_center_info($id)
 {
@@ -49,23 +40,12 @@ function get_center_info($id)
    return $ci->Centers_model->get_by_id($id); 
 }
 
-function get_member_info($id)
-{
-     $ci =& get_instance();
-   return $ci->Members_model->get_member_by_id($id); 
-}
+
 function get_user_info($id)
 {
     $ci =& get_instance();
    return $ci->User_model->get_user_by_id($id);
 }
-
-function get_companies($rec_id)
-{
-    $ci =& get_instance();
-   return $ci->Companies_model->companies_by_recruiter($rec_id);
-}
-
 
 function custom_encode($string) {
 	$key = "cYbErClINicAdItYa";

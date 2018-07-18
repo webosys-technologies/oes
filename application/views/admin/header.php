@@ -155,6 +155,13 @@
             </span>
           </a>
         </li> 
+         <li>
+          <a href="<?php echo base_url(); ?>admin/Sub_center">
+            <i class="fa fa-users"></i> <span>Sub Centers</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
        
           <li>
           <a href="<?php echo base_url(); ?>admin/Users">
@@ -189,13 +196,7 @@
         </li> 
        
        
-<!--         <li>
-          <a href="<?php echo base_url(); ?>admin/Profile">
-            <i class="fa fa-users"></i> <span>Profile</span>
-            <span class="pull-right-container">
-            </span>
-          </a>
-        </li>-->
+        
 
         
 <!--        <li class=" treeview">
@@ -221,7 +222,13 @@
             </span>
           </a>
         </li>-->
-        
+         <li>
+          <a href="<?php echo base_url(); ?>admin/Profile">
+            <i class="fa fa-users"></i> <span>Profile</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
 
 
       </ul>

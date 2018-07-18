@@ -35,6 +35,20 @@
             <a href="<?php echo base_url(); ?>admin/Centers" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
+          <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box" style="background:#90EE90;">
+            <div class="inner">
+              <h3 id="num"><?php if(isset($sub_centers)){echo $sub_centers;}else{echo "0";}?></h3>
+
+              <p id="num">Sub Centers</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-mortar-board"></i>
+            </div>
+            <a href="<?php echo base_url(); ?>admin/Sub_center" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
          <!--./col--> 
         <div class="col-lg-3 col-xs-6">
            <!--small box--> 
@@ -51,171 +65,45 @@
           </div>
         </div>
          
-<!--          <div class="col-lg-3 col-xs-6">
-           small box 
-          <div class="small-box" style="background:#90EE90;">
+          <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box" style="background:#FFB6C1;">
             <div class="inner">
-              <h3 id="num"><?php if(isset($user)){echo count($user);}else{echo "0";}?></h3>
+              <h3 id="num"><?php if(isset($coupons)){echo $coupons;}else{echo "0";}?></h3>
 
-              <p id="num">Users</p>
+              <p id="num">Coupons</p>
             </div>
             <div class="icon">
-              <i class="fa fa-users"></i>
+              <i class="fa fa-money"></i>
             </div>
-            <a href="<?php echo base_url(); ?>admin/Users" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url(); ?>admin/Coupon" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-        </div>-->
+        </div>
          
-<!--         <div class="col-lg-3 col-xs-6">
-           small box 
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3 id="num"><?php if(isset($companies)){echo count($companies);}else{echo "0";}?></h3>
-
-              <p id="num">Companies</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-industry"></i>
-            </div>
-            <a href="<?php echo base_url(); ?>admin/Companies" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>-->
 
       </div>
+        
+        <div class="row">
+           <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box" style="background:#008080;">
+            <div class="inner">
+              <h3 id="num"><?php if(isset($questions)){echo $questions;}else{echo "0";}?></h3>
+
+              <p id="num">Questions</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-question-circle"></i>
+            </div>
+            <a href="<?php echo base_url(); ?>admin/Question" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div> 
+        </div>
         
         
        <?php } }?>
         
-         <?php if (isset($user_data)){if($user_data->user_type=="admin"){?>  
-<!--        <div class="row">
-        <div class="col-lg-3 col-xs-6">
-           small box 
-          <div class="small-box bg-red-gradient">
-            <div class="inner">
-              <h3 id="num"><?php if(isset($recruiters)){echo count($recruiters);}else{echo "0";}?></h3>
-
-              <p id="num">Recruiters</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-users"></i>
-            </div>
-            <a href="<?php echo base_url(); ?>admin/Recruiter" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-         ./col 
-        <div class="col-lg-3 col-xs-6">
-            small box  
-          <div class="small-box" style="background:#FF99CC;">
-            <div class="inner">
-              <h3 id="num"><?php if(isset($institute)){echo count($institute);}else{echo "0";}?><sup style="font-size: 20px"></sup></h3>
-
-              <p id="num">University</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-institution"></i>
-            </div>
-            <a href="<?php echo base_url(); ?>admin/Institute" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-         ./col 
-        <div class="col-lg-3 col-xs-6">
-            small box  
-          <div class="small-box" style="background:#ff6666;">
-            <div class="inner">
-              <h3 id="num"><?php if(isset($education)){echo count($education);}else{echo "0";}?><sup style="font-size: 20px"></sup></h3>
-
-              <p id="num">Education</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-book"></i>
-            </div>
-            <a href="<?php echo base_url(); ?>admin/Education" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-         ./col 
-        <div class="col-lg-3 col-xs-6">
-            small box  
-          <div class="small-box" style="background:#ffa64d;">
-            <div class="inner">
-              <h3 id="num"><?php if(isset($customer)){echo count($customer);}else{echo "0";}?><sup style="font-size: 20px"></sup></h3>
-
-              <p id="num">Customer</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-user"></i>
-            </div>
-            <a href="<?php echo base_url(); ?>admin/Customer" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-      </div>-->
-         <?php } } ?>
         
-        <?php if (isset($user_data)){if($user_data->user_type=="user"){?>  
-         <div class="row">
-        
-         <!--./col--> 
-        <div class="col-lg-3 col-xs-6">
-           <!--small box--> 
-          <div class="small-box" style="background:#FFCC33;">
-            <div class="inner">
-              <h3 id="num"><?php if(isset($members)){echo count($members);}else{echo "0";}?><sup style="font-size: 20px"></sup></h3>
-
-              <p id="num">Member Masters</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-users"></i>
-            </div>
-            <a href="<?php echo base_url(); ?>admin/Members" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-         <!--./col--> 
-        <div class="col-lg-3 col-xs-6">
-           <!--small box--> 
-          <div class="small-box" style="background:#7FB3D5">
-            <div class="inner">
-              <h3 id="num"><?php if(isset($posted)){echo count($posted);}else{echo "0";}?></h3>
-
-              <p id="num">Job Posted</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-suitcase"></i>
-            </div>
-            <a href="<?php echo base_url(); ?>admin/Jobs/" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-         
-          <div class="col-lg-3 col-xs-6">
-           <!--small box--> 
-          <div class="small-box bg-red-gradient">
-            <div class="inner">
-              <h3 id="num"><?php if(isset($recruiters)){echo count($recruiters);}else{echo "0";}?></h3>
-
-              <p id="num">Recruiters</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-users"></i>
-            </div>
-            <a href="<?php echo base_url(); ?>admin/Recruiter" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-         
-         <div class="col-lg-3 col-xs-6">
-           <!--small box--> 
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3 id="num"><?php if(isset($companies)){echo count($companies);}else{echo "0";}?></h3>
-
-              <p id="num">Companies</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-industry"></i>
-            </div>
-            <a href="<?php echo base_url(); ?>admin/Companies" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-     
-      </div>
-        <?php } } ?>
         
         
     </section>

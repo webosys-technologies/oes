@@ -228,9 +228,23 @@
               </a>
             </li>
             <li class="treeview">
-              <a href="<?php echo base_url(); ?>center/Student" >
+              <a href="<?php echo base_url(); ?>center/Roll" >
                 <i class="fa fa-users"></i>
                 <span>Manage Students</span>
+              </a>
+            </li>
+            
+            <li class="treeview">
+              <a href="<?php echo base_url(); ?>center/Sub_center" >
+                <i class="fa fa-users"></i>
+                <span>Sub Centers</span>
+              </a>
+            </li>
+            
+            <li class="treeview">
+              <a href="<?php echo base_url(); ?>center/Profile" >
+                <i class="fa fa-users"></i>
+                <span>Manage Profile</span>
               </a>
             </li>
          

@@ -37,6 +37,8 @@ class Dashboard extends CI_Controller
              $id=$this->session->userdata('ccc_center_id');            
                  
              $result['data']=get_center_info($id);
+             $result['courses']=$this->Courses_model->getall_courses();
+             $result['sub_centers']=$this->Sub_centers_model->get_sub_centers_by_id($id);
             $result['system']=$this->System_model->get_info();
 
              $this->load->view('center/header',$result);

@@ -1,5 +1,37 @@
-<script src="<?php echo base_url("assets/js/form_validation.js"); ?>">
-</script>
+
+<style type="text/css">
+
+  .modal fade{
+    display: block !important;
+}
+
+.modal-dialog{
+  width: 600px;
+      overflow-y: initial !important
+}
+
+.modal-body{
+  height: 170px;
+  /*overflow-y: auto;*/
+}
+#pay{
+  overflow-x: auto;
+}
+#box{
+    /*padding:100px,0px;*/
+    width:100px;
+    height:100px;
+    background-color:lightgrey;
+    text-align:center;
+   
+}
+p{
+    padding:30px 0px;
+}
+#img{
+    display:none;
+}
+</style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -18,32 +50,18 @@
     <div class="col-md-4">
     <button type="button" class="btn btn-primary" onclick="add_sub_center()"><i class="glyphicon glyphicon-plus"></i> Add Sub Center</button>
       </div>
-               <div class="col-md-6">
+        <div class="col-md-6">
          <?php
-        $this->load->helper('form');
-        $success = $this->session->flashdata('success');
-        if($success)
-        {
-            ?>
-            
-        <div class="alert alert-success alert-dismissible" data-auto-dismiss="5000">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Success!</strong> <?php echo $success; ?> 
-  </div>
-        <?php }?>
-             
-              <?php
         $this->load->helper('form');
         $error = $this->session->flashdata('error');
         if($error)
         {
-            ?>           
-        <div class="alert alert-danger alert-dismissible" data-auto-dismiss="2000">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Error!</strong> <?php echo $error; ?> 
-  </div>
-        <?php }?>    
-       
+            ?>
+            <script>
+                alert("<?php echo $error; ?> ");
+             </script>
+            
+        <?php }?>
         </div>
     </div>
     <br>
@@ -61,14 +79,14 @@
       <thead class="thead-dark">
         <tr bgcolor="#338cbf" style="color:#fff">
           
-          <th style="width:10px;">ID</th>         
+          <th>ID</th>
+         
           <th>NAME</th>
-          <th>CENTER NAME</th>
           <th>SUB CENTER NAME</th>
-          <th style="width:80px;">CREATED AT</th>
-          <th style="width:80px;">STATUS</th>
+          <th>CREATED AT</th>
+          <th>STATUS</th>
 
-          <th style="width:80px;">ACTION
+          <th style="width:100px;">ACTION
           </th>
         </tr>
       </thead>
@@ -83,7 +101,6 @@
           <tr>
                                         <td><?php echo $res->sub_center_id;?></td>
                                         <td><?php echo $res->sub_center_fullname ?></td>
-                                        <td><?php echo $res->center_name;?></td>
                                         <td><?php echo $res->sub_center_name; ?></td>
                                        <td><?php echo $res->sub_center_created_at;?></td>
                                        <td>
@@ -101,7 +118,7 @@
   
                   <button type="button" class="btn btn-success" onclick="edit_sub_center(<?php echo $res->sub_center_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="Edit Sub Center" ><i class="glyphicon glyphicon-pencil"></i></button>
                   <!--<button type="button" class="btn btn-info" onclick="view_sub_center(<?php echo $res->sub_center_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="View Sub Center"><i class="glyphicon glyphicon-eye-open"></i></button>-->
-                  <button type="button" class="btn btn-danger" onclick="delete_sub_center(<?php echo $res->sub_center_id;?>)" data-toggle="tooltip" data-placement="bottom" title="Delete Sub Center" ><i class="glyphicon glyphicon-trash"></i></button>
+                  <!-- <button type="button" class="btn btn-danger" onclick="(<?php echo $res->sub_center_id;?>)" data-toggle="tooltip" data-placement="bottom" title="Delete Sub Center" ><i class="glyphicon glyphicon-trash"></i></button> -->
 
 
                 </td>
@@ -124,10 +141,13 @@
     
   </div>
 
-  <!--<script src="<?php echo base_url('assets/js/validation1.js'); ?>" type="text/javascript"></script>-->
-    <script type="text/javascript">
+  <script src="<?php echo base_url('assets/js/validation1.js'); ?>" type="text/javascript"></script>
+
+
+
+  <script type="text/javascript">
   $(document).ready( function () {          
-               
+      
       $('#pay').DataTable();
            
   } );
@@ -150,35 +170,27 @@ $("#myName").on("keyup", function() {
     
     function add_sub_center()
     {
-       
       save_method = 'add';
       $('#form')[0].reset(); // reset form on modals
       $('#modal_form').modal('show'); // show bootstrap modal
-      $('.modal-title').text('Add Sub Center'); // Set Title to Bootstrap modal title 
-       $("#text_field1_error").html("");
-        $("#text_field2_error").html("");
-        $("#select1_error").html("");
+      $('.modal-title').text('Add Sub Center'); // Set Title to Bootstrap modal title     
     }
 
     function edit_sub_center(id)
     {
-          $("#text_field1_error").html("");
-        $("#text_field2_error").html("");
-        $("#select1_error").html("");
-        
       save_method = 'update';
      $('#form')[0].reset(); // reset form on modals
 
       //Ajax Load data from ajax
       $.ajax({
-        url : "<?php echo site_url('admin/Sub_center/ajax_edit/')?>/" + id,        
+        url : "<?php echo site_url('index.php/center/Sub_center/ajax_edit/')?>/" + id,        
         type: "GET",
                
         dataType: "JSON",
         success: function(data)
         {        
 //                     $("#append_city").remove();
-             $('[name="center_id"]').val(data.center_id);
+          
             $('[name="sub_center_id"]').val(data.sub_center_id);
             $('[name="fullname"]').val(data.sub_center_fullname);
             $('[name="sub_center_name"]').val(data.sub_center_name);
@@ -205,7 +217,7 @@ $("#myName").on("keyup", function() {
 
       //Ajax Load data from ajax
       $.ajax({
-        url : "<?php echo site_url('admin/Sub_center/ajax_edit/')?>/" + id,        
+        url : "<?php echo site_url('index.php/center/Sub_center/ajax_edit/')?>/" + id,        
         type: "GET",
                
         dataType: "JSON",
@@ -232,19 +244,16 @@ $("#myName").on("keyup", function() {
 
     function save()
     {
-        var val=sub_center_validation();
-        if(val)
-        {
         var data = new FormData(document.getElementById("form"));
 
       var url;
       if(save_method == 'add')
       {
-        url = "<?php echo site_url('admin/Sub_center/sub_center_add')?>";
+        url = "<?php echo site_url('index.php/center/Sub_center/sub_center_add')?>";
       }
       else
       {
-        url = "<?php echo site_url('admin/Sub_center/sub_center_update')?>";
+        url = "<?php echo site_url('index.php/center/Sub_center/sub_center_update')?>";
       }
 
        // ajax adding data to database
@@ -258,14 +267,12 @@ $("#myName").on("keyup", function() {
             dataType: "JSON",
             success: function(json)
             {
-              if(json.error)  
-              {
-              $("#text_field2_error").html(json.error);
-              }else
-              {
-                   $('#modal_form').modal('hide');
+              
+                    alert("Data Save Successfully...!"); 
+               
+               $('#modal_form').modal('hide');
               location.reload();// for reload a page
-              }
+             
             
             },
             error: function (jqXHR, textStatus, errorThrown)
@@ -274,7 +281,6 @@ $("#myName").on("keyup", function() {
             }
         });
     }
-    }
 
     function delete_sub_center(id)
     {
@@ -282,12 +288,12 @@ $("#myName").on("keyup", function() {
       {
         // ajax delete data from database
           $.ajax({
-            url : "<?php echo site_url('admin/Sub_center/sub_center_delete')?>/"+id,
+            url : "<?php echo site_url('index.php/center/Sub_center/sub_center_delete')?>/"+id,
             type: "POST",
             //dataType: "JSON",
             success: function(data)
             {
-               
+                alert("Deleted successfully");  
                location.reload();
             },
             error: function (jqXHR, textStatus, errorThrown)
@@ -328,7 +334,7 @@ $("#myName").on("keyup", function() {
   
   <!-- Bootstrap modal -->
   <div class="modal fade" id="modal_form2" role="dialog">
-  <div class="modal-dialog" id="modal_dialog">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="color:#fff; background-color:#338cbf">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -337,7 +343,10 @@ $("#myName").on("keyup", function() {
          <form action="#" name="form_student" id="form2" class="form-horizontal">
       <div class="modal-body form">
        
-           <div class="box-body">
+          <input type="hidden" value="" name="student_id"/>
+          <input type="hidden" value="" name="center_id"/>
+
+          <div class="box-body">
           
                <div class="row">
                    <div class="col-md-5 col-md-offset-1"> 
@@ -373,7 +382,7 @@ $("#myName").on("keyup", function() {
 
   <!-- Bootstrap modal -->
   <div class="modal fade" id="modal_form" role="dialog">
-  <div class="modal-dialog" id="modal_dialog1">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="color:#fff; background-color:#338cbf">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -390,43 +399,19 @@ $("#myName").on("keyup", function() {
                                     <div class="form-group">
                                         <label for="fname">Full Name</label>
                                         <input type="text" class="form-control required" id="fullname" name="fullname" maxlength="128"   style="text-transform:uppercase" required>
-                                        <span id="text_field1_error" style="color:red"></span>
                                     </div>
-                                    
                                     
                                 </div>
                                 <div class="col-md-5 col-md-offset-1 ">
                                     <div class="form-group">
-                                        <label for="lname">Center Name</label>
-                                        <select name="center_id" id="center_id" class="form-control required" required>
-                                             <option value="">--Select Center--</option>  
-                                            <?php 
-                                            foreach($center_data as $center)
-                                            { 
-                                              if ($center->center_status==1)
-                                                  {                                                
-                                              echo '<option value="'.$center->center_id.'">'.$center->center_name.'</option>';
-                                            }
-                                            }
-                                            ?>
-                                        </select>
-                                     <span id="select1_error" style="color:red"></span>
-
+                                        <label for="lname">Sub Center Name</label>
+                                        <input type="text" class="form-control required email" id="sub_center_name"  name="sub_center_name" maxlength="128"  style="text-transform:uppercase" required>
                                     </div>
                                 </div>
                             </div>   
               
                           <div class="row">
-                              <div class="col-md-5  ">
-                                    <div class="form-group">
-                                        <label for="lname">Sub Center Name</label>
-                                        <input type="text" class="form-control required email" id="sub_center_name"  name="sub_center_name" maxlength="128"  style="text-transform:uppercase" required>
-                                         <span id="text_field2_error" style="color:red"></span>
-                                    </div>
-                          
-
-                                </div>
-                                <div class="col-md-5 col-md-offset-1 ">                                
+                                <div class="col-md-5 ">                                
                                     <div class="form-group">
                                         <label for="fname">Status</label>
                                         <select class="form-control" name="status">
@@ -435,7 +420,6 @@ $("#myName").on("keyup", function() {
                                         </select>
                                     </div> 
                                     </div>
-                              
                           </div>
          
                         </div><!-- /.box-body --> 
