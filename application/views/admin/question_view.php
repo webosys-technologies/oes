@@ -9,7 +9,7 @@
       overflow-y: initial !important
 }
 .modal-body{
-  height: 500px;
+  height: 450px;
   overflow-y: auto;
 }
 </style>
@@ -333,7 +333,7 @@ $("#myName").on("keyup", function() {
                 </tr>
             </table>
           </form>
-      
+      </div>
            
           <div class="modal-footer">
               <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
@@ -431,7 +431,8 @@ $("#myName").on("keyup", function() {
                         </div><br><br>
                     
           </form>
-      
+      </div>
+        
            
           <div class="modal-footer">
               
@@ -444,4 +445,3 @@ $("#myName").on("keyup", function() {
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
   <!-- End Bootstrap modal -->
-</div>
