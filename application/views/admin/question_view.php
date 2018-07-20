@@ -8,10 +8,11 @@
   width: 700px;
       overflow-y: initial !important
 }
+
 #modal_body,#modal_body1{
   height: 500px;
-  overflow-y: auto;
-}
+
+
 </style>
 
 <div class="content-wrapper">
@@ -338,7 +339,7 @@ $("#myName").on("keyup", function() {
                 </tr>
             </table>
           </form>
-      
+      </div>
            
           <div class="modal-footer">
               <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
@@ -436,7 +437,8 @@ $("#myName").on("keyup", function() {
                         </div><br><br>
                     
           </form>
-      
+      </div>
+        
            
           <div class="modal-footer">
               
@@ -449,6 +451,7 @@ $("#myName").on("keyup", function() {
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
   <!-- End Bootstrap modal -->
+
 </div>
      
         <div class="modal fade" id="delete_modal" style=""  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -473,3 +476,4 @@ $("#myName").on("keyup", function() {
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+

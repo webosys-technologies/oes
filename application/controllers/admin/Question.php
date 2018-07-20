@@ -17,6 +17,7 @@ class Question extends CI_Controller
 
 	 public function index()
     {
+             
        
 	        $data['question']=$this->Questions_model->getall_ques();
 
