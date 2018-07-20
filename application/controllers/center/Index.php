@@ -54,19 +54,18 @@ class Index extends CI_Controller
                                     'title'=>'Delto Center Registration...!',
                                     'data'=>'Your Center Registration Successfully with delto',
                                     'email'=>$get_data['center_email']
-                                );
+                                          );
 //				 echo $get_data['center_mobile']."<br>";
 //                                 die;
-                               $result=$this->signup_email($get_data,$msg);
-                               $this->verification_email($get_data,$msg);
-                                $user_email=$this->User_model->getall_email();
-                            foreach ($user_email as $mail)
-                            {
-                                $this->center_registration_mail_to_admin($mail->user_email,$get_data);
-                            }
-                               if($result==true)
-                                {
-                                  
+//                               $result=$this->signup_email($get_data,$msg);
+//                               $this->verification_email($get_data,$msg);
+//                                $user_email=$this->User_model->getall_email();
+//                            foreach ($user_email as $mail)
+//                            {
+//                                $this->center_registration_mail_to_admin($mail->user_email,$get_data);
+//                            }
+                               if(true)
+                                {                                  
                                   $this->session->set_flashdata('signup_success','Registration Successfull,please check email & verify your Account!');
                                   $this->session->unset_userdata('center_otp');                                  
                                     $this->session->set_flashdata('mobile',$get_data['center_mobile']);
@@ -79,17 +78,15 @@ class Index extends CI_Controller
                                 }
                                 else
                                 {                                  
-                                     $this->session->set_flashdata('signup_error','please Enter Valid Email...!');
-                                     $cities['cities']=$this->Cities_model->getall_cities("Maharashtra");
-                                $this->load->view('center/signup',$cities);
+                                $this->session->set_flashdata('signup_error','please Enter Valid Email...!');                                    
+                                $this->load->view('center/signup');
                                 }
 
 			}
 			else
-                            {
+                            {                          
                            
-                            $cities['cities']=$this->Cities_model->getall_cities("Maharashtra");
-				$this->load->view('center/signup',$cities);
+				$this->load->view('center/signup');
 			}
 
 		
@@ -101,7 +98,7 @@ class Index extends CI_Controller
               
    function login()
     {
-             $center_LoggedIn = $this->session->userdata('ccc_center_LoggedIn');
+             $center_LoggedIn = $this->session->userdata('oes_center_LoggedIn');
         
         if(isset($center_LoggedIn) || $center_LoggedIn == TRUE)
         {
@@ -445,13 +442,13 @@ class Index extends CI_Controller
                 {
                     $sessionArray = array(
                         
-                         'ccc_center_id' => $res->center_id,
-                    'ccc_center_fname' => $res->center_fname,
-                    'ccc_center_lname' => $res->center_lname,
-                    'ccc_center_email' => $res->center_email,
-                     'ccc_center_name'=>$res->center_name,
-                     'ccc_center_mobile' =>$res->center_mobile,
-                    'ccc_center_LoggedIn' => true
+                         'oes_center_id' => $res->center_id,
+                    'oes_center_fname' => $res->center_fname,
+                    'oes_center_lname' => $res->center_lname,
+                    'oes_center_email' => $res->center_email,
+                     'oes_center_name'=>$res->center_name,
+                     'oes_center_mobile' =>$res->center_mobile,
+                    'oes_center_LoggedIn' => true
                                     );
                                     
                     $this->session->set_userdata($sessionArray);  
@@ -495,6 +492,107 @@ class Index extends CI_Controller
             }
         
         }
+    }
+    
+    
+    
+       
+        function send_otp($mobile)
+        {           
+                    
+                     $rand=mt_rand(000000,999999);
+                     $this->session->set_userdata(array('center_otp'=>$rand));
+                        //Your authentication key
+
+                   $authKey = "217899AjUpTycrXx6K5b0e2283";    //suraj9195shinde for
+
+                   //Multiple mobiles numbers separated by comma
+
+                   $mobileNumber = $mobile;
+                   //Sender ID,While using route4 sender id should be 6 characters long.
+
+                   $senderId = "DELTO2";
+                   //Your message to send, Add URL encoding here.
+
+                   $message =$rand.' is your OTP for Activating Account on DELTO';
+
+
+                   //Define route 
+
+                   $route = "4";
+                   //Prepare you post parameters
+
+                   $postData = array(
+
+                       'authkey' => $authKey,
+
+                       'mobiles' => $mobileNumber,
+
+                       'message' => $message,
+
+                       'sender' => $senderId,
+
+                       'route' => $route
+
+                   );
+
+
+                   //API URL
+
+                   $url="http://api.msg91.com/api/sendhttp.php";
+
+
+                   // init the resource
+
+                   $ch = curl_init();
+                   curl_setopt_array($ch, array(
+
+                       CURLOPT_URL => $url,
+
+                       CURLOPT_RETURNTRANSFER => true,
+
+                       CURLOPT_POST => true,
+
+                       CURLOPT_POSTFIELDS => $postData
+
+                       //,CURLOPT_FOLLOWLOCATION => true
+
+                   ));
+                   //Ignore SSL certificate verification
+                   curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+                   //get response
+
+                   $output = curl_exec($ch);
+                   //Print error if any
+                   if(curl_errno($ch))
+                   {
+                       echo json_encode(array('error'=> curl_error($ch)));
+                   }else{
+                   curl_close($ch);
+//                   echo json_encode(array('send'=>'OTP is sent Successfully'));       
+                   //echo $output;   
+                   return true;
+                   }
+                   
+        }
+        
+        
+    function activate_account()
+    {
+         $otp=$this->input->post('otp');
+         $mobile=$this->input->post('mobile');
+        if(!empty($otp) && $otp==$this->session->userdata('center_otp'))
+        {
+            $where=array('center_mobile'=>$mobile);
+            $data=array('center_status'=>1);
+            $this->Centers_model->center_update($where,$data);
+            $this->session->set_flashdata('email_verify','Account Verification Successfull,Please Login...!');
+            echo json_encode(array('status'=>true));
+         }else{
+              echo json_encode(array('otp_error'=>"Please Enter Correct OTP"));
+         }
     }
     
     
@@ -627,7 +725,7 @@ class Index extends CI_Controller
     
         
 //        $this->session->sess_destroy();
-          $this->session->unset_userdata('ccc_center_LoggedIn'); 
+          $this->session->unset_userdata('oes_center_LoggedIn'); 
         redirect('center/index/login');  
     }
     

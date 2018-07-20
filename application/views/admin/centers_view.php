@@ -634,18 +634,18 @@ function view_center(id)
       </div><!-- /.modal-dialog -->
     </div>
   
-  <div class="modal fade" id="delete_modal" style="height:50px;"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="delete_modal" style=""  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div style="background:#3c8dbc;" class="modal-header">
           
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <center><h4 style="color:white" class="modal-title" style="" id="myModalLabel"><strong>Delete User</strong></h4></center>
+        <center><h4 style="color:white" class="modal-title" style="" id="myModalLabel"><strong>Delete Center</strong></h4></center>
       </div>
-      <div  style="background:#F2F3F4" style="height:50px;" class="modal-body">
+      <div  style="background:#F2F3F4" style="" class="modal-body">
           <div class="row">
               <div class="col-md-10 col-md-offset-2">
-                  <label style="color:black">Are you sure want to delete this User ?</label> <br>
+                  <label style="color:black">Are you sure want to delete this Center ?</label> <br>
                   <button class="btn btn-default" id="delete_center">Yes</button>
                   <button class="btn btn-default" data-dismiss="modal">No</button>
           
@@ -660,7 +660,5 @@ function view_center(id)
   </body>
 </html>
 
-<script>
-    
-    </script>
+
 

@@ -261,8 +261,14 @@
 
     function delete_course(id)
     {
-      if(confirm('Are you sure delete this data?'))
-      {
+         $("#delete_course").attr('onclick','delete_menu('+id+')');
+     $("#delete_modal").modal('show');
+      
+    }
+    
+    function delete_menu(id)
+    {
+        
         // ajax delete data from database
           $.ajax({
             url : "<?php echo site_url('admin/Courses/course_delete')?>/"+id,
@@ -278,8 +284,6 @@
                 alert('Error deleting data');
             }
         });
-
-      }
     }
 
   </script>
@@ -354,6 +358,29 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
   <!-- End Bootstrap modal -->
+  
+   <div class="modal fade" id="delete_modal" style=""  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div style="background:#3c8dbc;" class="modal-header">
+          
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <center><h4 style="color:white" class="modal-title" style="" id="myModalLabel"><strong>Delete Course</strong></h4></center>
+      </div>
+      <div  style="background:#F2F3F4" style="" class="modal-body">
+          <div class="row">
+              <div class="col-md-10 col-md-offset-2">
+                  <label style="color:black">Are you sure want to delete this Course ?</label> <br>
+                  <button class="btn btn-default" id="delete_course">Yes</button>
+                  <button class="btn btn-default" data-dismiss="modal">No</button>
+          
+                  </div>              
+                 </div>
+      </div>
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 

@@ -4,10 +4,10 @@
   .modal fade{
     display: block !important;
 }
-.modal-dialog{
+#modal_dialog{
       overflow-y: initial !important
 }
-.modal-body{
+#modal_body{
   height: 500px;
   overflow-y: auto;
 }
@@ -413,13 +413,13 @@
   
    <!-- Bootstrap modal -->
   <div class="modal fade" id="modal_form" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog" id="modal_dialog">
     <div class="modal-content">
       <div class="modal-header" style="color:#fff; background-color:#338cbf" >
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <center><h3 class="modal-title">User Form</h3></center>
       </div>
-      <div class="modal-body form">
+      <div class="modal-body form" id="modal_body">
         <form action="#" name="form_course" id="form" class="form-horizontal">
           <input type="hidden" value="" name="id"/>
           <div class="form-body">
@@ -499,17 +499,17 @@
 </div>
    
     <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog"  style="height:100px;" id="delete_dialog">
+  <div class="modal-dialog"  style="" id="delete_dialog">
     <div class="modal-content">
       <div style="background:#3c8dbc;" class="modal-header">
           
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <center><h4 style="color:white" class="modal-title" style="" id="myModalLabel"><strong>Center</strong></h4></center>
+        <center><h4 style="color:white" class="modal-title" style="" id="myModalLabel"><strong>User</strong></h4></center>
       </div>
-      <div  style="background:#F2F3F4" style="height:100px;" class="modal-body">
+      <div  style="background:#F2F3F4" style="" class="modal-body">
           <div class="row">
               <div class="col-md-10 col-md-offset-2">
-                  <label style="color:black">Are you sure want to delete this center ?</label> <br>
+                  <label style="color:black">Are you sure want to delete this User ?</label> <br>
                   <button class="btn btn-default" id="delete_user">Yes</button>
                   <button class="btn btn-default" data-dismiss="modal">No</button>
           

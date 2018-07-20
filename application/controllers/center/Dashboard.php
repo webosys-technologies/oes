@@ -22,7 +22,7 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
        
-       if(!is_center_LoggedIn($this->session->userdata('ccc_center_LoggedIn')))
+       if(!is_center_LoggedIn($this->session->userdata('oes_center_LoggedIn')))
      {
          redirect('center/Index/login');
      }
@@ -34,7 +34,7 @@ class Dashboard extends CI_Controller
     public function index()
     {
        
-             $id=$this->session->userdata('ccc_center_id');            
+             $id=$this->session->userdata('oes_center_id');            
                  
              $result['data']=get_center_info($id);
              $result['courses']=$this->Courses_model->getall_courses();

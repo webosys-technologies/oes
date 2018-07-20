@@ -5,7 +5,7 @@
 
 //require APPPATH . '/libraries/BaseController.php';
 
-class Profile extends CI_Controller
+class Student_roll extends CI_Controller
 {
 
 	public function __construct()
@@ -25,7 +25,7 @@ class Profile extends CI_Controller
             $result['system']=$this->System_model->get_info();
         $result['data']=get_center_info($id);
           $this->load->view('center/header',$result);
-      	 $this->load->view('center/profile_view');
+      	 $this->load->view('center/student_roll_view');
           $this->load->view('center/footer',$result);
 
 	}

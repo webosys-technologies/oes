@@ -80,7 +80,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini">DLT</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b><img src="<?php echo base_url('assets/images/delto_logo.PNG') ?>" width="100%" height="60px"></b></span>
+          <span class="logo-lg"><b><img src="<?php echo base_url('assets/images/oes_logo.PNG') ?>" width="100%" height="60px"></b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -228,9 +228,9 @@
               </a>
             </li>
             <li class="treeview">
-              <a href="<?php echo base_url(); ?>center/Roll" >
+              <a href="<?php echo base_url(); ?>center/Student_roll" >
                 <i class="fa fa-users"></i>
-                <span>Manage Students</span>
+                <span>Student Roll</span>
               </a>
             </li>
             

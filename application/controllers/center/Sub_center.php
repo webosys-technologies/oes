@@ -10,7 +10,7 @@ class Sub_center extends CI_Controller
 	{
 		parent::__construct();
        
-     if(!is_center_LoggedIn($this->session->userdata('ccc_center_LoggedIn')))
+     if(!is_center_LoggedIn($this->session->userdata('oes_center_LoggedIn')))
      {
          redirect('center/Index/login');
      }
@@ -19,7 +19,7 @@ class Sub_center extends CI_Controller
 	public function index()
 	{  
 
-            $id=$this->session->userdata('ccc_center_id');
+            $id=$this->session->userdata('oes_center_id');
             $data['sub_center_data']=$this->Sub_centers_model->get_sub_centers_by_id($id);
             $result['data']=get_center_info($id);
             $result['system']=$this->System_model->get_info();
@@ -35,7 +35,7 @@ class Sub_center extends CI_Controller
 
 	function sub_center_add()
 	{
-        $id=$this->session->userdata('ccc_center_id');
+        $id=$this->session->userdata('oes_center_id');
 
 		         
             

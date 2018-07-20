@@ -4,11 +4,11 @@
  .modal fade{
     display: block !important;
 }
-.modal-dialog{
+#modal_dialog,#modal_dialog1{
   width: 700px;
       overflow-y: initial !important
 }
-.modal-body{
+#modal_body,#modal_body1{
   height: 500px;
   overflow-y: auto;
 }
@@ -215,8 +215,14 @@ $("#myName").on("keyup", function() {
 
     function delete_ques(id)
     {
-      if(confirm('Are you sure delete this data?'))
-      {
+         $("#delete_ques").attr('onclick','delete_menu('+id+')');
+         $("#delete_modal").modal('show');
+     
+    }
+    
+    function delete_menu(id)
+    {
+       
         // ajax delete data from database
           $.ajax({
             url : "<?php echo site_url('index.php/admin/Question/delete_ques')?>/"+id,
@@ -224,7 +230,7 @@ $("#myName").on("keyup", function() {
             dataType: "JSON",
             success: function(data)
             {
-               alert("Question deleted successfully.");  
+//               alert("Question deleted successfully.");  
                location.reload();
             },
             error: function (jqXHR, textStatus, errorThrown)
@@ -232,8 +238,7 @@ $("#myName").on("keyup", function() {
                 alert('Error deleting data');
             }
         });
-
-      }
+       
     }
 
 
@@ -249,14 +254,14 @@ $("#myName").on("keyup", function() {
 
      <!-- Bootstrap modal -->
   <div class="modal fade" id="add_form" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog" id="modal_dialog1">
     <div class="modal-content">
       <div class="modal-header" style="color:#fff; background-color:#338cbf" >
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
        <center> <h3 class="modal-title">Topics Form</h3></center>
        
       </div>
-      <div class="modal-body form">
+      <div class="modal-body form" id="modal_body">
         <form id="form" method="" action="">
             <table class="table" id="dynamic_field">
                 <tr >
@@ -353,14 +358,14 @@ $("#myName").on("keyup", function() {
 
      <!-- Bootstrap modal -->
   <div class="modal fade" id="edit_form" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog" id="modal_dialog">
     <div class="modal-content">
       <div class="modal-header" style="color:#fff; background-color:#338cbf">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
        <center> <h3 class="modal-title">Edit Question</h3> </center>
        
       </div>
-      <div class="modal-body form">
+      <div class="modal-body form" id="modal_body">
         <form id="form2" method="POST" action="">
             
                       <input type="hidden" name="id">
@@ -445,3 +450,26 @@ $("#myName").on("keyup", function() {
     </div><!-- /.modal -->
   <!-- End Bootstrap modal -->
 </div>
+     
+        <div class="modal fade" id="delete_modal" style=""  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div style="background:#3c8dbc;" class="modal-header">
+          
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <center><h4 style="color:white" class="modal-title" style="" id="myModalLabel"><strong>Delete Question</strong></h4></center>
+      </div>
+      <div  style="background:#F2F3F4" style="" class="modal-body">
+          <div class="row">
+              <div class="col-md-10 col-md-offset-2">
+                  <label style="color:black">Are you sure want to delete this Question ?</label> <br>
+                  <button class="btn btn-default" id="delete_ques">Yes</button>
+                  <button class="btn btn-default" data-dismiss="modal">No</button>
+          
+                  </div>              
+                 </div>
+      </div>
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

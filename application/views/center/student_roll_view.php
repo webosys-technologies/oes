@@ -36,7 +36,7 @@ p{
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i><strong> Sub Center Management</strong>
+        <i class="fa fa-users"></i><strong>Student Management</strong>
         <small>Add, Edit, Delete <?php  ?></small>
       </h1>
       <ol class="breadcrumb" >
