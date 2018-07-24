@@ -192,7 +192,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              
 
       $data = array('acc_valid_from' => date('Y-m-d '),
-                    'acc_valid_to' => date('Y-m-d '),
+//                    'acc_valid_to' =>date('Y-m-d', strtotime('+1 years 11 month 2 days')),
+                    'acc_valid_to' =>date('Y-m-d', strtotime('+1 years')),
                     'acc_status' =>'1' );
 //      print_r($data);
 //      echo $pass['acc_id'];
@@ -286,7 +287,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <span><b>Payer Information:</b></span><br>
                             <span>Center Name:'.$result->center_name.'</span><br>
                             <span>Center ID: '.$data['center_id'].'</span><br><br>
-                            <span>Center Location:'.$result->cityName.'</span><br>                            
+                            <span>Center Location:'.$result->center_city.'</span><br>                            
 
                             <span>To view details of the payment, <a href="'.base_url().'admin/index/login">login here.</span><br><br>
 
@@ -316,6 +317,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           print_r($res);
       }
 
+      function date_calculation()
+      {
+          $end = date('Y-m-d', strtotime('+0 years 12 month'));
+          echo $end;
+      }
     
    }
 
