@@ -228,9 +228,9 @@
               </a>
             </li>
             <li class="treeview">
-              <a href="<?php echo base_url(); ?>center/Student_roll" >
+              <a href="<?php echo base_url(); ?>center/Account" >
                 <i class="fa fa-users"></i>
-                <span>Student Roll</span>
+                <span>Account Management</span>
               </a>
             </li>
             
@@ -238,6 +238,20 @@
               <a href="<?php echo base_url(); ?>center/Sub_center" >
                 <i class="fa fa-users"></i>
                 <span>Sub Centers</span>
+              </a>
+            </li>
+            
+            <li class="treeview">
+              <a href="<?php echo base_url(); ?>center/Orders" >
+                <i class="fa fa-users"></i>
+                <span>Orders</span>
+              </a>
+            </li>
+            
+            <li class="treeview">
+              <a href="<?php echo base_url(); ?>center/Payment" >
+                <i class="fa fa-users"></i>
+                <span>Payments</span>
               </a>
             </li>
             

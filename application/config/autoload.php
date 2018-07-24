@@ -140,4 +140,7 @@ $autoload['model'] = array('User_model',
                             'Questions_model',
                             'Coupons_model',
                             'Sub_centers_model',
-                            'Student_roll_model');
+                            'Account_model',
+                            'Orders_model',
+                            'Order_details_model',
+                            'Payment_model');

@@ -162,6 +162,20 @@
             </span>
           </a>
         </li>
+        
+         <li class="treeview">
+              <a href="<?php echo base_url(); ?>admin/Orders" >
+                <i class="fa fa-users"></i>
+                <span>Orders</span>
+              </a>
+            </li>
+            
+            <li class="treeview">
+              <a href="<?php echo base_url(); ?>admin/Payment" >
+                <i class="fa fa-users"></i>
+                <span>Payments</span>
+              </a>
+            </li>
        
           <li>
           <a href="<?php echo base_url(); ?>admin/Users">
