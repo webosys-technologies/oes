@@ -50,7 +50,17 @@ class Account_model extends CI_Model
             
         }
         
-         public function get_multiple_id($ids=array())
+        function get_by_no($no)
+        {
+             $this->db->from($this->table);
+            $this->db->where('acc_no',$no);
+            $query=$this->db->get();
+            
+            return $query->row();   
+        }
+
+
+        public function get_multiple_id($ids=array())
         {
             $this->db->from('account as acc');        
                         

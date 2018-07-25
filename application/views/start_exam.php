@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Examination</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
   <style>
     /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
     .row.content {height: 1500px}
@@ -32,39 +33,177 @@
       }
       .row.content {height: auto;} 
     }
+    th, td {
+    padding: 1px;
+}
   </style>
 </head>
+<script>
+   $(document).ready(function () {  
+       
+   window.onbeforeunload = function() {
+        return "Dude, are you sure you want to leave?";  //show dialog before reload and close
+    }
+    
+    });
+</script>
 <body>
 
 <div class="container-fluid">
   <div class="row content">
-    <div class="col-sm-3 sidenav">
-      <h4>John's Blog</h4>
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Home</a></li>
-        <li><a href="#section2">Friends</a></li>
-        <li><a href="#section3">Family</a></li>
-        <li><a href="#section3">Photos</a></li>
-      </ul><br>
-      <div class="input-group">
+    <div class="col-sm-4 sidenav">
+        <center><h3>Online Examination</h3></center>
+<!--      <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Blog..">
         <span class="input-group-btn">
           <button class="btn btn-default" type="button">
             <span class="glyphicon glyphicon-search"></span>
           </button>
         </span>
-      </div>
-      <table width="100%">
-          <tr><td style=""><button>1</button></td><td><button>2</button></td><td><button>3</button></td><td><button>4</button></td><td><button>5</button></td></tr>
-          <tr><td><button>10</button></td><td><button>2</button></td><td><button>3</button></td><td><button>4</button></td><td><button>5</button></td></tr>
-          <tr><td><button>1</button></td><td><button>2</button></td><td><button>3</button></td><td><button>4</button></td><td><button>5</button></td></tr>
-          <tr><td><button>1</button></td><td><button>2</button></td><td><button>3</button></td><td><button>4</button></td><td><button>5</button></td></tr>
-          <tr><td><button>1</button></td><td><button>2</button></td><td><button>3</button></td><td><button>4</button></td><td><button>5</button></td></tr>
+      </div>-->
+<div class="row">
+    <div class="col-md-5 col-sm-5 col-xs-5">
+        <label>Exam Name : </label>
+    </div>
+     <div class="col-md-7 col-sm-7 col-xs-7">
+         <span> CCC Exam </span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5 col-sm-5 col-xs-5">
+        <label>Roll No : </label>
+    </div>
+     <div class="col-md-7 col-sm-7 col-xs-7">
+         <span> AU1234567 </span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5 col-sm-5 col-xs-5">
+        <label>Language : </label>
+    </div>
+     <div class="col-md-7 col-sm-7 col-xs-7">
+         <span> English </span>
+    </div>
+</div>
+<br>
+      <table width="">
+          <tr>
+           <?php
+           for($i=1;$i<=10;$i++)
+           {
+           ?>   
+          <td><button onclick="get_question()" id="que_btn" class="btn btn-default btn-sm"><?php echo $i;?></button></td>
+           <?php 
+           }?>
+         </tr>
+          <tr>
+           <?php
+           for($i=11;$i<=20;$i++)
+           {
+           ?>   
+          <td><button onclick="get_question()" id="que_btn" class="btn btn-default btn-sm"><?php echo $i;?></button></td>
+           <?php 
+           }?>
+         </tr>
+          <tr>
+           <?php
+           for($i=21;$i<=30;$i++)
+           {
+           ?>   
+          <td><button onclick="get_question()" id="que_btn" class="btn btn-default btn-sm"><?php echo $i;?></button></td>
+           <?php 
+           }?>
+         </tr>
+          <tr>
+           <?php
+           for($i=31;$i<=40;$i++)
+           {
+           ?>   
+          <td><button onclick="get_question()" id="que_btn" class="btn btn-default btn-sm"><?php echo $i;?></button></td>
+           <?php 
+           }?>
+         </tr>
+          <tr>
+           <?php
+           for($i=41;$i<=50;$i++)
+           {
+           ?>   
+          <td><button onclick="get_question()" id="que_btn" class="btn btn-default btn-sm"><?php echo $i;?></button></td>
+           <?php 
+           }?>
+         </tr>
+          <tr>
+           <?php
+           for($i=41;$i<=50;$i++)
+           {
+           ?>   
+          <td><button onclick="get_question()" id="que_btn" class="btn btn-default btn-sm"><?php echo $i;?></button></td>
+           <?php 
+           }?>
+         </tr>
+          <tr>
+           <?php
+           for($i=51;$i<=60;$i++)
+           {
+           ?>   
+          <td><button onclick="get_question()" id="que_btn" class="btn btn-default btn-sm"><?php echo $i;?></button></td>
+           <?php 
+           }?>
+         </tr>
+          <tr>
+           <?php
+           for($i=61;$i<=70;$i++)
+           {
+           ?>   
+          <td><button onclick="get_question()" id="que_btn" class="btn btn-default btn-sm"><?php echo $i;?></button></td>
+           <?php 
+           }?>
+         </tr>
+          <tr>
+           <?php
+           for($i=71;$i<=80;$i++)
+           {
+           ?>   
+          <td><button onclick="get_question()" id="que_btn" class="btn btn-default btn-sm"><?php echo $i;?></button></td>
+           <?php 
+           }?>
+         </tr>
+          <tr>
+           <?php
+           for($i=81;$i<=90;$i++)
+           {
+           ?>   
+          <td><button onclick="get_question()" id="que_btn" class="btn btn-default btn-sm"><?php echo $i;?></button></td>
+           <?php 
+           }?>
+         </tr>
+          <tr>
+           <?php
+           for($i=91;$i<=100;$i++)
+           {
+           ?>   
+          <td><button onclick="get_question()" id="que_btn" class="btn btn-default btn-sm"><?php echo $i;?></button></td>
+           <?php 
+           }?>
+         </tr>
+        
       </table>
     </div>
 
-    <div class="col-sm-9">
-      <h4><small>RECENT POSTS</small></h4>
+    <div class="col-sm-8">
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <label>Total Time :</label><label style="color:red">1 hour</label>
+            </div>
+            <div class="col-md-4">
+                 <label>Remaining Time :</label><label style="color:green">1 hr 20 min 10 sec</label>
+            </div>
+            <div class="col-md-4">
+                 <label>Total Mark :</label><label style="color:red">100 Marks</label>
+            </div>
+                    
+        </div>
       <hr>
       <h2>I Love Food</h2>
       <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
