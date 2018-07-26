@@ -49,7 +49,14 @@
     });
 </script>
 <body>
-
+  <div class="content-wrapper" style="background: white">
+    <!-- Content Header (Page header) -->
+    <section class="content-header" >
+    
+    </section>
+   <!--<hr style="border-top: 1px solid #ccc;">-->
+   <section class="content">
+      
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-12 col-md-4 col-xs-12 sidenav">
@@ -260,6 +267,12 @@
   </div>
 </div>
 
+
+  </section>
+
+
+  </div>
+ 
 <footer class="container-fluid">
   <center><p>Copyright © 2018 Webosys Technologies. All rights reserved.</p></center>
 </footer>

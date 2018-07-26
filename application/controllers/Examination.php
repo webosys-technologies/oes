@@ -63,7 +63,7 @@ class Examination extends CI_Controller
   
   function start_exam() 
   {
-      $this->load->view('start_exam');
+      $this->load->view('start_exam1');
   }
   
 
