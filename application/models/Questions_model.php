@@ -23,6 +23,16 @@ class Questions_model extends CI_Model
 
 		return $query->result();
 	}
+        public function getall_marathi_ques()
+	{
+		$this->db->from('marathi_questions as ques');
+		$this->db->join('courses as cor','cor.course_id=ques.course_id','LEFT');
+
+                $this->db->order_by("question_id","desc");
+		$query=$this->db->get();
+
+		return $query->result();
+	}
         
         
         public function get_questions($qid,$course_id)
@@ -52,6 +62,12 @@ class Questions_model extends CI_Model
 	
 
 	public function add($dataSet)
+	{
+		$this->db->insert_batch($this->table, $dataSet);
+                return $this->db->insert_id();
+	}
+        
+        public function marathi_add($dataSet)
 	{
 		$this->db->insert_batch($this->table, $dataSet);
                 return $this->db->insert_id();

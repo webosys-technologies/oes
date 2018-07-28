@@ -113,6 +113,75 @@ class Question extends CI_Controller
 
 		echo json_encode(array("status" => TRUE));
 	}
+        
+    public function marathi_question()
+    {
+            $data['question']=$this->Questions_model->getall_marathi_ques();
+
+	    $data['courses']=$this->Courses_model->getall_courses();
+	    $uid=$this->session->userdata('oes_user_id');
+            $result['system']=$this->System_model->get_info();
+            $result['user_data']=get_user_info($uid);
+       
+            $this->load->view('admin/header',$result);
+	    $this->load->view('admin/marathi_question',$data);
+	    $this->load->view('admin/footer',$result);
+    }
+    
+    function marathi_question_add()
+	{
+            
+		$dataSet=array();
+
+	   $course = $this->input->post('course_id');
+	   $question = $this->input->post('question'); 
+	   $option_a = $this->input->post('option_a'); 
+	   $option_b = $this->input->post('option_b'); 
+	   $option_c = $this->input->post('option_c'); 
+	   $option_d = $this->input->post('option_d'); 
+	   $answer = $this->input->post('answer'); 
+	   $answer = $this->input->post('answer'); 
+	   $status = $this->input->post('status'); 
+
+	   for($i=0;$i<sizeof($answer);$i++)
+	   {
+	     $dataSet[$i] = array (                'course_id' => $course[$i],
+	     					   'question_name' => ltrim($question[$i]),
+	     					   'question_option_a' => ltrim($option_a[$i]),
+	     					   'question_option_b' => ltrim($option_b[$i]),
+	     					   'question_option_c' => ltrim($option_c[$i]),
+	     					   'question_option_d' => ltrim($option_d[$i]),
+	     					   'question_correct_ans' => ltrim($answer[$i]),
+	     					   'question_created_at' => date('Y-m-d'),
+	     					   'question_created_by' => 'admin',
+	     					   'question_status' => $status[$i],
+
+	     					);
+	   }
+	   // $dataSet is an array of array
+	   $this->Questions_model->marathi_add($dataSet);
+	   
+        echo json_encode(array("status" => TRUE));
+
+	   
+
+    }
+    
+    
+    
+     public function hindi_question()
+    {
+            $data['question']=$this->Questions_model->getall_ques();
+
+	    $data['courses']=$this->Courses_model->getall_courses();
+	    $uid=$this->session->userdata('oes_user_id');
+            $result['system']=$this->System_model->get_info();
+            $result['user_data']=get_user_info($uid);
+       
+            $this->load->view('admin/header',$result);
+	    $this->load->view('admin/hindi_question',$data);
+	    $this->load->view('admin/footer',$result);
+    }
 }	
 
  ?>

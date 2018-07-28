@@ -29,7 +29,7 @@
     <br>
     <section class="content">
 
-        <button class="btn btn-primary" onclick="add()" data-toggle="tooltip" data-placement="bottom" title="Add Question"><i class="glyphicon glyphicon-plus"></i> Add Question</button>
+        <button class="btn btn-primary" onclick="add()" data-toggle="tooltip" data-placement="bottom" title="प्रश्न भरा"><i class="glyphicon glyphicon-plus"></i> प्रश्न भरा</button>
     <br />
     <br />
     <div class="form-group" style="width:350px" >
@@ -40,17 +40,17 @@
     <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
       <thead bgcolor="#338cbf" style="color:#fff">
         <tr>
-                    <th>ID</th>
-                    <th>COURSE NAME</th>
-                    <th>QUESTION</th>
-                    <th>OPTION A</th>
-                    <th>OPTION B</th>
-                    <th>OPTION C</th>
-                    <th>OPTION D</th>
-                    <th>ANSWER</th>
-                    <th>STATUS</th>
+                    <th>क्रमांक</th>
+                    <th style="width:125px;">कोर्स नाव</th>
+                    <th>प्रश्न</th>
+                    <th>पर्याय अ</th>
+                    <th>पर्याय ब</th>
+                    <th>पर्याय क</th>
+                    <th>पर्याय ड</th>
+                    <th>उत्तर</th>
+                    <th>स्टेटस</th>
 
-          <th style="width:125px;">ACTION
+          <th style="width:125px;">कृती
           </p></th>
         </tr>
       </thead>
@@ -113,7 +113,9 @@ $("#myName").on("keyup", function() {
             var i = 1;
             $('#add').click(function(){
                 i++;
-                $('#dynamic_field').append('<tr id="row'+i+'"><td class="col-md-11"><div class="form-group"><label class="control-label col-md-3">      Courses<span class="req">*</span></label><div class="col-md-7"><select name="course_id[]" class="form-control"><?php foreach($courses as $row){echo '<option value="'.$row->course_id.'">'.$row->course_name.'</option>';}?></select></div></div><br><br><div class="form-group"><label class="control-label col-md-3">        Question<span class="req">*</span></label><div class="col-md-9"><input type="text" required class="form-control" name="question[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">     Option A<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_a[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">Option B<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_b[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Option C<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_c[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3"> Option D<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_d[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Answer<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="answer[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">Status<span style="color:red">*</span></label><div class="col-md-9"><select name="status[]" class="form-control"><option value="1">Active</option><option value="0">Not Active</option></select></div></div><br><br></td></td><td class="col-md-1"><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+                $('#dynamic_field').append('<tr id="row'+i+'"><td class="col-md-11"><div class="form-group"><label class="control-label col-md-3">      Courses<span class="req">*</span></label><div class="col-md-7"><select name="course_id[]" class="form-control"><?php 
+                                foreach($courses as $row){echo '<option value="'.$row->course_id.'">'.$row->course_name.'</option>';
+                                }?></select></div></div><br><br><div class="form-group"><label class="control-label col-md-3">        Question<span class="req">*</span></label><div class="col-md-9"><input type="text" required class="form-control" name="question[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">     Option A<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_a[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Option B<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_b[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Option C<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_c[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Option D<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_d[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Answer<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="answer[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">Status<span style="color:red">*</span></label><div class="col-md-9"><select name="status[]" class="form-control"><option value="1">Active</option><option value="0">Not Active</option></select></div></div><br><br></td></td><td class="col-md-1"><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
             });
 
             $(document).on('click','.btn_remove', function(){
@@ -135,7 +137,7 @@ $("#myName").on("keyup", function() {
       save_method = 'add';
       $('#form')[0].reset(); // reset form on modals
       $('#add_form').modal('show'); // show bootstrap modal
-      $('.modal-title').text('Add Question'); // Set Title to Bootstrap modal title
+      $('.modal-title').text('प्रश्न भरा'); // Set Title to Bootstrap modal title
     }
 
     function edit_ques(id)
@@ -268,7 +270,7 @@ $("#myName").on("keyup", function() {
                         <!--div class="top-row"-->
                         <div class="form-group">
                             <label class="control-label col-md-3">
-                                Course<span class="req">*</span>
+                                कोर्स नाव<span class="req">*</span>
                             </label>
                             <div class="col-md-7">
                             <select name="course_id[]" class="form-control">
@@ -284,47 +286,47 @@ $("#myName").on("keyup", function() {
                         
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">Question<span class="req">*</span></label>
+                            <label class="control-label col-md-3">प्रश्न<span class="req">*</span></label>
                             <div class="col-md-9">
                                 <textarea name="question[]" class="form-control"></textarea>
                             </div>
                         </div><br><br><br>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">Option A</label>
+                            <label class="control-label col-md-3">पर्याय अ</label>
                             <div class="col-md-9">
                             <input type="text"required class="form-control" name="option_a[]"/>
                             </div>
                         </div><br><br>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">Option B</label>
+                            <label class="control-label col-md-3">पर्याय ब</label>
                             <div class="col-md-9">
                             <input type="text"required class="form-control" name="option_b[]"/>
                             </div>
                         </div><br><br>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">Option C</label>
+                            <label class="control-label col-md-3">पर्याय क</label>
                             <div class="col-md-9">
                             <input type="text"required class="form-control" name="option_c[]"/>
                             </div>
                         </div><br><br>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Option D<span class="req">*</span></label>
+                            <label class="control-label col-md-3">पर्याय ड<span class="req">*</span></label>
                             <div class="col-md-9">
                             <input type="text"required class="form-control" name="option_d[]"/>
                             </div>
                         </div><br><br>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Answer<span class="req">*</span></label>
+                            <label class="control-label col-md-3">उत्तर<span class="req">*</span></label>
                             <div class="col-md-9">
                             <input type="text"required class="form-control" name="answer[]"/>
                             </div>
                         </div>
                         <br><br>
                         <div class="form-group">
-                          <label class="control-label col-md-3">Status<span style="color:red">*</span></label>
+                          <label class="control-label col-md-3">स्टेटस<span style="color:red">*</span></label>
                           <div class="col-md-9">
                               <select name="status[]" class="form-control">
                                   <option value="1">Active</option>
@@ -340,9 +342,9 @@ $("#myName").on("keyup", function() {
       </div>
            
           <div class="modal-footer">
-              <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
-            <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+              <button type="button" name="add" id="add" class="btn btn-success">अजून भरा</button>
+            <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">जतन करा</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">रद्द करा</button>
               
           </div>
         </div><!-- /.modal-content -->
@@ -370,7 +372,7 @@ $("#myName").on("keyup", function() {
                       <input type="hidden" name="id">
                         <div class="form-group">
                             <label class="control-label col-md-3">
-                                Course<span style="color:red">*</span>
+                                कोर्स नाव<span style="color:red">*</span>
                             </label>
                             <div class="col-md-7">
                             <select name="course_id" class="form-control">
@@ -386,46 +388,46 @@ $("#myName").on("keyup", function() {
                         
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">Question<span style="color:red">*</span></label>
+                            <label class="control-label col-md-3">प्रश्न<span style="color:red">*</span></label>
                             <div class="col-md-9">
                                 <textarea name="question" class="form-control"></textarea>
                             </div>
                         </div><br><br><br>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">Option A<span style="color:red">*</span></label>
+                            <label class="control-label col-md-3">पर्याय अ<span style="color:red">*</span></label>
                             <div class="col-md-9">
                             <input type="text" required class="form-control" name="option_a"/>
                             </div>
                         </div><br><br>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">Option B<span style="color:red">*</span></label>
+                            <label class="control-label col-md-3">पर्याय ब<span style="color:red">*</span></label>
                             <div class="col-md-9">
                             <input type="text" required class="form-control" name="option_b"/>
                             </div>
                         </div><br><br>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">Option C<span style="color:red">*</span></label>
+                            <label class="control-label col-md-3">पर्याय क<span style="color:red">*</span></label>
                             <div class="col-md-9">
                             <input type="text" required class="form-control" name="option_c"/>
                             </div>
                         </div><br><br>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Option D<span style="color:red">*</span></label>
+                            <label class="control-label col-md-3">पर्याय ड<span style="color:red">*</span></label>
                             <div class="col-md-9">
                             <input type="text" required class="form-control" name="option_d"/>
                             </div>
                         </div><br><br>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Answer<span style="color:red">*</span></label>
+                            <label class="control-label col-md-3">उत्तर<span style="color:red">*</span></label>
                             <div class="col-md-9">
                             <input type="text" required class="form-control" name="answer"/>
                             </div>
                         </div><br><br>
                          <div class="form-group">
-                          <label class="control-label col-md-3">Status<span style="color:red">*</span></label>
+                          <label class="control-label col-md-3">स्टेटस<span style="color:red">*</span></label>
                           <div class="col-md-9">
                               <select name="status" class="form-control" required>
                                   <option value="1">Active</option>
