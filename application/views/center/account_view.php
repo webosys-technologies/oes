@@ -86,10 +86,12 @@ p{
           <th width=5%>SELECT <input type="checkbox" id="select_all"/> ALL</th>          
           <th>ID</th>
          
-          <th>ACCOUNT NO</th>
+          <th>ROLL NO</th>
           <th>COURSE</th>
           <th>VALID FROM</th>
           <th>VALID TO</th>
+          <th>DURATION</th>
+          <th>FEES</th>
           <th>CREATED AT</th>
           <th>STATUS</th>
 
@@ -114,6 +116,8 @@ p{
                                         <td><?php echo $course->course_name; ?></td>
                                         <td><?php echo $res->acc_valid_from;?></td>
                                        <td><?php echo $res->acc_valid_to;?></td>
+                                       <td></td>
+                                       <td></td>
                                        <td><?php echo $res->acc_created_at; ?></td>
                                        
                                        <td>

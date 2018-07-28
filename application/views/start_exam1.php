@@ -57,7 +57,7 @@
    <!--<hr style="border-top: 1px solid #ccc;">-->
    <section class="content">
       
-<div class="container-fluid">
+<!--<div class="container-fluid">-->
   <div class="row content">
     <div class="col-sm-12 col-md-4 col-xs-12 sidenav">
         <center><h3>Online Examination</h3></center>
@@ -265,7 +265,7 @@
       </div>
     </div>
   </div>
-</div>
+<!--</div>-->
 
 
   </section>

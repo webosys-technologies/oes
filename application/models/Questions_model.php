@@ -46,7 +46,7 @@ class Questions_model extends CI_Model
 		$this->db->where('question_id',$id);
 		$query = $this->db->get();
                  //$this->get
-		return $query->result();
+		return $query->row();
 
 	}
 	
@@ -86,6 +86,16 @@ class Questions_model extends CI_Model
 
             return $maxid;
             
+        }
+        
+        function que_by_course($course)
+        {
+            $this->db->from($this->table);
+            $this->db->where('course_id',$course);
+            $this->db->where('question_status','1');
+            $query=$this->db->get();
+            return $query->result();
+
         }
         
         public function get_question_count()

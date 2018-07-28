@@ -143,4 +143,6 @@ $autoload['model'] = array('User_model',
                             'Account_model',
                             'Orders_model',
                             'Order_details_model',
-                            'Payment_model');
+                            'Payment_model',
+                            'Exams_model',
+                            'Exam_details_model');
