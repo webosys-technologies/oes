@@ -355,8 +355,8 @@ function get_question(id)
            for($i=1;$i<=10;$i++)
            {
            ?>   
-          <td><button onclick="gen_btn(<?php echo $i;?>)" id="btn_<?php echo $i;?>" class="btn btn-danger btn-sm"><?php echo $i;?></button></td>
-           <?php 
+          <td><button onclick="gen_btn(<?php echo $i;?>)" id="btn_<?php echo $i;?>" class="btn btn-danger btn-sm"><?php if($i==10){echo $i;}else{echo "&nbsp;".$i."&nbsp;";}?></button></td>
+          <?php 
            }?>
          </tr>
           <tr>

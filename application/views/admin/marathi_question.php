@@ -11,7 +11,8 @@
 
 #modal_body,#modal_body1{
   height: 500px;
-
+  overflow-y: auto;
+}
 
 </style>
 
@@ -113,9 +114,9 @@ $("#myName").on("keyup", function() {
             var i = 1;
             $('#add').click(function(){
                 i++;
-                $('#dynamic_field').append('<tr id="row'+i+'"><td class="col-md-11"><div class="form-group"><label class="control-label col-md-3">      Courses<span class="req">*</span></label><div class="col-md-7"><select name="course_id[]" class="form-control"><?php 
+                $('#dynamic_field').append('<tr id="row'+i+'"><td class="col-md-11"><div class="form-group"><label class="control-label col-md-3"> कोर्स नाव<span class="req">*</span></label><div class="col-md-7"><select name="course_id[]" class="form-control"><?php 
                                 foreach($courses as $row){echo '<option value="'.$row->course_id.'">'.$row->course_name.'</option>';
-                                }?></select></div></div><br><br><div class="form-group"><label class="control-label col-md-3">        Question<span class="req">*</span></label><div class="col-md-9"><input type="text" required class="form-control" name="question[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">     Option A<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_a[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Option B<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_b[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Option C<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_c[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Option D<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_d[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Answer<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="answer[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">Status<span style="color:red">*</span></label><div class="col-md-9"><select name="status[]" class="form-control"><option value="1">Active</option><option value="0">Not Active</option></select></div></div><br><br></td></td><td class="col-md-1"><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+                                }?></select></div></div><br><br><div class="form-group"><label class="control-label col-md-3">  प्रश्न<span class="req">*</span></label><div class="col-md-9"><input type="text" required class="form-control" name="question[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">     पर्याय अ<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_a[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             पर्याय ब<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_b[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             पर्याय क<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_c[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             पर्याय ड<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_d[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">            उत्तर<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="answer[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">स्टेटस<span style="color:red">*</span></label><div class="col-md-9"><select name="status[]" class="form-control"><option value="1">Active</option><option value="0">Not Active</option></select></div></div><br><br></td></td><td class="col-md-1"><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
             });
 
             $(document).on('click','.btn_remove', function(){
@@ -202,7 +203,7 @@ $("#myName").on("keyup", function() {
             dataType: "JSON",
             success: function(data)
             {
-              alert("Data Updated successfully..!!");
+//              alert("Data Updated successfully..!!");
                //if success close modal and reload ajax table
                $('#add_form').modal('hide');
               location.reload();// for reload a page
@@ -266,6 +267,7 @@ $("#myName").on("keyup", function() {
         <form id="form" method="" action="">
             <table class="table" id="dynamic_field">
                 <tr >
+                    <input type="hidden" name="language" id="language" value="marathi">
                     <td class="col-md-8">
                         <!--div class="top-row"-->
                         <div class="form-group">
@@ -333,7 +335,7 @@ $("#myName").on("keyup", function() {
                                   <option value="0">Not Active</option>
                               </select>
                           </div>
-                        </div><br><br>
+                        </div>
 
                     </td>
                 </tr>

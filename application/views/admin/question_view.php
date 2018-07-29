@@ -11,6 +11,8 @@
 
 #modal_body,#modal_body1{
   height: 500px;
+  overflow-y: auto;
+}
 
 
 </style>
@@ -200,7 +202,7 @@ $("#myName").on("keyup", function() {
             dataType: "JSON",
             success: function(data)
             {
-              alert("Data Updated successfully..!!");
+//              alert("Data Updated successfully..!!");
                //if success close modal and reload ajax table
                $('#add_form').modal('hide');
               location.reload();// for reload a page
@@ -331,7 +333,8 @@ $("#myName").on("keyup", function() {
                                   <option value="0">Not Active</option>
                               </select>
                           </div>
-                        </div><br><br>
+                        </div>
+                       
 
                     </td>
                 </tr>
@@ -348,7 +351,7 @@ $("#myName").on("keyup", function() {
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-  <!-- End Bootstrap modal --></div>
+ 
   
   
      
@@ -432,7 +435,7 @@ $("#myName").on("keyup", function() {
                                   <option value="0">Not Active</option>
                               </select>
                           </div>
-                        </div><br><br>
+                        </div>
                     
           </form>
       </div>
@@ -450,7 +453,6 @@ $("#myName").on("keyup", function() {
     </div><!-- /.modal -->
   <!-- End Bootstrap modal -->
 
-</div>
      
         <div class="modal fade" id="delete_modal" style=""  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">

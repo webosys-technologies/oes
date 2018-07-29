@@ -69,7 +69,12 @@ class Questions_model extends CI_Model
         
         public function marathi_add($dataSet)
 	{
-		$this->db->insert_batch($this->table, $dataSet);
+		$this->db->insert_batch('marathi_questions', $dataSet);
+                return $this->db->insert_id();
+	}
+        public function hindi_add($dataSet)
+	{
+		$this->db->insert_batch('hindi_questions', $dataSet);
                 return $this->db->insert_id();
 	}
      
@@ -87,7 +92,22 @@ class Questions_model extends CI_Model
 
 		return $query->row();
 	}
+        public function marathi_get_by_id($id)
+	{
+		$this->db->from('marathi_questions');
+		$this->db->where('question_id',$id);
+		$query = $this->db->get();
 
+		return $query->row();
+	}
+         public function hindi_get_by_id($id)
+	{
+		$this->db->from('hindi_questions');
+		$this->db->where('question_id',$id);
+		$query = $this->db->get();
+
+		return $query->row();
+	}
 
 	public function delete_by_id($id)
 	{

@@ -8,10 +8,10 @@
   width: 700px;
       overflow-y: initial !important
 }
-
 #modal_body,#modal_body1{
   height: 500px;
-
+  overflow-y: auto;
+}
 
 </style>
 
@@ -266,6 +266,7 @@ $("#myName").on("keyup", function() {
         <form id="form" method="" action="">
             <table class="table" id="dynamic_field">
                 <tr >
+                    <input type="hidden" name="language" id="language" value="hindi">
                     <td class="col-md-8">
                         <!--div class="top-row"-->
                         <div class="form-group">
