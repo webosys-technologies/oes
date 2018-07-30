@@ -369,7 +369,7 @@ $("#myName").on("keyup", function() {
       </div>
       <div class="modal-body form" id="modal_body">
         <form id="form2" method="POST" action="">
-            
+            <input type="hidden" name="language" id="language" value="hindi">
                       <input type="hidden" name="id">
                         <div class="form-group">
                             <label class="control-label col-md-3">

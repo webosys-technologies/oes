@@ -148,7 +148,7 @@ $("#myName").on("keyup", function() {
 
       //Ajax Load data from ajax
       $.ajax({
-        url : "<?php echo site_url('index.php/admin/Question/ajax_edit/')?>/" + id,
+        url : "<?php echo site_url('index.php/admin/Question/marathi_ajax_edit/')?>/" + id,
         type: "GET",
         dataType: "JSON",
         success: function(data)
@@ -227,7 +227,7 @@ $("#myName").on("keyup", function() {
        
         // ajax delete data from database
           $.ajax({
-            url : "<?php echo site_url('index.php/admin/Question/delete_ques')?>/"+id,
+            url : "<?php echo site_url('index.php/admin/Question/marathi_delete_ques')?>/"+id,
             type: "POST",
             dataType: "JSON",
             success: function(data)
@@ -370,7 +370,7 @@ $("#myName").on("keyup", function() {
       </div>
       <div class="modal-body form" id="modal_body">
         <form id="form2" method="POST" action="">
-            
+            <input type="hidden" name="language" id="language" value="marathi">
                       <input type="hidden" name="id">
                         <div class="form-group">
                             <label class="control-label col-md-3">

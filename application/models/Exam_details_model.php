@@ -87,5 +87,12 @@ class Exam_details_model extends CI_Model
 
 	}
         
+          public function delete_by_id($id)
+	{
+		$this->db->where('acc_id', $id);
+		$this->db->delete($this->table);
+                return $this->db->affected_rows();
+	}
+        
         
 }

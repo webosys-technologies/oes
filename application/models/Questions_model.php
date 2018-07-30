@@ -48,6 +48,31 @@ class Questions_model extends CI_Model
 
 	}
         
+        public function marathi_get_questions($qid,$course_id)
+     	{
+            $data=array('question_id'=>$qid,
+                        'course_id'=>$course_id,
+                        'question_status'=>'1');
+		$this->db->from('marathi_questions');
+		$this->db->where($data);
+		$query = $this->db->get();
+                 //$this->get
+		return $query->row();
+
+	}
+        public function hindi_get_questions($qid,$course_id)
+     	{
+            $data=array('question_id'=>$qid,
+                        'course_id'=>$course_id,
+                        'question_status'=>'1');
+		$this->db->from('hindi_questions');
+		$this->db->where($data);
+		$query = $this->db->get();
+                 //$this->get
+		return $query->row();
+
+	}
+        
         
         
          public function get_questions_by_id($id)
@@ -83,6 +108,18 @@ class Questions_model extends CI_Model
 		$this->db->update($this->table, $data, $where);
 		return $this->db->affected_rows();
 	}
+        
+        public function marathi_update($where, $data)
+	{
+		$this->db->update('marathi_questions', $data, $where);
+		return $this->db->affected_rows();
+	}
+        
+        public function hindi_update($where, $data)
+	{
+		$this->db->update('hindi_questions', $data, $where);
+		return $this->db->affected_rows();
+	}
 
 	public function get_by_id($id)
 	{
@@ -114,6 +151,19 @@ class Questions_model extends CI_Model
 		$this->db->where('question_id', $id);
 		$this->db->delete('questions');
 	}
+        
+        public function marathi_delete_by_id($id)
+	{
+		$this->db->where('question_id', $id);
+		$this->db->delete('marathi_questions');
+	}
+        
+        public function hindi_delete_by_id($id)
+	{
+		$this->db->where('question_id', $id);
+		$this->db->delete('hindi_questions');
+	}
+        
         public function no_of_questions()
         {
             
@@ -127,6 +177,25 @@ class Questions_model extends CI_Model
         function que_by_course($course)
         {
             $this->db->from($this->table);
+            $this->db->where('course_id',$course);
+            $this->db->where('question_status','1');
+            $query=$this->db->get();
+            return $query->result();
+
+        }
+        
+        function marathi_que_by_course($course)
+        {
+            $this->db->from('marathi_questions');
+            $this->db->where('course_id',$course);
+            $this->db->where('question_status','1');
+            $query=$this->db->get();
+            return $query->result();
+
+        }
+        function hindi_que_by_course($course)
+        {
+            $this->db->from('hindi_questions');
             $this->db->where('course_id',$course);
             $this->db->where('question_status','1');
             $query=$this->db->get();

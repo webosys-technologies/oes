@@ -87,6 +87,8 @@ class Question extends CI_Controller
 
     function question_update()
 	{
+        
+             
 
 	     $data = array (        
 	     				       'course_id' => $this->input->post('course_id'),
@@ -100,7 +102,19 @@ class Question extends CI_Controller
 
 	     					);
 	   
-	   $this->Questions_model->update(array('question_id' => $this->input->post('id')),$data);
+             
+              if($this->input->post('language')=="marathi")
+           {
+              $this->Questions_model->marathi_update(array('question_id' => $this->input->post('id')),$data);
+           }
+           elseif($this->input->post('language')=="hindi")
+           {
+               $this->Questions_model->hindi_update(array('question_id' => $this->input->post('id')),$data);
+           }else{
+          
+             $this->Questions_model->update(array('question_id' => $this->input->post('id')),$data);
+           }
+	  
 	   
         echo json_encode(array("status" => TRUE));
 
@@ -118,12 +132,12 @@ class Question extends CI_Controller
 
 		echo json_encode($data);
 	}
-        public function marathi_edit($id)
+        public function marathi_ajax_edit($id)
 	{
 		$data = $this->Questions_model->marathi_get_by_id($id);
 		echo json_encode($data);
 	}
-         public function hindi_edit($id)
+         public function hindi_ajax_edit($id)
 	{
 		$data = $this->Questions_model->hindi_get_by_id($id);
 		echo json_encode($data);
@@ -132,6 +146,20 @@ class Question extends CI_Controller
     public function delete_ques($id)
 	{
 		$this->Questions_model->delete_by_id($id);
+
+		echo json_encode(array("status" => TRUE));
+	}
+        
+        public function marathi_delete_ques($id)
+	{
+		$this->Questions_model->marathi_delete_by_id($id);
+
+		echo json_encode(array("status" => TRUE));
+	}
+        
+         public function hindi_delete_ques($id)
+	{
+		$this->Questions_model->marathi_delete_by_id($id);
 
 		echo json_encode(array("status" => TRUE));
 	}

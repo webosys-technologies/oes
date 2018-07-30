@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Examination</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+
   <style>
     /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-    .row.content {height: 1500px}
+    .row.content {
+        height: 1500px;
+        width :100%;
+            }
     
     /* Set gray background color and 100% height */
     .sidenav {
@@ -57,13 +51,13 @@
     padding: 1px;
 }
   </style>
-</head>
+
 <script>
    $(document).ready(function () {  
        
-//   window.onbeforeunload = function() {
-//        return "Dude, are you sure you want to leave?";  //show dialog before reload and close
-//    }
+   window.onbeforeunload = function() {
+        return "are you sure you want to leave?";  //show dialog before reload and close
+    }
     
     });
     
@@ -92,6 +86,38 @@ function prev_btn()
     $('#press_btn').val(btn);
     get_question(p);
 }
+
+function reset_answer()
+{
+    
+    var data = new FormData(document.getElementById("form"));
+
+      var url;
+      
+        url = "<?php echo site_url('index.php/Examination/reset_answer')?>";
+      
+
+       // ajax adding data to database
+          $.ajax({
+            url : url,
+            type: "POST",
+            async: false,
+            processData: false,
+            contentType: false,            
+            data: data,
+            dataType: "JSON",
+            success: function(data)
+            {
+                  $('[name="option"]').prop('checked',false);
+                  $("#btn_"+data.reset_qno).attr("class","btn btn-danger btn-sm");                
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+//                alert('Error.......! ');
+            }
+        });
+    }
+    
 
 
 
@@ -273,10 +299,9 @@ function get_question(id)
     
     
 </script>
-<body>
 
 <div class="container-fluid">
-  <div class="row content">
+  <div class="row">
     <div class="col-sm-12 col-md-4 col-xs-12 sidenav">
         <center><h3>Online Examination</h3></center>
 
@@ -307,10 +332,12 @@ function get_question(id)
 
 <br>
                     <?php
+                   
                      for($i=1;$i<=100;$i++)
                                  {
+                         
                                       if(!empty($this->session->userdata('ans_qno'.$i)))
-                                      {   
+                                      {                                           
                                           if($i==1)
                                           {
                                         $res= $this->session->userdata('ans_qno'.$i)['given_ans'];  
@@ -319,6 +346,7 @@ function get_question(id)
                     <script>
                         $(document).ready(function()
                         {
+                           
                            if("<?php echo $i;?>"==1)
                            {
                              if($("#optiona").val()== "<?php echo $res;?>")    
@@ -386,15 +414,7 @@ function get_question(id)
            <?php 
            }?>
          </tr>
-          <tr>
-           <?php
-           for($i=41;$i<=50;$i++)
-           {
-           ?>   
-          <td><button onclick="gen_btn(<?php echo $i;?>)" id="btn_<?php echo $i;?>" class="btn btn-danger btn-sm"><?php echo $i;?></button></td>
-           <?php 
-           }?>
-         </tr>
+         
           <tr>
            <?php
            for($i=41;$i<=50;$i++)
@@ -451,7 +471,20 @@ function get_question(id)
          </tr>
         
       </table>
+   
     </center>
+       <br>                 
+        <div class="row">
+            <div class="col-md-12">
+        <button class="btn btn-danger btn-sm">Q</button> : Not Attempted
+        </div>
+            </div><br>
+             <div class="row">
+            <div class="col-md-12">
+        <button class="btn btn-success btn-sm">Q</button> : Attempted<br>
+        </div>
+        </div><br><br>
+                       
     </div>
 
     <div class="col-sm-12 col-md-8 col-xs-12">
@@ -471,7 +504,7 @@ function get_question(id)
       <hr>
       
      
-      <div class="container">
+      <!--<div class="container">-->
          
       <form action="#" id="form">
           <h4 style="color:black" id="que_detail"><span id="qno">  <?php if(isset($qno)){ echo "Question ". $qno;}?></span> Of <span id="no_of_que"><?php echo $no_of_que;?></span></h4>
@@ -488,28 +521,25 @@ function get_question(id)
        <input name="press_btn_qno" id="press_btn_qno" value="" hidden>
        <input name="timestamp" id="timestamp" value="" hidden>
         
-        
+         
         <br><br>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4 col-sm-4 col-xs-4">
                 <button type="button" class="btn btn-primary btn-sm" id="prev" onclick="prev_btn()" value="prev" style="display:none;"><< Prev</button> <button type="button" class="btn btn-primary btn-sm" id="next" onclick="next_btn()" value="next" >Next >></button>
         </div>
-            <div class="col-md-6 col-sm-6 col-xs-6">
-                <!--<div class="pull-right">-->
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <button type="button" name="reset" onclick="reset_answer()" class="btn btn-warning btn-sm">Reset Answer</button>
+            </div>
+            <!--<div class="col-md-4 col-sm-4 col-xs-4">-->
+            <div class="pull-right" style="padding-right:5px;">
               <button type="button" id="submit_exam" name="submit_exam" value=""  onclick="result()" class="btn btn-primary btn-sm" ><span id="next_label">Submit Exam</span></button>
              <!--</div>-->
             </div>
         </div>
        </form>
-       </div>
+       <br>
+     
         </div>
       </div>
     </div>
  
-
-<footer class="container-fluid">
-  <center><p>Copyright © 2018 Webosys Technologies. All rights reserved.</p></center>
-</footer>
-
-</body>
-</html>

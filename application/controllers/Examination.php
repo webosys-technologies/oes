@@ -16,7 +16,11 @@ class Examination extends CI_Controller
       {
            redirect('Examination/start_exam');
       }else{
-           $this->load->view('examination');
+          $this->session->set_flashdata('home',"active");
+          
+          $this->load->view('header');
+           $this->load->view('examination1');
+           $this->load->view('footer');
       }
     
   }
@@ -53,16 +57,19 @@ class Examination extends CI_Controller
       {
           if($val->course_id==$form['course'])
           {
-          if($val->acc_status==1)
+          if(date("Y-m-d")>=$val->acc_valid_from && date("Y-m-d")<=$val->acc_valid_to && $val->acc_status==1)
           {
-         return true;
+              return true;    
+          }elseif(date("Y-m-d")<=$val->acc_valid_from || date("Y-m-d")>=$val->acc_valid_to){
+              $this->session->set_flashdata('acc_err',"Accound no validity Finished Please Purchase again");
+             return false; 
           }elseif($val->acc_status==2)
           {
          $this->session->set_flashdata('acc_err',"This Roll No Login onto Another Device");
          return false;    
           }elseif($val->acc_status==0)
           {
-         $this->session->set_flashdata('acc_err',"Please Make Payment");
+         $this->session->set_flashdata('acc_err',"Please Purchase Account No");
          return false;    
           }
           }else{
@@ -85,31 +92,65 @@ class Examination extends CI_Controller
          
           if(!$this->session->userdata('get_question')==true)
           {
-              $this->get_question(); 
+              $val=$this->get_question(); 
           }
-
-         $this->load->view('start_exam',$this->session->userdata('q1'));          
+          if($val)
+          {
+           $this->load->view('header');
+         $this->load->view('start_exam',$this->session->userdata('q1'));       
+          $this->load->view('footer');
+          }else{
+              $this->logout();
+              redirect('Examination');
+          }
       
       }else{
+          
           redirect('Examination');
       }
+  }
+  
+  function reset_answer()
+  {
+      $question_num=$this->input->post("question_num");
+      $this->session->unset_userdata('ans_qno'.$question_num);
+      echo json_encode(array('reset_qno'=>$question_num));
   }
   
   
   function get_question()
   {
+     
        if(!empty($this->session->userdata('oes_acc_no')) || $this->session->userdata('oes_exam_start')==true)
       {
            if(!$this->session->userdata('get_question')==true)
           {
-      
+      if($this->session->userdata('oes_language')=="marathi")
+      {
+          $res=$this->Questions_model->marathi_que_by_course($this->session->userdata('oes_course_id'));
+      }elseif($this->session->userdata('oes_language')=="hindi")
+      {
+        $res=$this->Questions_model->hindi_que_by_course($this->session->userdata('oes_course_id'));  
+      }else{
       $res=$this->Questions_model->que_by_course($this->session->userdata('oes_course_id'));
+      }
+      
+      if(count($res)>1)
+      {
       $i=1;
        while($i<=100)
                   {
                       $qid=mt_rand(1,count($res));
-                                   
-                  $question=$this->Questions_model->get_questions($qid,$this->session->userdata('oes_course_id'));
+                      if($this->session->userdata('oes_language')=="marathi")
+                    {
+                        $question=$this->Questions_model->marathi_get_questions($qid,$this->session->userdata('oes_course_id'));
+                    }elseif($this->session->userdata('oes_language')=="hindi")
+                    {
+                      $question=$this->Questions_model->hindi_get_questions($qid,$this->session->userdata('oes_course_id'));
+                    }else{
+                    $question=$this->Questions_model->get_questions($qid,$this->session->userdata('oes_course_id'));
+                    }              
+                  
                if($question)
                {                         
                   
@@ -131,6 +172,11 @@ class Examination extends CI_Controller
                   
                    $this->session->set_userdata($que_field);
                    $this->session->set_userdata(array('get_question'=>true));
+                   return true;
+      }else{
+          $this->session->flashdata('language_err','Questions are not available for this language');
+          return false;
+      }
           }else{
                redirect('Examination');
           }   
@@ -280,6 +326,8 @@ class Examination extends CI_Controller
                 }
 
            $sid=$this->session->userdata('oes_acc_id');
+           $this->Exam_details_model->delete_by_id($sid);
+           $this->Exams_model->delete_by_id($sid);
            $total_mark=0;
            for($i=1;$i<=100;$i++)
             {
@@ -341,8 +389,7 @@ class Examination extends CI_Controller
             }
             
              $exam_result=$this->Exam_details_model->get_result_by_id($sid,$insert_id);
-            
-             
+               
              
              
    
@@ -354,7 +401,15 @@ class Examination extends CI_Controller
         }
         
   
-  
+  function result()
+  {
+      $data=array('acc_id'=>'1');
+              $exam_result=$this->Exams_model->get_result_by_id($data);
+            
+      $this->load->view('header');
+      $this->load->view('result');
+      $this->load->view('footer');
+  }
   
   
   function logout()

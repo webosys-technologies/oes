@@ -203,7 +203,7 @@
           <ul class="treeview-menu">
               <li><a href="<?php echo base_url(); ?>admin/Question"><i class="fa fa-circle-o"></i>English</a></li>
               <li><a href="<?php echo base_url(); ?>admin/Question/marathi_question"><i class="fa fa-circle-o"></i> मराठी</a></li>
-            <li><a href="<?php echo base_url(); ?>admin/Question/hindi_question"><i class="fa fa-circle-o"></i>हिंदी</a></li>
+            <!--<li><a href="<?php echo base_url(); ?>admin/Question/hindi_question"><i class="fa fa-circle-o"></i>हिंदी</a></li>-->
              </ul>
         </li>
         

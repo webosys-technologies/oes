@@ -49,8 +49,8 @@ class Exams_model extends CI_Model
         public function get_result_by_id($data)
         {
             $this->db->from('exams');
-            $this->db->join('exam_details', 'exams.exam_id = exam_details.exam_id');
-            $this->db->where('exams.exam_id',$data['exam_id']);
+//            $this->db->join('exam_details', 'exams.exam_id = exam_details.exam_id');
+            $this->db->where('exams.acc_id',$data['acc_id']);
 
             $query = $this->db->get();
             return $query->result();          
@@ -62,6 +62,14 @@ class Exams_model extends CI_Model
             $query=$this->db->get($this->table);
             return $query->num_rows();
         }
+        
+        public function delete_by_id($id)
+	{
+		$this->db->where('acc_id', $id);
+		$this->db->delete($this->table);
+                return $this->db->affected_rows();
+	}
+            
           
       
        
