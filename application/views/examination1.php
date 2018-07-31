@@ -63,29 +63,7 @@ function validateForm() {
                     <div class="panel-body">
                         <form action="<?php echo base_url();?>Examination/exam_login" onsubmit="return validateForm()" id="form" method="post">
                       <div class="row">
-                         
-    <div class="col-md-6 col-sm-6 col-xs-6">
-        <div class="form-group">
-        <label>Enter Roll No :</label>
-        <input type="text" name="acc_no" required="" id="acc_no" class="form-control">  
-        <span id="acc_no_err" style="color:red"><?php echo $this->session->flashdata('acc_err');?></span>
-        </div>
-    </div>
-     <div class="col-md-6 col-sm-6 col-xs-6">
-        <div class="form-group">
-        <label>Select Language :</label>
-        <select name="language" class="form-control">
-            <option value="english">English</option>
-            <option value="marathi">मराठी</option> 
-            <option value="hindi">हिंदी</option>
-        </select>
-        <span id="language_err" style="color:red"><?php echo $this->session->flashdata('language_err');?></span>
-            </div>
-    </div>
-            
-</div>
-            <div class="row">
-    <div class="col-md-6 col-sm-6 col-xs-6">
+                          <div class="col-md-6 col-sm-6 col-xs-6">
         <div class="form-group">
         <label>Select Course :</label>
         <select name="course" class="form-control" required>
@@ -103,6 +81,28 @@ function validateForm() {
             ?>         
         </select>
         <span id="course_err" style="color:red"><?php echo $this->session->flashdata('course_err');?></span>
+        </div>
+    </div>
+    
+     <div class="col-md-6 col-sm-6 col-xs-6">
+        <div class="form-group">
+        <label>Select Language :</label>
+        <select name="language" class="form-control">
+            <option value="english">English</option>
+            <option value="marathi">मराठी</option> 
+            <option value="hindi">हिंदी</option>
+        </select>
+        <span id="language_err" style="color:red"><?php echo $this->session->flashdata('language_err');?></span>
+            </div>
+    </div>
+            
+</div>
+            <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+        <div class="form-group">
+        <label>Enter Roll No :</label>
+        <input type="text" name="acc_no" required="" id="acc_no" class="form-control">  
+        <span id="acc_no_err" style="color:red"><?php echo $this->session->flashdata('acc_err');?></span>
         </div>
     </div>
     
@@ -128,7 +128,7 @@ function validateForm() {
             </div>
             </div>
                
-        
+        <?php // print_r($this->session->userdata());?>
         </div>
     </div>
     

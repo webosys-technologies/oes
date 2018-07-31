@@ -59,6 +59,8 @@
         return "are you sure you want to leave?";  //show dialog before reload and close
     }
     
+   
+    
     });
     
     
@@ -66,7 +68,7 @@
     var p;
   function gen_btn(p)
 {   
-    
+   
     btn="gen_btn";
     $('#press_btn').val(btn);
     $('#press_btn_qno').val(p);
@@ -151,6 +153,9 @@ function reset_answer()
             dataType: "JSON",
             success: function(data)
             {
+                              $("#result").show();
+                              $("#btn_table").prop('hidden',true);
+                              $("#questions").prop('hidden',true);
                                if(data.result=="pass")
                                {
                                    $('#exm_res').html('<span style="color:#32CD32">'+data.result+'</span>');
@@ -169,10 +174,10 @@ function reset_answer()
                                $("#show_button").hide();
                               $("#start_exam").hide();
                               $("#exam_result").show();
-                              if(data.result=="pass")
-                              {
-                              $("#congratulation").show();
-                              }
+//                              if(data.result=="pass")
+//                              {
+//                              $("#congratulation").show();
+//                              }
 
             
             },
@@ -298,6 +303,66 @@ function get_question(id)
     }
     
     
+    
+        function test_review(id)
+    {
+              
+      var url;
+      
+        url = "<?php echo site_url('index.php/Examination/test_review/')?>"+id;
+      
+
+       // ajax adding data to database
+          $.ajax({
+            url : url,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data)
+            {
+//                           alert("test review");
+               
+               var count=0;
+               var total_mark=0;
+                             
+               $.each(data,function(i,row)
+               
+               {
+//                  alert(row.mark);
+                   count++;
+                   total_mark=total_mark+parseInt(row.mark);
+                   if(row.mark=="1")
+                   {
+                     $('#dynamic_field').append(             
+               '<div class="row"><div class="col-md-6"><label>Q<span>'+ count +'</span>) <span>'+ row.question_name +'</span></label><br/>a) <span>'+ row.question_option_a +'</span><br/> b) <span>'+ row.question_option_b +'</span><br/>c) <span>'+ row.question_option_c +'</span><br/>d) <span>'+ row.question_option_d +'</span></div><label>Correct answer : </label><span style="color:#32CD32">'+ row.correct_ans +'</span><br/><label>Given answer : </label><span style="color:#32CD32">'+ row.given_ans +'</span><br/><label>Mark : </label><span style="color:#32CD32">'+ row.mark +'</span></div><br/><br/>'      
+                    );
+                   }
+                   else
+                   {
+                      $('#dynamic_field').append(             
+               '<div class="row"><div class="col-md-6"><label>Q<span>'+ count +'</span>) <span>'+ row.question_name +'</span></label><br/>a) <span>'+ row.question_option_a +'</span><br/> b) <span>'+ row.question_option_b +'</span><br/>c) <span>'+ row.question_option_c +'</span><br/>d) <span>'+ row.question_option_d +'</span></div><label>Correct answer : </label><span style="color:#32CD32">'+ row.correct_ans +'</span><br/><label>Given answer : </label><span style="color:red">'+ row.given_ans +'</span><br/><label>Mark : </label><span style="color:red">'+ row.mark +'</span></div><br/><br/>'      
+                    ); 
+                   }
+                   
+               }
+           );              
+                              
+                              $("#exam_result").hide();
+                              $("#test_review").show();
+                              $('#out_of_mark').html(count);
+                              $('#total_mark').html(total_mark);
+                              
+
+            
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error.......! ');
+            }
+        });
+        
+    }
+    
+    
 </script>
 
 <div class="container-fluid">
@@ -375,7 +440,7 @@ function get_question(id)
 
                                  }
                     ?>
-
+<div id="btn_table">
 <center>
       <table width="">
           <tr>
@@ -470,10 +535,10 @@ function get_question(id)
            }?>
          </tr>
         
-      </table>
+      </table>   
    
     </center>
-       <br>                 
+         <br>                 
         <div class="row">
             <div class="col-md-12">
         <button class="btn btn-danger btn-sm">Q</button> : Not Attempted
@@ -483,11 +548,29 @@ function get_question(id)
             <div class="col-md-12">
         <button class="btn btn-success btn-sm">Q</button> : Attempted<br>
         </div>
-        </div><br><br>
-                       
+        </div><br><br>  
+        </div>
+                        <div id="result" hidden >
+                        <div class="table-responsive" style="padding-bottom:16%;" >
+              <table class="table table-bordered" cellspacing="0" width="100%">
+                  <!--<tr bgcolor="#338cbf" style="color:#fff">-->
+          <tr> <th align="center" bgcolor="#d2d6de" style="color:#fff">Exam Report</th> <td align="center" bgcolor="#338cbf" style="color:#fff">Marks</td></tr>        
+         <tr> <th align="center" >Total Questions</th> <td align="center" id="total_questions"></td></tr>
+         <tr><th align="center" >Correct Answer</th> <td align="center" id="correct_ans"></td> </tr>
+          <tr><th align="center" >Wrong Answer</th> <td align="center" id="wrong_ans"></td></tr>
+          <tr><th align="center" >Marks Obtain</th> <td align="center" id="marks_obtain"></td></tr>
+          <tr><th align="center" >Total Marks</th> <td align="center" id="out_of"></td> </tr>
+           <tr><th align="center" >Result</th> <td align="center" id="exm_res"></td> </tr>
+                           
+         </table>
+           <div class="pull-right">
+                  <label> <a href="#" id="review">Review</a></label>
+              </div>
+              </div>
+              </div>         
     </div>
 
-    <div class="col-sm-12 col-md-8 col-xs-12">
+    <div class="col-sm-12 col-md-8 col-xs-12" id="questions">
         <br>
         <div class="row">
             <div class="col-md-4">
@@ -537,9 +620,9 @@ function get_question(id)
             </div>
         </div>
        </form>
-       <br>
-     
+       <br>     
         </div>
+      <div id="dynamic_field"></div>
       </div>
     </div>
  

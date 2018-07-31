@@ -12,7 +12,7 @@ class Examination extends CI_Controller
   }
   function index()
   {
-       if(!empty($this->session->userdata('oes_acc_id')) || $this->session->userdata('oes_exam_start')==true)
+       if(!empty($this->session->userdata('oes_acc_no')) || $this->session->userdata('oes_exam_start')==true)
       {
            redirect('Examination/start_exam');
       }else{
@@ -87,23 +87,19 @@ class Examination extends CI_Controller
   
   function start_exam() 
   {
+   
       if(!empty($this->session->userdata('oes_acc_no')) || $this->session->userdata('oes_exam_start')==true)
       {
-         
+
           if(!$this->session->userdata('get_question')==true)
           {
               $val=$this->get_question(); 
           }
-          if($val)
-          {
+        
            $this->load->view('header');
          $this->load->view('start_exam',$this->session->userdata('q1'));       
           $this->load->view('footer');
-          }else{
-              $this->logout();
-              redirect('Examination');
-          }
-      
+              
       }else{
           
           redirect('Examination');
@@ -172,10 +168,12 @@ class Examination extends CI_Controller
                   
                    $this->session->set_userdata($que_field);
                    $this->session->set_userdata(array('get_question'=>true));
-                   return true;
+                
+                   
+//                   return true;
       }else{
           $this->session->flashdata('language_err','Questions are not available for this language');
-          return false;
+//          return false;
       }
           }else{
                redirect('Examination');
@@ -267,7 +265,8 @@ class Examination extends CI_Controller
                {
                    $question=$this->session->userdata('q'.$question_num);
                }
-      
+                   
+               
             echo json_encode(array('no_of_que'=>100,
                                    'solved_question'=>$solved_question,     //solved question number
                                    'question'=>$question,                   //which question wants to ask
@@ -386,12 +385,15 @@ class Examination extends CI_Controller
                 
                 $this->session->unset_userdata('q'.$i);
                 $this->session->unset_userdata('ans_qno'.$i);
+                $this->session->unset_userdata('oes_acc_no');
+                $this->session->unset_userdata('oes_exam_start');
+                $this->session->unset_userdata('get_question');
             }
             
              $exam_result=$this->Exam_details_model->get_result_by_id($sid,$insert_id);
                
              
-             
+            
    
                   echo json_encode(array('exam_result'=>$exam_result,
                                          'total_questions'=>100,
@@ -399,17 +401,19 @@ class Examination extends CI_Controller
                                          'test_review_id'=>$insert_id));
             
         }
-        
+
   
-  function result()
-  {
-      $data=array('acc_id'=>'1');
-              $exam_result=$this->Exams_model->get_result_by_id($data);
-            
-      $this->load->view('header');
-      $this->load->view('result');
-      $this->load->view('footer');
-  }
+   function test_review($exam_id)
+        {
+         
+              $id=$this->session->userdata('oes_acc_id');
+              $cid=$this->session->userdata('oes_course_id');
+              $data=array('acc_id'=>$id,
+                          'exam_id'=>$exam_id);
+              $exam_result=$this->Exam_details_model->test_review($data);             
+          
+              echo json_encode($exam_result);                  
+        }
   
   
   function logout()

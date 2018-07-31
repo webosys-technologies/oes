@@ -32,9 +32,9 @@ class Exam_details_model extends CI_Model
         
         function test_review($data)
         {
-               $this->db->from('exam_details as exm');        
+            $this->db->from('exam_details as exm');        
 
-         $this->db->join('questions as que', 'que.question_id=exm.question_id', 'LEFT');
+            $this->db->join('questions as que', 'que.question_id=exm.question_id', 'LEFT');
             $this->db->where('exm.exam_id',$data['exam_id']);
             $query = $this->db->get();
 
