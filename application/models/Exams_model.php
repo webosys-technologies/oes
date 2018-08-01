@@ -56,6 +56,16 @@ class Exams_model extends CI_Model
             return $query->result();          
         }
         
+        function result_by_id($data)
+        {
+            $this->db->from('exams');
+//            $this->db->join('exam_details', 'exams.exam_id = exam_details.exam_id');
+            $this->db->where('exams.acc_id',$data['acc_id']);
+
+            $query = $this->db->get();
+            return $query->row();
+        }
+        
         public function no_of_exams($sid)
         {   
             $this->db->where('acc_id',$sid);

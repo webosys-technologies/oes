@@ -8,8 +8,10 @@
     
     /* Set gray background color and 100% height */
     .sidenav {
-      background-color: #f1f1f1;
+      background-color: #FEF9E7;
       height: 100%;
+      border-right: 1px solid #E5E8E8;
+    /*height: 500px;*/
     }
     
     /* Set black background color, white text and some padding */
@@ -365,7 +367,7 @@ function get_question(id)
     
 </script>
 
-<div class="container-fluid">
+<div class="container-fluid" style="background:#FEF9E7;">
   <div class="row">
     <div class="col-sm-12 col-md-4 col-xs-12 sidenav">
         <center><h3>Online Examination</h3></center>

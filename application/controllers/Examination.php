@@ -401,7 +401,38 @@ class Examination extends CI_Controller
                                          'test_review_id'=>$insert_id));
             
         }
+function result()
+{
+    $this->load->view('header');
+    $this->load->view('result');
+    $this->load->view('footer');
 
+}
+
+function get_result()
+{
+                         if(!empty($this->input->post('get_result')))
+                    {
+                        $no=$this->input->post('acc_no');
+                        $res=$this->Account_model->get_by_no($no);
+                        if($res)
+                        {
+                            if($res->course_id==$this->input->post('course'))
+                            {
+                                $result['result']=$this->Exams_model->result_by_id(array('acc_id'=>$res->acc_id));
+                           $this->load->view('header');
+                           $this->load->view('result',$result);
+                           $this->load->view('footer');
+                            }else{
+                                $this->session->set_flashdata('error',"Roll no and Course does Not Match");
+                                 redirect('Examination/result');
+                            }
+                        }else{
+                            $this->session->set_flashdata('error',"Please Enter Valid Roll NO");
+                            redirect('Examination/result');
+                        }
+                    }
+}
   
    function test_review($exam_id)
         {

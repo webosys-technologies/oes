@@ -119,7 +119,7 @@ h1.navbar-brand span {
 	text-align: center;
 }
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
-    color: #08ada7;
+    color: #CA3F07;
     background-color: transparent;
 }
 .effect-3 {
@@ -131,7 +131,7 @@ h1.navbar-brand span {
 	bottom: 0;
 	width: 100%;
 	height: 2px;
-	background: #08ada7;
+	background: #CA3F07;
 	content: '';
 	position: absolute;
 	transition: transform 0.5s ease;
@@ -148,14 +148,14 @@ h1.navbar-brand span {
 	-ms-transform: translateX(0);
 }
 .navbar-default .navbar-nav>.active>a:before {
-    background: #08ada7;
+    background: #CA3F07;
     -webkit-transform: translateX(0);
     -moz-transform: translateX(0);
     -o-transform: translateX(0);
     -ms-transform: translateX(0);
 }
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
-    color: #08ada7;
+    color: #CA3F07;
     background: none;
 }
 .nav>li {
@@ -623,7 +623,7 @@ a.pa_italic:focus {
 .services i {
     line-height: 47px;
     font-size: 28px;
-	color: #08ada7;
+	color: #CA3F07;
 }
 .services p {
     color: rgba(255, 255, 255, 0.79);
@@ -887,7 +887,7 @@ ul.team_icons_agile li a:hover {
 
 .stats {
     text-align: center;
-     background: #08ada7;
+     background: #CA3F07;
     padding: 4em 0;
 }
 
