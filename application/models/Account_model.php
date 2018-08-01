@@ -29,6 +29,24 @@ class Account_model extends CI_Model
            }
         }
         
+        
+         public function check_center_password($data)
+        {
+            $this->db->from('centers');
+            $this->db->where('center_id',$data['center_id']);
+            $query=$this->db->get();
+            $res=$query->row();
+           
+            if($res->center_password==$data['center_password'])
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
         function delete_by_id($id)
         {
 //            $this->db->from($this-);
@@ -53,10 +71,10 @@ class Account_model extends CI_Model
         function get_by_no($no)
         {
              $this->db->from($this->table);
-            $this->db->where('acc_no',$no);
-            $query=$this->db->get();
+             $this->db->where('acc_no',$no);
+             $query=$this->db->get();
             
-            return $query->row();   
+             return $query->row();   
         }
 
 

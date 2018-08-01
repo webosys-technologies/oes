@@ -3,15 +3,20 @@
         /*padding-top: 10%;*/
         padding-bottom: 22%;
     }
+    
+    .res{
+        background:#FAD7A0;
+        
+    }
 </style>      
-<div class="container">
+<div class="container" style="padding-top:10px;">
             <div class="row">
 	<div class="col-md-5">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="background:#3c8dbc">
+			<div class="panel-heading" style="background:#F0B27A">
                             <h4 style="color:white">Result</h4>
 			</div>
-                    <div class="panel-body">
+                    <div class="panel-body" style="background:#FAD7A0;">
                         <form action="<?php echo base_url()?>Examination/get_result" onsubmit="return validateForm()" id="form" method="post">
                       <div class="row">
                       
@@ -58,7 +63,7 @@
      <div class="col-md-6 col-sm-6 col-xs-6">
         <div class="form-group">
             <label></label><br>
-            <button type="submit" name="get_result" value="get_result" class="btn btn-primary">Get Result</button>
+            <button type="submit" name="get_result" value="get_result" class="btn btn-info">Get Result</button>
        
             </div>
     </div>            
@@ -78,13 +83,13 @@
                      <div class="table-responsive" style="" >
               <table class="table table-bordered" cellspacing="0" width="100%">
                   <!--<tr bgcolor="#338cbf" style="color:#fff">-->
-          <tr> <th align="center" bgcolor="#d2d6de" style="color:#fff">Exam Report</th> <td align="center" bgcolor="#338cbf" style="color:#fff">Marks</td></tr>        
-         <tr> <th align="center" >Total Questions</th> <td align="center" id="total_questions"><?php echo $res['total_questions']; ?></td></tr>
-         <tr><th align="center" >Correct Answer</th> <td align="center" id="correct_ans"><?php echo $res['correct_ans']; ?></td> </tr>
-          <tr><th align="center" >Wrong Answer</th> <td align="center" id="wrong_ans"><?php echo $res['wrong_ans']; ?></td></tr>
-          <tr><th align="center" >Marks Obtain</th> <td align="center" id="marks_obtain"><?php echo $res['total_marks']; ?></td></tr>
-          <tr><th align="center" >Marks Out Of</th> <td align="center" id="out_of"><?php echo $res['total_questions']; ?></td> </tr>
-          <tr><th align="center" >Result</th> <td align="center" id="exm_res"><?php if($result->exam_result=="pass"){?> <span style="color:green;"><?php echo $result->exam_result; ?></span> <?php }else{?> <span style="color:red;"><?php echo $result->exam_result; ?></span> <?php } ?></td> </tr>
+          <tr> <th align="center"  style="color:#fff;background:#F0B27A">Exam Report</th> <td align="center" style="color:#fff;background:#F0B27A">Marks</td></tr>        
+          <tr class="res"> <th align="center" >Total Questions</th> <td align="center" id="total_questions"><?php echo $res['total_questions']; ?></td></tr>
+         <tr class="res"><th align="center" >Correct Answer</th> <td align="center" id="correct_ans"><?php echo $res['correct_ans']; ?></td> </tr>
+          <tr class="res"><th align="center" >Wrong Answer</th> <td align="center" id="wrong_ans"><?php echo $res['wrong_ans']; ?></td></tr>
+          <tr class="res"><th align="center" >Marks Obtain</th> <td align="center" id="marks_obtain"><?php echo $res['total_marks']; ?></td></tr>
+          <tr class="res"><th align="center" >Marks Out Of</th> <td align="center" id="out_of"><?php echo $res['total_questions']; ?></td> </tr>
+          <tr class="res"><th align="center" >Result</th> <td align="center" id="exm_res"><?php if($result->exam_result=="pass"){?> <span style="color:green;"><?php echo $result->exam_result; ?></span> <?php }else{?> <span style="color:red;"><?php echo $result->exam_result; ?></span> <?php } ?></td> </tr>
                            
          </table>
            <div class="pull-right">

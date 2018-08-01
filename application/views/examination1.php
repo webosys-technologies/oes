@@ -57,10 +57,10 @@ function validateForm() {
         <div class="row">
 	<div class="col-md-offset-3 col-md-6 col-md-offset-3">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="background:#3c8dbc">
+			<div class="panel-heading" style="background:#F0B27A">
                             <h4 style="color:white">Online Examination</h4>
 			</div>
-                    <div class="panel-body">
+                    <div class="panel-body" style="background:#FAD7A0;">
                         <form action="<?php echo base_url();?>Examination/exam_login" onsubmit="return validateForm()" id="form" method="post">
                       <div class="row">
                           <div class="col-md-6 col-sm-6 col-xs-6">
@@ -109,7 +109,7 @@ function validateForm() {
              <div class="col-md-2 col-sm-2 col-xs-2">
         <div class="form-group">
             <label></label><br>
-            <button type="submit" class="btn btn-primary">Start Exam</button>
+            <button type="submit" class="btn btn-info">Start Exam</button>
        
             </div>
     </div>               

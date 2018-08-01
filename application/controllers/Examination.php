@@ -33,20 +33,64 @@ class Examination extends CI_Controller
       {
           redirect('Examination');
       }else{
+          
           $res=$this->Account_model->get_by_no($form['acc_no']);
+          $centers=$this->Centers_model->get_id($res->center_id);
           $course=$this->Courses_model->get_by_id($res->course_id);
-         
-          $data=array('oes_exam_start'=>true,
+           $data=array('oes_exam_start'=>true,
                       'oes_acc_no'=>$res->acc_no,
                       'oes_acc_id'=>$res->acc_id,
                       'oes_course_id'=>$res->course_id,
                       'oes_course_name'=>$course->course_name,
                       'oes_language'=>$form['language'],
                       );
+         
+         if($centers->center_askfor_password=='disable')
+         {
+         
           $this->session->set_userdata($data);         
           redirect('Examination/start_exam');
+         }else{
+             $this->load->view('ask_center_password',$data);
+         }
       }
   }
+  
+  
+    public function check_center_password()
+    {
+        $acc_id=$this->input->post('oes_acc_id');
+        $pass=$this->input->post('center_password');
+        $res=$this->Account_model->get_by_id($acc_id);
+        
+        $data=array('center_id'=>$res->center_id,
+                    'center_password'=>$pass);
+        
+        $result=$this->Account_model->check_center_password($data);
+       
+        if($result)
+        {
+           
+          $centers=$this->Centers_model->get_id($res->center_id);
+          $course=$this->Courses_model->get_by_id($res->course_id);
+           $oes=array('oes_exam_start'=>true,
+                      'oes_acc_no'=>$res->acc_no,
+                      'oes_acc_id'=>$res->acc_id,
+                      'oes_course_id'=>$res->course_id,
+                      'oes_course_name'=>$course->course_name,
+                      'oes_language'=>$form['language'],
+                      );
+            $this->session->set_userdata($oes);         
+          redirect('Examination/start_exam');
+               
+        }
+        else
+        {
+            $this->session->set_flashdata('error','Center Administrative password does not match');
+            $stud_data['oes_acc_id']=$acc_id;
+            $this->load->view('ask_center_password',$stud_data);
+        }
+    }
   
     function check_if_roll_exist($form)
   {
@@ -409,7 +453,7 @@ function result()
 
 }
 
-function get_result()
+        function get_result()
 {
                          if(!empty($this->input->post('get_result')))
                     {

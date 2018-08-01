@@ -255,6 +255,13 @@
               </a>
             </li>
             
+             <li class="treeview">
+              <a href="<?php echo base_url(); ?>center/Setting" >
+                <i class="fa fa-users"></i>
+                <span>Setting</span>
+              </a>
+            </li>
+            
             <li class="treeview">
               <a href="<?php echo base_url(); ?>center/Profile" >
                 <i class="fa fa-users"></i>

@@ -11,26 +11,19 @@ class Setting extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-
-               
-        $this->load->model('Students_model');
-        $this->load->model('Courses_model');
-         $this->load->model('Centers_model');
-         $this->load->model('System_model');
-        $this->load->helper('url');
+ if(!is_center_LoggedIn($this->session->userdata('oes_center_LoggedIn')))
+     {
+         redirect('center/Index/login');
+     }
 
 	}
 
 	public function index()
 	{  
-        $center_LoggedIn=$this->session->userdata('center_LoggedIn');
-
-        if(isset($center_LoggedIn) || $center_LoggedIn == TRUE)
-        {      
-          $id=$this->session->userdata('center_id');
-
+        $id=$this->session->userdata('oes_center_id');            
+                 
+             $result['data']=get_center_info($id);            
             $result['system']=$this->System_model->get_info();
-         $result['data']=$this->Centers_model->get_by_id($id);
         
            
           $this->load->view('center/header',$result);
@@ -38,19 +31,11 @@ class Setting extends CI_Controller
           $this->load->view('center/footer',$result);
 
 
-
-        }
-        else
-        {
-          redirect('center/index/login');
-        }
-
-
 	}
         
         public function center_askfor_password($ask_value)
         {
-            $id=$this->session->userdata('center_id');
+            $id=$this->session->userdata('oes_center_id');
             $res=$this->Centers_model->center_askfor_password($ask_value,$id);
             
             echo json_encode(array('ch_val'=>$ask_value));

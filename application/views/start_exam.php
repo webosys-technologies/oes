@@ -413,7 +413,7 @@ function get_question(id)
                     <script>
                         $(document).ready(function()
                         {
-                           
+                           alert();
                            if("<?php echo $i;?>"==1)
                            {
                              if($("#optiona").val()== "<?php echo $res;?>")    
@@ -610,14 +610,14 @@ function get_question(id)
         <br><br>
         <div class="row">
             <div class="col-md-4 col-sm-4 col-xs-4">
-                <button type="button" class="btn btn-primary btn-sm" id="prev" onclick="prev_btn()" value="prev" style="display:none;"><< Prev</button> <button type="button" class="btn btn-primary btn-sm" id="next" onclick="next_btn()" value="next" >Next >></button>
+                <button type="button" class="btn btn-info btn-sm" id="prev" onclick="prev_btn()" value="prev" style="display:none;"><< Prev</button> <button type="button" class="btn btn-info btn-sm" id="next" onclick="next_btn()" value="next" >Next >></button>
         </div>
             <div class="col-md-4 col-sm-4 col-xs-4">
                 <button type="button" name="reset" onclick="reset_answer()" class="btn btn-warning btn-sm">Reset Answer</button>
             </div>
             <!--<div class="col-md-4 col-sm-4 col-xs-4">-->
             <div class="pull-right" style="padding-right:5px;">
-              <button type="button" id="submit_exam" name="submit_exam" value=""  onclick="result()" class="btn btn-primary btn-sm" ><span id="next_label">Submit Exam</span></button>
+              <button type="button" id="submit_exam" name="submit_exam" value=""  onclick="result()" class="btn btn-info btn-sm" ><span id="next_label">Submit Exam</span></button>
              <!--</div>-->
             </div>
         </div>
