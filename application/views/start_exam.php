@@ -1,4 +1,9 @@
 
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
     /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
     .row.content {
@@ -47,7 +52,10 @@
       }
 }*/
     
-    
+     .res{
+        background:#FAD7A0;
+        
+    }
     
     th, td {
     padding: 1px;
@@ -56,16 +64,103 @@
 
 <script>
    $(document).ready(function () {  
-       
-   window.onbeforeunload = function() {
-        return "are you sure you want to leave?";  //show dialog before reload and close
-    }
-    
-   
-    
+     f1();
     });
     
-    
+ window.onbeforeunload = function(){
+     return "hello";
+     var url;
+     
+        url = "<?php echo site_url('index.php/Examination/log')?>";
+       // ajax adding data to database
+          $.ajax({
+            url : url,
+            type: "GET",                     
+            dataType: "JSON",
+            success: function(data)
+            {
+                var con=confirm("Changes you made will not be saved...Do you want to End Exam ");
+                if(con)
+                {
+                                      $.ajax({
+                                        url : '<?php echo base_url();?>Examination/logout',
+                                        type: "GET",                     
+                                        dataType: "JSON",
+                                        success: function(data)
+                                        {
+                                            alert("success");
+                                            $("#btn_table").hide();
+                                            $("#exam_panel").hide();
+                                            $("#end_exam").append('<center><h2>Exam End</h2><br></center>');
+                                        },
+                                        error: function (jqXHR, textStatus, errorThrown)
+                                        {
+                            //                alert('Error.......! ');
+                                        }
+                                    });
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+//                alert('Error.......! ');
+            }
+        });
+
+}
+
+
+
+
+
+
+
+                                var i=0;
+     var btn;
+     var start_exm;
+     var tim;
+     var submit;
+       
+        var min = 99;
+        var sec = 60;
+        var f = new Date();
+        function f1() {
+             clearInterval(tim);
+            f2();
+          //  document.getElementById("starttime").innerHTML = "Your started your Exam at " + f.getHours() + ":" + f.getMinutes();
+             
+          
+        }
+        function f2() { 
+            //
+            if (parseInt(sec) > 0) {
+                sec = parseInt(sec) - 1;
+                document.getElementById("showtime").innerHTML = '<b style="">'+ min +' </b> Min ,<b style="">' + sec+'</b> Sec';
+                $('#timestamp').val(min+":"+sec);
+                tim = setTimeout("f2()", 1000);
+            }
+            else {
+                if (parseInt(sec) == 0) {
+                   
+                    if (parseInt(min) >= 1) {
+                     sec = 60;
+                     min = parseInt(min) - 1;
+                     
+                     f2();
+                       
+                    }
+                    else {
+                     clearTimeout(tim);
+                     result(true);
+                
+                       
+                    }
+                }
+               
+            }
+        }
+
+
+
     
     var p;
   function gen_btn(p)
@@ -155,9 +250,9 @@ function reset_answer()
             dataType: "JSON",
             success: function(data)
             {
-                              $("#result").show();
-                              $("#btn_table").prop('hidden',true);
-                              $("#questions").prop('hidden',true);
+                              $("#exam_result").show();
+                              $("#btn_table").hide();
+                              $("#questions").hide();
                                if(data.result=="pass")
                                {
                                    $('#exm_res').html('<span style="color:#32CD32">'+data.result+'</span>');
@@ -335,20 +430,20 @@ function get_question(id)
                    if(row.mark=="1")
                    {
                      $('#dynamic_field').append(             
-               '<div class="row"><div class="col-md-6"><label>Q<span>'+ count +'</span>) <span>'+ row.question_name +'</span></label><br/>a) <span>'+ row.question_option_a +'</span><br/> b) <span>'+ row.question_option_b +'</span><br/>c) <span>'+ row.question_option_c +'</span><br/>d) <span>'+ row.question_option_d +'</span></div><label>Correct answer : </label><span style="color:#32CD32">'+ row.correct_ans +'</span><br/><label>Given answer : </label><span style="color:#32CD32">'+ row.given_ans +'</span><br/><label>Mark : </label><span style="color:#32CD32">'+ row.mark +'</span></div><br/><br/>'      
+               '<div class="row"><div class="col-md-6"><label>Q<span>'+ count +'</span>) <span>'+ row.question_name +'</span></label><br/>a) <span>'+ row.question_option_a +'</span><br/> b) <span>'+ row.question_option_b +'</span><br/>c) <span>'+ row.question_option_c +'</span><br/>d) <span>'+ row.question_option_d +'</span></div><div class="col-md-6"><label>Correct answer : </label><span style="color:#32CD32">'+ row.correct_ans +'</span><br/><label>Given answer : </label><span style="color:#32CD32">'+ row.given_ans +'</span><br/><label>Mark : </label><span style="color:#32CD32">'+ row.mark +'</span></div></div><br/><br/>'      
                     );
                    }
                    else
                    {
                       $('#dynamic_field').append(             
-               '<div class="row"><div class="col-md-6"><label>Q<span>'+ count +'</span>) <span>'+ row.question_name +'</span></label><br/>a) <span>'+ row.question_option_a +'</span><br/> b) <span>'+ row.question_option_b +'</span><br/>c) <span>'+ row.question_option_c +'</span><br/>d) <span>'+ row.question_option_d +'</span></div><label>Correct answer : </label><span style="color:#32CD32">'+ row.correct_ans +'</span><br/><label>Given answer : </label><span style="color:red">'+ row.given_ans +'</span><br/><label>Mark : </label><span style="color:red">'+ row.mark +'</span></div><br/><br/>'      
+               '<div class="row"><div class="col-md-6"><label>Q<span>'+ count +'</span>) <span>'+ row.question_name +'</span></label><br/>a) <span>'+ row.question_option_a +'</span><br/> b) <span>'+ row.question_option_b +'</span><br/>c) <span>'+ row.question_option_c +'</span><br/>d) <span>'+ row.question_option_d +'</span></div><div class="col-md-6"><label>Correct answer : </label><span style="color:#32CD32">'+ row.correct_ans +'</span><br/><label>Given answer : </label><span style="color:red">'+ row.given_ans +'</span><br/><label>Mark : </label><span style="color:red">'+ row.mark +'</span></div></div><br/><br/>'      
                     ); 
                    }
                    
                }
            );              
                               
-                              $("#exam_result").hide();
+                              $("#review").hide();
                               $("#test_review").show();
                               $('#out_of_mark').html(count);
                               $('#total_mark').html(total_mark);
@@ -368,7 +463,7 @@ function get_question(id)
 </script>
 
 <div class="container-fluid" style="background:#FEF9E7;">
-  <div class="row">
+  <div class="row" id="exam_panel">
     <div class="col-sm-12 col-md-4 col-xs-12 sidenav">
         <center><h3>Online Examination</h3></center>
 
@@ -398,50 +493,7 @@ function get_question(id)
 </div>
 
 <br>
-                    <?php
                    
-                     for($i=1;$i<=100;$i++)
-                                 {
-                         
-                                      if(!empty($this->session->userdata('ans_qno'.$i)))
-                                      {                                           
-                                          if($i==1)
-                                          {
-                                        $res= $this->session->userdata('ans_qno'.$i)['given_ans'];  
-                                          }
-                                        ?>
-                    <script>
-                        $(document).ready(function()
-                        {
-                           alert();
-                           if("<?php echo $i;?>"==1)
-                           {
-                             if($("#optiona").val()== "<?php echo $res;?>")    
-            {
-                $("#optiona").prop('checked',true);
-            }
-                if($("#optionb").val()== "<?php echo $res;?>")
-                {
-                    $("#optionb").prop('checked',true);
-                }
-                    if($("#optionc").val()== "<?php echo $res;?>")
-                    {
-                         $("#optionc").prop('checked',true);
-                    }
-                        if($("#optiond").val()== "<?php echo $res;?>")
-                        {
-                             $("#optiond").prop('checked',true);
-                        }
-                    }
-                            
-                          $("#btn_<?php echo $i;?>").attr("class","btn btn-success btn-sm");  //change given answer button color   
-                        });                     
-                        </script>
-                    <?php
-                                      }
-
-                                 }
-                    ?>
 <div id="btn_table">
 <center>
       <table width="">
@@ -552,17 +604,64 @@ function get_question(id)
         </div>
         </div><br><br>  
         </div>
-                        <div id="result" hidden >
+
+ <?php
+                   
+                     for($i=1;$i<=100;$i++)
+                                 {
+                         
+                                      if(!empty($this->session->userdata('ans_qno'.$i)))
+                                      {                                           
+                                          if($i==1)
+                                          {
+                                        $res= $this->session->userdata('ans_qno'.$i)['given_ans'];  
+                                          }
+                                        ?>
+                    <script>
+                        $(document).ready(function()
+                        {
+//                           alert("<?php echo $i;?>");
+                           if("<?php echo $i;?>"==1)
+                           {
+                             if($("#optiona").val()== "<?php echo $res;?>")    
+            {
+                $("#optiona").prop('checked',true);
+            }
+                if($("#optionb").val()== "<?php echo $res;?>")
+                {
+                    $("#optionb").prop('checked',true);
+                }
+                    if($("#optionc").val()== "<?php echo $res;?>")
+                    {
+                         $("#optionc").prop('checked',true);
+                    }
+                        if($("#optiond").val()== "<?php echo $res;?>")
+                        {
+                             $("#optiond").prop('checked',true);
+                        }
+                    }
+                            
+                          $("#btn_<?php echo $i;?>").attr("class","btn btn-success btn-sm");  //change given answer button color   
+                        });                     
+                        </script>
+                    <?php
+                                      }
+
+                                 }
+                    ?>
+
+
+                        <div id="exam_result" hidden >
                         <div class="table-responsive" style="padding-bottom:16%;" >
               <table class="table table-bordered" cellspacing="0" width="100%">
                   <!--<tr bgcolor="#338cbf" style="color:#fff">-->
-          <tr> <th align="center" bgcolor="#d2d6de" style="color:#fff">Exam Report</th> <td align="center" bgcolor="#338cbf" style="color:#fff">Marks</td></tr>        
-         <tr> <th align="center" >Total Questions</th> <td align="center" id="total_questions"></td></tr>
-         <tr><th align="center" >Correct Answer</th> <td align="center" id="correct_ans"></td> </tr>
-          <tr><th align="center" >Wrong Answer</th> <td align="center" id="wrong_ans"></td></tr>
-          <tr><th align="center" >Marks Obtain</th> <td align="center" id="marks_obtain"></td></tr>
-          <tr><th align="center" >Total Marks</th> <td align="center" id="out_of"></td> </tr>
-           <tr><th align="center" >Result</th> <td align="center" id="exm_res"></td> </tr>
+          <tr style="color:#fff;background:#F0B27A"> <th align="center" style="color:#fff">Exam Report</th> <td align="center" style="color:#fff">Marks</td></tr>        
+         <tr class="res"> <th align="center" >Total Questions</th> <td align="center" id="total_questions"></td></tr>
+         <tr class="res"><th align="center" >Correct Answer</th> <td align="center" id="correct_ans"></td> </tr>
+          <tr class="res"><th align="center" >Wrong Answer</th> <td align="center" id="wrong_ans"></td></tr>
+          <tr class="res"><th align="center" >Marks Obtain</th> <td align="center" id="marks_obtain"></td></tr>
+          <tr class="res"><th align="center" >Marks Out Of</th> <td align="center" id="out_of"></td> </tr>
+           <tr class="res"><th align="center" >Result</th> <td align="center" id="exm_res"></td> </tr>
                            
          </table>
            <div class="pull-right">
@@ -579,7 +678,7 @@ function get_question(id)
                 <label>Total Time :</label><label style="color:red">1 hour</label>
             </div>
             <div class="col-md-4">
-                 <label>Remaining Time :</label><label style="color:green">1 hr 20 min 10 sec</label>
+                 <label>Remaining Time :</label><label id="showtime" style="color:#32CD32;">1 hr 20 min 10 sec</label>
             </div>
             <div class="col-md-4">
                  <label>Total Mark :</label><label style="color:red">100 Marks</label>
@@ -605,6 +704,7 @@ function get_question(id)
         <input name="press_btn" id="press_btn" value="" hidden>
        <input name="press_btn_qno" id="press_btn_qno" value="" hidden>
        <input name="timestamp" id="timestamp" value="" hidden>
+       <div id="temp"></div>
         
          
         <br><br>
@@ -623,8 +723,14 @@ function get_question(id)
         </div>
        </form>
        <br>     
+      
         </div>
-      <div id="dynamic_field"></div>
+     
+           <div class="col-sm-12 col-md-8 col-xs-12">
+       <div id="dynamic_field"></div>
+       </div>
+          
+      
       </div>
     </div>
- 
+  

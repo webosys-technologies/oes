@@ -494,8 +494,12 @@ function result()
   function logout()
   {
       $this->session->sess_destroy();
-      redirect('Examination');
+     echo json_encode(array('status'=>"success"));
   }
-
   
+  function log()
+  {
+      echo json_encode(array('status'=>"success"));
+  }
+ 
   }
