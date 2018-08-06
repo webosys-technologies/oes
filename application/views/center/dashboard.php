@@ -67,7 +67,7 @@
          
           <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box" style="background:#FFCC33;">
+          <div class="small-box" style="background:#5DADE2;">
             <div class="inner">
               <h3 id="num"><?php if(isset($accounts)){echo count($accounts);}else{echo "0";}?><sup style="font-size: 20px"></sup></h3>
 
