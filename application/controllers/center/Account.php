@@ -24,7 +24,7 @@ class Account extends CI_Controller
 
             $result['system']=$this->System_model->get_info();
         $result['data']=get_center_info($id);
-        $result['account_data']=$this->Account_model->getall();
+        $result['account_data']=$this->Account_model->get_by_center(array('center_id'=>$id));
           $this->load->view('center/header',$result);
       	 $this->load->view('center/account_view',$result);
           $this->load->view('center/footer',$result);

@@ -103,7 +103,7 @@
             </div>
              <?php if(isset($result))
                     {
-                     $question=$this->Exam_details_model->test_review(array('exam_id'=>$result->exam_id));
+                     $question=$this->Exam_details_model->test_review(array('exam_id'=>$result->exam_id,'language'=>$result->exam_language));
                      $i=1;
                      echo " <br><h3>Exam Review</h3><br>";
                      foreach ($question as $que)

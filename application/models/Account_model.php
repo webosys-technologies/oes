@@ -16,6 +16,14 @@ class Account_model extends CI_Model
             $query=$this->db->get();
             return $query->result();
         }
+        
+        function get_by_center($where)
+        {
+            $this->db->from($this->table);
+            $this->db->where($where);
+            $query=$this->db->get();
+                return $query->result();
+        }
         function check_account($id)
         {
            $this->db->from($this->table);

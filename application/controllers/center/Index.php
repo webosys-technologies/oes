@@ -511,7 +511,7 @@ class Index extends CI_Controller
                    $mobileNumber = $mobile;
                    //Sender ID,While using route4 sender id should be 6 characters long.
 
-                   $senderId = "DELTO2";
+                   $senderId = "OESEXM";
                    //Your message to send, Add URL encoding here.
 
                    $message =$rand.' is your OTP for Activating Account on DELTO';

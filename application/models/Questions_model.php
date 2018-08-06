@@ -35,17 +35,16 @@ class Questions_model extends CI_Model
 	}
         
         
-        public function get_questions($qid,$course_id)
+        public function get_questions($qid,$course)
      	{
-            $data=array('question_id'=>$qid,
-                        'course_id'=>$course_id,
-                        'question_status'=>'1');
+        
 		$this->db->from($this->table);
-		$this->db->where($data);
+		$this->db->where('question_id',$qid);
+                $this->db->where('course_id',$course);
+                $this->db->where('question_status','1');
 		$query = $this->db->get();
                  //$this->get
 		return $query->row();
-
 	}
         
         public function marathi_get_questions($qid,$course_id)
@@ -75,9 +74,18 @@ class Questions_model extends CI_Model
         
         
         
-         public function get_questions_by_id($id)
+         public function get_questions_by_id($id,$lang)
 	{
-		$this->db->from($this->table);
+                if($lang=='marathi')
+                {
+                   $this->db->from('marathi_questions');   
+                }elseif($lang=='hindi')
+                {
+                     $this->db->from('hindi_questions'); 
+                }else{
+                   $this->db->from($this->table); 
+                }
+		
 		$this->db->where('question_id',$id);
 		$query = $this->db->get();
                  //$this->get
@@ -181,7 +189,14 @@ class Questions_model extends CI_Model
             $this->db->where('question_status','1');
             $query=$this->db->get();
             return $query->result();
-
+        }
+        
+        function que_count($data)
+        {
+           $this->db->from($this->table);
+            $this->db->where($data);           
+            $query=$this->db->get();
+            return $query->result();  
         }
         
         function marathi_que_by_course($course)
@@ -211,6 +226,7 @@ class Questions_model extends CI_Model
             return $query->num_rows();
             
         }
-
+        
+      
        
 }

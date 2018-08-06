@@ -174,13 +174,14 @@ class Examination extends CI_Controller
       }else{
       $res=$this->Questions_model->que_by_course($this->session->userdata('oes_course_id'));
       }
-      
+     
       if(count($res)>1)
       {
       $i=1;
        while($i<=100)
                   {
                       $qid=mt_rand(1,count($res));
+                      
                       if($this->session->userdata('oes_language')=="marathi")
                     {
                         $question=$this->Questions_model->marathi_get_questions($qid,$this->session->userdata('oes_course_id'));
@@ -234,9 +235,7 @@ class Examination extends CI_Controller
   function question($id)
   {
       if(!empty($this->session->userdata('oes_acc_no')) || $this->session->userdata('oes_exam_start')==true)
-      {         
-        
-          
+      {      
            $qno=$this->input->post("press_btn_qno");           //button number
            $question_num=$this->input->post("question_num");   //question number value in input
            $press_btn=$this->input->post("press_btn");
@@ -249,7 +248,7 @@ class Examination extends CI_Controller
                              if(!empty($qid) && !empty($option))
                 {
                                       
-               $answer=$this->Questions_model->get_questions_by_id($qid);
+               $answer=$this->Questions_model->get_questions_by_id($qid,$this->session->userdata('oes_language'));
                 
                       $correct_ans=$answer->question_correct_ans;                     
                  
@@ -343,7 +342,7 @@ class Examination extends CI_Controller
                        if(!empty($qid) && !empty($option))
                 {
                                       
-               $answer=$this->Questions_model->get_questions_by_id($qid);
+               $answer=$this->Questions_model->get_questions_by_id($qid,$this->session->userdata('oes_language'));
                    $correct_ans=$answer->question_correct_ans;   
                 
                   if($correct_ans==$option)
@@ -397,6 +396,7 @@ class Examination extends CI_Controller
 //                                'exam_taken_time'=>$min.':'.$sec,
                                 'exam_percentage'=>$per,
                                 'exam_result'=>$result,
+                                'exam_language'=>$this->session->userdata('oes_language'),
                                 'exam_date'=>date('Y-m-d h:i:sa'),                               
                                 'exam_status'=>'1');
              
@@ -414,7 +414,7 @@ class Examination extends CI_Controller
                 else
                 {
                      $not_solved=$this->session->userdata('q'.$i);
-                  $que_data=$this->Questions_model->get_questions_by_id($not_solved['question_id']);
+                  $que_data=$this->Questions_model->get_questions_by_id($not_solved['question_id'],$this->session->userdata('oes_language'));
                 
                       $cor_ans=$que_data->question_correct_ans;                     
                                     
@@ -483,9 +483,12 @@ function result()
          
               $id=$this->session->userdata('oes_acc_id');
               $cid=$this->session->userdata('oes_course_id');
+              $lang=$this->session->userdata('oes_language');
               $data=array('acc_id'=>$id,
-                          'exam_id'=>$exam_id);
-              $exam_result=$this->Exam_details_model->test_review($data);             
+                          'exam_id'=>$exam_id,
+                          'language'=>$lang);
+              $exam_result=$this->Exam_details_model->test_review($data); 
+           
           
               echo json_encode($exam_result);                  
         }
