@@ -19,7 +19,7 @@
 <div class="content-wrapper">
 	<section class="content-header">
       <h1>
-        <i class="fa fa-upload"></i><strong>Question</strong>
+        <i class="fa fa-upload"></i> <strong>Question</strong>
         <small>Control panel</small>
         </h1>
       <ol class="breadcrumb" >

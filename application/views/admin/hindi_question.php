@@ -147,7 +147,7 @@ $("#myName").on("keyup", function() {
 
       //Ajax Load data from ajax
       $.ajax({
-        url : "<?php echo site_url('index.php/admin/Question/ajax_edit/')?>/" + id,
+        url : "<?php echo site_url('index.php/admin/Question/hindi_ajax_edit/')?>/" + id,
         type: "GET",
         dataType: "JSON",
         success: function(data)
@@ -226,7 +226,7 @@ $("#myName").on("keyup", function() {
        
         // ajax delete data from database
           $.ajax({
-            url : "<?php echo site_url('index.php/admin/Question/delete_ques')?>/"+id,
+            url : "<?php echo site_url('index.php/admin/Question/hindi_delete_ques')?>/"+id,
             type: "POST",
             dataType: "JSON",
             success: function(data)

@@ -127,7 +127,7 @@ input[type='search']
                                        <td><?php echo $res->order_status;?></td>
                                        <td>      
              <button type="button" class="btn btn-info"  onclick="order_details(<?php echo $res->order_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="View Order"><i class="glyphicon glyphicon-eye-open"></i></button>
-             <button type="button" class="btn btn-danger"  onclick="print_invoice(<?php echo $res->order_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="Print Invoice"><i class="glyphicon glyphicon-print"></i></button>
+             <!--<button type="button" class="btn btn-danger"  onclick="print_invoice(<?php echo $res->order_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="Print Invoice"><i class="glyphicon glyphicon-print"></i></button>-->
                                        </td>
                                       
               </tr>
@@ -208,7 +208,7 @@ input[type='search']
         $.each(data, function (i, row) {
 
 
-            $('#record').append('<tr><td>'+row.order_detail_id+'</td><td>'+row.student_fname +' '+ row.student_lname+'</td><td>'+row.course_name+'</td><td>'+row.od_course_fees+'</td><td>'+row.od_book_price+'</td><td>'+row.od_total_amount+'</td><td>'+row.order_detail_status+'</td></tr>');
+            $('#record').append('<tr><td>'+row.order_detail_id+'</td><td>'+ row.acc_no +'</td><td>'+row.course_name+'</td><td>'+row.od_course_fees+'</td><td>'+row.od_total_amount+'</td><td>'+row.order_detail_status+'</td></tr>');
              sum=sum+parseInt(row.od_total_amount);
 
              $('[name="sum"]').val(sum);
@@ -375,11 +375,11 @@ function print_invoice(id)
       <thead class="thead-dark">
         <tr bgcolor="#338cbf" style="color:#fff">
           <th>ORDER DETAILS ID</th>
-          <th width="150px">STUDENT NAME</th>
+          <th width="150px">ROLL NO</th>
           <th>COURSE</th>
           <th>COURSE AMOUNT 
           / REEXAM FEES</th>
-          <th>BOOK PRICE</th>
+          <!--<th>BOOK PRICE</th>-->
           <th>TOTAL</th>
           <th>PAYMENT STATUS</th>
 

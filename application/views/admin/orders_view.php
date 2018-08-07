@@ -178,7 +178,7 @@ input[type='search']
         $.each(data, function (i, row) {
 
 
-            $('#record').append('<tr><td>'+row.order_detail_id+'</td><td>'+row.student_fname +' '+ row.student_lname+'</td><td>'+row.course_name+'</td><td>'+row.od_course_fees+'</td><td>'+row.od_book_price+'</td><td>'+row.od_total_amount+'</td><td>'+row.order_detail_status+'</td></tr>');
+            $('#record').append('<tr><td>'+row.order_detail_id+'</td><td>'+row.acc_no +'</td><td>'+row.course_name+'</td><td>'+row.od_course_fees+'</td><td>'+row.od_total_amount+'</td><td>'+row.order_detail_status+'</td></tr>');
              sum=sum+parseInt(row.od_total_amount);
 
              $('[name="sum"]').val(sum);
@@ -226,10 +226,10 @@ input[type='search']
       <thead class="thead-dark">
         <tr bgcolor="#338cbf" style="color:#fff">
           <th>Order Detail ID</th>
-          <th>Student Name</th>
+          <th>Roll No</th>
           <th>Course </th>
           <th>Course Amount</th>
-          <th>Book Price</th>
+          <!--<th>Book Price</th>-->
           <th>Total</th>
           <th>Payment Status</th>
 

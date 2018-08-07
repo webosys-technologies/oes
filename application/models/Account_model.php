@@ -57,7 +57,10 @@ class Account_model extends CI_Model
         
         function delete_by_id($id)
         {
-//            $this->db->from($this-);
+            $this->db->from($this->table);
+            $this->db->where('acc_id',$id);
+            $this->db->delete();
+            return $this->db->affected_rows();
         }
         
         function add_account($data)

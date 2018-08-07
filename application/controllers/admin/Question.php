@@ -70,7 +70,7 @@ class Question extends CI_Controller
            {
              $this->Questions_model->marathi_add($dataSet);
            }
-           elseif($this->input->post('language')=="marathi")
+           elseif($this->input->post('language')=="hindi")
            {
                $this->Questions_model->hindi_add($dataSet);
            }else{
@@ -159,7 +159,7 @@ class Question extends CI_Controller
         
          public function hindi_delete_ques($id)
 	{
-		$this->Questions_model->marathi_delete_by_id($id);
+		$this->Questions_model->hindi_delete_by_id($id);
 
 		echo json_encode(array("status" => TRUE));
 	}
@@ -184,7 +184,7 @@ class Question extends CI_Controller
     
      public function hindi_question()
     {
-            $data['question']=$this->Questions_model->getall_ques();
+            $data['question']=$this->Questions_model->getall_hindi_ques();
 
 	    $data['courses']=$this->Courses_model->getall_courses();
 	    $uid=$this->session->userdata('oes_user_id');

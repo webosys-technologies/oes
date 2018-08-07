@@ -33,6 +33,16 @@ class Questions_model extends CI_Model
 
 		return $query->result();
 	}
+         public function getall_hindi_ques()
+	{
+		$this->db->from('hindi_questions as ques');
+		$this->db->join('courses as cor','cor.course_id=ques.course_id','LEFT');
+
+                $this->db->order_by("question_id","desc");
+		$query=$this->db->get();
+
+		return $query->result();
+	}
         
         
         public function get_questions($qid,$course)

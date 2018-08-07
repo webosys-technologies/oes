@@ -84,6 +84,22 @@
       </div>
         
         <div class="row">
+              <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box" style="background:#F0B27A;">
+            <div class="inner">
+              <h3 id="num"><?php if(isset($accounts)){echo count($accounts);}else{echo "0";}?><sup style="font-size: 20px"></sup></h3>
+
+              <p id="num">Roll No's</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-institution"></i>
+            </div>
+            <a href="<?php echo base_url(); ?>center/Account" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>  
+            
+            
            <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box" style="background:#008080;">

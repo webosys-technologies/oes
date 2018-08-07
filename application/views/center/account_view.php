@@ -137,9 +137,9 @@ p{
                                        ?></td>
                                        <td>
   
-                  <button type="button" class="btn btn-success" id="" value="<?php echo $res->acc_id; ?>" onclick="edit_account(<?php echo $res->acc_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="Edit Account" ><i class="glyphicon glyphicon-pencil"></i></button>
-                  <!--<button type="button" class="btn btn-info" onclick="view_account(<?php echo $res->student_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="View Student"><i class="glyphicon glyphicon-eye-open"></i></button>-->
-                  <!--<button type="button" class="btn btn-danger" onclick="delete_account(<?php echo $res->student_id;?>)" data-toggle="tooltip" data-placement="bottom" title="Delete Student" ><i class="glyphicon glyphicon-trash"></i></button>-->
+                  <!--<button type="button" class="btn btn-success" id="" value="<?php echo $res->acc_id; ?>" onclick="edit_account(<?php echo $res->acc_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="Edit Account" ><i class="glyphicon glyphicon-pencil"></i></button>-->
+                  <!--<button type="button" class="btn btn-info" onclick="view_account(<?php echo $res->acc_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="View Student"><i class="glyphicon glyphicon-eye-open"></i></button>-->
+                  <button type="button" class="btn btn-danger" onclick="delete_account(<?php echo $res->acc_id;?>)" data-toggle="tooltip" data-placement="bottom" title="Delete Student" <?php if($status!=0){echo "disabled";} ?> ><i class="glyphicon glyphicon-trash"></i></button>
 
 
                 </td>

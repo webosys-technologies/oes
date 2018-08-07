@@ -35,6 +35,7 @@ class Dashboard extends CI_Controller
             $result['centers']=$this->Centers_model->getall();  
             $result['users']=$this->User_model->getall_user();  
             $result['system']=$this->System_model->get_info();
+            $result['accounts']=$this->Account_model->get_by_center(array('acc_status >='=>1));
              $result['sub_centers']=$this->Sub_centers_model->getall_sub_center();
              $result['coupons']=$this->Coupons_model->get_allcoupon();
              $result['questions']=$this->Questions_model->get_question_count();

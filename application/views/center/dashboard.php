@@ -76,7 +76,7 @@
             <div class="icon">
               <i class="fa fa-institution"></i>
             </div>
-            <a href="<?php echo base_url(); ?>center/Sub_center" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url(); ?>center/Account" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>   
         <!-- ./col -->
