@@ -11,23 +11,23 @@ class Account extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-    if(!is_center_LoggedIn($this->session->userdata('oes_center_LoggedIn')))
+    if(!is_center_LoggedIn($this->session->userdata('oes_user_LoggedIn')))
      {
-         redirect('center/Index/login');
+         redirect('admin/Index/login');
      }
 	}
 
 	public function index()
 	{  
              
-          $id=$this->session->userdata('oes_center_id');
+          $id=$this->session->userdata('oes_user_id');
 
             $result['system']=$this->System_model->get_info();
-        $result['data']=get_center_info($id);
+        $result['user_data']=get_user_info($id);
         $result['account_data']=$this->Account_model->getall();
-          $this->load->view('center/header',$result);
-      	 $this->load->view('center/account_view',$result);
-          $this->load->view('center/footer',$result);
+          $this->load->view('admin/header',$result);
+      	 $this->load->view('admin/account_view',$result);
+          $this->load->view('admin/footer',$result);
 
 	}
         

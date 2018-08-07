@@ -25,19 +25,19 @@ p{
     <section class="content-header">
       <h1>
         <i class="fa fa-users"></i><strong> Account Management</strong>
-        <small>Add, Edit, Delete <?php  ?></small>
+        <!--<small>Add, Edit, Delete <?php  ?></small>-->
       </h1>
       <ol class="breadcrumb" >
         <li><a href="<?php echo base_url(); ?>center/Dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
         <li >Manage Account</li>
       </ol>
-    </section><br>
+    </section>
     <form id="table" name="table" action="<?php echo base_url(); ?>center/Orders/selected_mem" method="post">
     <section class="content-header">
     <div class="row">
     <div class="col-md-4">
-    <button type="button" class="btn btn-primary" onclick="add_account()"><i class="glyphicon glyphicon-plus"></i> Create Accounts</button>
-       <button type="submit" class="btn btn-warning" id="payment"  ><i class="fa fa-inr"></i> Make Payment</button>
+<!--    <button type="button" class="btn btn-primary" onclick="add_account()"><i class="glyphicon glyphicon-plus"></i> Create Accounts</button>
+       <button type="submit" class="btn btn-warning" id="payment"  ><i class="fa fa-inr"></i> Make Payment</button>-->
     </div>
             <div class="col-md-6">
          <?php
@@ -93,8 +93,8 @@ p{
           <th>CREATED AT</th>
           <th>STATUS</th>
 
-          <th style="width:150px;">ACTION
-          </th>
+<!--          <th style="width:150px;">ACTION
+          </th>-->
         </tr>
       </thead>
       <tbody id="myTable">
@@ -132,14 +132,14 @@ p{
                                            echo "Not Active";
                                        }
                                        ?></td>
-                                       <td>
+<!--                                       <td>
   
-<!--                  <button type="button" class="btn btn-success" id="id_for_book" value="<?php echo $res->course_id; ?>" onclick="edit_account(<?php echo $res->student_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="Edit Student" ><i class="glyphicon glyphicon-pencil"></i></button>
+                  <button type="button" class="btn btn-success" id="id_for_book" value="<?php echo $res->course_id; ?>" onclick="edit_account(<?php echo $res->student_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="Edit Student" ><i class="glyphicon glyphicon-pencil"></i></button>
                   <button type="button" class="btn btn-info" onclick="view_account(<?php echo $res->student_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="View Student"><i class="glyphicon glyphicon-eye-open"></i></button>
-                  <button type="button" class="btn btn-danger" onclick="delete_account(<?php echo $res->student_id;?>)" data-toggle="tooltip" data-placement="bottom" title="Delete Student" ><i class="glyphicon glyphicon-trash"></i></button>-->
+                  <button type="button" class="btn btn-danger" onclick="delete_account(<?php echo $res->student_id;?>)" data-toggle="tooltip" data-placement="bottom" title="Delete Student" ><i class="glyphicon glyphicon-trash"></i></button>
 
 
-                </td>
+                </td>-->
               </tr>
              <?php }}?>
 
