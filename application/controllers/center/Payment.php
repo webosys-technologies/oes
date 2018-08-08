@@ -128,6 +128,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
    function Order_details($data)
     {
+       
       $stud_data=$this->session->userdata('account_data');
 
       foreach ($stud_data as $key )
@@ -169,9 +170,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               if (!empty($coupon)) {
              $coupon_data=$this->Coupons_model->get_coupon($coupon);
               $limit=$coupon_data->coupon_limit-1;
-              $data=array('coupon_limit' => $limit );
+              $data1=array('coupon_limit' => $limit );
 
-              $this->Coupons_model->coupon_update(array('coupon_code' =>$coupon ),$data);
+              $this->Coupons_model->coupon_update(array('coupon_code' =>$coupon ),$data1);
               }
 
 

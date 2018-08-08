@@ -169,6 +169,9 @@ class Orders extends CI_Controller
         'order_status' => "pending"
       );
       $res=$this->Orders_model->order($order);
+      
+//      echo $res;
+//      die;
       if ($res) {
         
       

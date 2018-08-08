@@ -116,7 +116,7 @@ p{
                                         <td><?php echo $course->course_name; ?></td>
                                         <td><?php echo $res->acc_valid_from;?></td>
                                        <td><?php echo $res->acc_valid_to;?></td>
-                                       <td></td>
+                                       <td>1 year</td>
                                        <td></td>
                                        <td><?php echo $res->acc_created_at; ?></td>
                                        
