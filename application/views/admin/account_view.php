@@ -93,8 +93,8 @@ p{
           <th>CREATED AT</th>
           <th>STATUS</th>
 
-<!--          <th style="width:150px;">ACTION
-          </th>-->
+          <th width="10%">ACTION
+          </th>
         </tr>
       </thead>
       <tbody id="myTable">
@@ -105,7 +105,7 @@ p{
           
          foreach($account_data as $res){
           $status=$res->acc_status; ?>
-             <tr <?php if($status == 1) { ?> style="background-color:#61F48B "  <?php }elseif ($status == 2) { ?> style="background-color:orange; " <?php  } ?> >
+             <tr <?php if($status == 1) { ?> style="background-color:#61F48B "  <?php }elseif ($status == 2) { ?> style="background-color:orange; " <?php  }  elseif ($status == 3) { ?> style="background-color:#EC7063; " <?php  } ?> > 
                             <td><input  <?php if($status == 0) { ?> class="checkbox" <?php } ?>
                               type="checkbox" name="cba[]"  value="<?php echo $res->acc_id; ?>"
                               <?php if($status == 1 || $status == 2) { ?> disabled <?php } ?> ></td>
@@ -126,20 +126,23 @@ p{
                                        elseif ($status == 2) {
                                           
                                           echo "Logged In";
+                                        }elseif($status == 3)
+                                        {
+                                           echo "Completed";  
                                         } 
                                       else
                                        {
                                            echo "Not Active";
                                        }
                                        ?></td>
-<!--                                       <td>
+                                         <td>
   
-                  <button type="button" class="btn btn-success" id="id_for_book" value="<?php echo $res->course_id; ?>" onclick="edit_account(<?php echo $res->student_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="Edit Student" ><i class="glyphicon glyphicon-pencil"></i></button>
-                  <button type="button" class="btn btn-info" onclick="view_account(<?php echo $res->student_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="View Student"><i class="glyphicon glyphicon-eye-open"></i></button>
-                  <button type="button" class="btn btn-danger" onclick="delete_account(<?php echo $res->student_id;?>)" data-toggle="tooltip" data-placement="bottom" title="Delete Student" ><i class="glyphicon glyphicon-trash"></i></button>
+                  <!--<button type="button" class="btn btn-success" id="" value="<?php echo $res->acc_id; ?>" onclick="edit_account(<?php echo $res->acc_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="Edit Account" ><i class="glyphicon glyphicon-pencil"></i></button>-->
+                  <?php if($status==2){?><button type="button" class="btn btn-info btn-sm" onclick="sign_out(<?php echo $res->acc_id; ?>)" data-toggle="tooltip" data-placement="bottom" title="Sign Out"><i class="fa fa-sign-out" aria-hidden="true"></i></button><?php } ?>
+                  <button type="button" class="btn btn-danger btn-sm" onclick="delete_account(<?php echo $res->acc_id;?>)" data-toggle="tooltip" data-placement="bottom" title="Delete Student" <?php if($status!=0){echo "disabled";} ?> ><i class="glyphicon glyphicon-trash"></i></button>
 
 
-                </td>-->
+                </td>
               </tr>
              <?php }}?>
 
@@ -282,6 +285,28 @@ $("#myName").on("keyup", function() {
         });
     }
     }
+    
+    
+     function sign_out(id)
+    {
+         $.ajax({
+            url : "<?php echo site_url('index.php/admin/Account/sign_out')?>/"+id,
+            type: "POST",
+            //dataType: "JSON",
+            success: function(data)
+            {
+//                alert("Deleted successfully");  
+               location.reload();
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error deleting data');
+            }
+        });
+    }
+    
+    
+    
     function delete_account(id)
     {
       if(confirm('Are you sure delete this data?'))

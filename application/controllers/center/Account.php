@@ -78,6 +78,19 @@ class Account extends CI_Controller
             echo json_encode($result);
         }
         
+        
+        function sign_out($id)
+        {
+            $res=$this->Account_model->get_by_id($id);
+            if(date('Y-m-d')<=$res->acc_valid_to)
+            {
+                $this->Account_model->account_update(array('acc_id'=>$id),array('acc_status'=>1));
+            }else{
+                $this->Account_model->account_update(array('acc_id'=>$id),array('acc_status'=>3));
+            }
+            echo json_encode(array('status'=>'success'));
+        }
+        
         function check_account($acc)
         {
         $check=$this->Account_model->check_account($acc);

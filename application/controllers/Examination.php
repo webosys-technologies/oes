@@ -93,10 +93,9 @@ class Examination extends CI_Controller
     }
   
     function check_if_roll_exist($form)
-  {
-     
+  {     
       $val=$this->Account_model->get_by_no(ltrim($form['acc_no']));
-      
+     
       if($val)
       {
           if($val->course_id==$form['course'])
@@ -105,7 +104,13 @@ class Examination extends CI_Controller
           {
               return true;    
           }elseif(date("Y-m-d")<=$val->acc_valid_from || date("Y-m-d")>=$val->acc_valid_to){
-              $this->session->set_flashdata('acc_err',"Accound no validity Finished Please Purchase again");
+              if(date("Y-m-d")>=$val->acc_valid_to)
+              {
+                  $this->Account_model->account_update(array("acc_id"=>$val->acc_id),array('acc_status'=>'3'));
+                  $this->session->set_flashdata('acc_err',"Account no validity Finished");  
+              }else{
+                 $this->session->set_flashdata('acc_err',"Account no validity Finished or Not Purchased");  
+              }             
              return false; 
           }elseif($val->acc_status==2)
           {
@@ -125,8 +130,7 @@ class Examination extends CI_Controller
       {
       $this->session->set_flashdata('acc_err',"Please Enter Correct Roll No");
       return false;    
-      }
-      
+      }      
   }
   
   function start_exam() 

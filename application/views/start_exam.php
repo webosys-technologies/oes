@@ -68,9 +68,8 @@
     });
     
  window.onbeforeunload = function(){
-     return "hello";
-     var url;
-     
+         confirm("Change");
+        var url;     
         url = "<?php echo site_url('index.php/Examination/log')?>";
        // ajax adding data to database
           $.ajax({
@@ -105,7 +104,7 @@
 //                alert('Error.......! ');
             }
         });
-
+         return "hello";
 }
 
 
@@ -114,7 +113,7 @@
 
 
 
-                                var i=0;
+     var i=0;
      var btn;
      var start_exm;
      var tim;
