@@ -473,6 +473,7 @@ var id=el.val();
         
           </div><!-- /.box-body -->
           <div class="modal-footer">
+              <button type="button" id="btnpay" onclick="pay()"  class="btn btn-primary">Pay</button>
             <button type="button" id="btnSave" onclick="save()"  class="btn btn-success">Generate</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
           </div>

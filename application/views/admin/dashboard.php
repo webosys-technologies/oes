@@ -114,6 +114,30 @@
             <a href="<?php echo base_url(); ?>admin/Question" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div> 
+            
+            <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red" >
+            <div class="inner">
+              <h3 id="num"><?php if(isset($payments)){
+                  foreach($payments as $pay)
+                  {
+                      $amt[]=$pay->amount;
+                  }
+                  echo array_sum($amt);}else{echo "0";}?>
+                  <sup style="font-size: 20px"></sup>
+              </h3>
+
+              <p id="num">Total Payment</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-institution"></i>
+            </div>
+            <a href="<?php echo base_url(); ?>center/Account" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>  
+            
+            
         </div>
         
         

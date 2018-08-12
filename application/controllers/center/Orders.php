@@ -44,7 +44,8 @@ class Orders extends CI_Controller
             
         // print_r($data);
             echo json_encode($data);
-    }
+    }  
+    
 
 	function selected_mem()
     {

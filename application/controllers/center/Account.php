@@ -31,6 +31,13 @@ class Account extends CI_Controller
 
 	}
         
+         function pay()
+    {
+       
+    }
+        
+        
+        
         function account_add()
         {
             $no_of_acc=$this->input->post('account');

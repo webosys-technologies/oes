@@ -39,6 +39,7 @@ class Dashboard extends CI_Controller
              $result['data']=get_center_info($id);
              $result['courses']=$this->Courses_model->getall_courses();
              $result['sub_centers']=$this->Sub_centers_model->get_sub_centers_by_id($id);
+             $result['payments']=$this->Payment_model->get_by_center_id($id);
              $result['accounts']=$this->Account_model->get_by_center(array('center_id'=>$id,'acc_status >='=>1));
             $result['system']=$this->System_model->get_info();
 
