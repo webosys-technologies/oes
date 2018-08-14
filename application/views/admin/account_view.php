@@ -313,7 +313,7 @@ $("#myName").on("keyup", function() {
       {
         // ajax delete data from database
           $.ajax({
-            url : "<?php echo site_url('index.php/center/Account/student_delete')?>/"+id,
+            url : "<?php echo site_url('index.php/admin/Account/account_delete')?>/"+id,
             type: "POST",
             //dataType: "JSON",
             success: function(data)

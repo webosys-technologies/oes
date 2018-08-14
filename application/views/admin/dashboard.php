@@ -7,7 +7,7 @@
   <div class="content-wrapper" style="background-color:white;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1><i class="fa fa-dashboard"></i><strong> Welcome To Packaging Naukri</strong>
+      <h1><i class="fa fa-dashboard"></i><strong> Online Examination System</strong>
         
        
       </h1>

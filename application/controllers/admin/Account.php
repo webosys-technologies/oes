@@ -66,6 +66,11 @@ class Account extends CI_Controller
         echo json_encode(array('status'=>'success'));
         }
         
+        function account_delete($id)
+        {
+            $this->Account_model->delete_by_id($id);
+            echo json_encode(array('status'=>'success'));
+        }
         
         
         function sign_out($id)
