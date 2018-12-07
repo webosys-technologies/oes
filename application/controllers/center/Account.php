@@ -42,6 +42,8 @@ class Account extends CI_Controller
         {
             $no_of_acc=$this->input->post('account');
             $course=$this->input->post('course');
+            $this->input->post('pay');
+                    
             $j=1;
             $length=5;
             $str = "";

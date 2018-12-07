@@ -674,7 +674,7 @@ function get_question(id)
         <br>
         <div class="row">
             <div class="col-md-4">
-                <label>Total Time :</label><label style="color:red">1 hour</label>
+                <label>Total Time :</label><label style="color:red">1 hour 40 minutes</label>
             </div>
             <div class="col-md-4">
                  <label>Remaining Time :</label><label id="showtime" style="color:#32CD32;">1 hr 20 min 10 sec</label>

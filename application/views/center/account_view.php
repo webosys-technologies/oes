@@ -244,11 +244,17 @@ $("#myName").on("keyup", function() {
                return false;
            }
        }
-
+    
+   function pay_btn()
+   {
+     
+       $('[name="pay"]').val(true);
+       save();
+   }
     
     function save()
     {
-
+            alert($('[name="pay"]').val());
          var val=validation()
          if(val)
          {
@@ -439,7 +445,7 @@ var id=el.val();
                <div class="form-group">
               <div class="row">
                   <div class="col-md-12">
-                     
+                      <input type="hidden" name="pay" value="">
                       <label>No Of Account :</label> <span style="color:red">*</span>
                       <input type="text" class="form-control" value="" id="account" maxlength="5" onkeypress="return isNumber(event)" name="account">
                       <span style="color:red" class="err" id="account_err"></span>
@@ -473,7 +479,7 @@ var id=el.val();
         
           </div><!-- /.box-body -->
           <div class="modal-footer">
-              <button type="button" id="btnpay" onclick="pay()"  class="btn btn-primary">Pay</button>
+              <button type="button" id="btnpay" onclick="pay_btn()"  class="btn btn-primary">Pay</button>
             <button type="button" id="btnSave" onclick="save()"  class="btn btn-success">Generate</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
           </div>
