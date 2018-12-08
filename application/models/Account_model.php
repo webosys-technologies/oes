@@ -83,6 +83,7 @@ class Account_model extends CI_Model
         {
              $this->db->from($this->table);
              $this->db->where('acc_no',$no);
+    
              $query=$this->db->get();
             
              return $query->row();   

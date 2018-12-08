@@ -47,7 +47,7 @@ class Examination extends CI_Controller
          
          if($centers->center_askfor_password=='disable')
          {
-         
+          $this->Account_model->account_update(array('acc_no'=>$form['acc_no']),array('acc_status'=>'2'));
           $this->session->set_userdata($data);         
           redirect('Examination/start_exam');
          }else{
