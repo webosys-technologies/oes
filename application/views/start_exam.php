@@ -361,6 +361,7 @@ function get_question(id)
                {
                   
                    $("#btn_"+data.solved_question[n]).attr("class","btn btn-success btn-sm");  //change given answer button color
+                    $("#btn_"+data.solved_question[n]).prop("disabled",true);  //change given answer button color
                } 
               
             }
@@ -624,19 +625,19 @@ function get_question(id)
                            {
                              if($("#optiona").val()== "<?php echo $res;?>")    
             {
-//                $("#optiona").prop('checked',true);
+                $("#optiona").prop('checked',true);
             }
                 if($("#optionb").val()== "<?php echo $res;?>")
                 {
-//                    $("#optionb").prop('checked',true);
+                    $("#optionb").prop('checked',true);
                 }
                     if($("#optionc").val()== "<?php echo $res;?>")
                     {
-//                         $("#optionc").prop('checked',true);
+                         $("#optionc").prop('checked',true);
                     }
                         if($("#optiond").val()== "<?php echo $res;?>")
                         {
-//                             $("#optiond").prop('checked',true);
+                             $("#optiond").prop('checked',true);
                         }
                     }
                             
