@@ -11,7 +11,10 @@ class Examination extends CI_Controller
     
   }
   function index()
-  {
+  { 
+        
+      
+
        if(!empty($this->session->userdata('oes_acc_no')) || $this->session->userdata('oes_exam_start')==true)
       {
            redirect('Examination/start_exam');
@@ -47,7 +50,7 @@ class Examination extends CI_Controller
          
          if($centers->center_askfor_password=='disable')
          {
-          $this->Account_model->account_update(array('acc_no'=>$form['acc_no']),array('acc_status'=>'2'));
+          $this->Account_model->account_update(array('acc_no'=>$form['acc_no']),array('acc_status'=>'2','examination_time'=>date('g:i a'),'examination_date'=>date("Y-m-d")));
           $this->session->set_userdata($data);         
           redirect('Examination/start_exam');
          }else{
@@ -113,9 +116,41 @@ class Examination extends CI_Controller
               }             
              return false; 
           }elseif($val->acc_status==2)
-          {
-         $this->session->set_flashdata('acc_err',"This Roll No Login onto Another Device");
-         return false;    
+          {   
+           
+                 if($val->examination_date==date('Y-m-d'))
+                 {
+                                  
+//                  $current_time = date("g:i a");
+//                  $examination_time = $val->examination_time;
+//                  $endTime = strtotime("+52 minutes", strtotime($examination_time));
+//                  $should_end=date('g:i a', $endTime);
+//                  
+//                 
+//              
+//              $date1 = DateTime::createFromFormat('H:i a', $current_time);
+//              $date2 = DateTime::createFromFormat('H:i a', $should_end);
+//              $date3 = DateTime::createFromFormat('H:i a', $val->examination_time);
+//            
+//                  if($date1<$date2 && $date1>$date3)
+//                    {
+//                 
+//                     $this->session->set_flashdata('acc_err',"This Roll No Login onto Another Device");
+//                      return false; 
+//                    } else{
+//                
+//                         $this->Account_model->change_acc_status($val->acc_id);
+//                     return true;
+//                    }  
+                     return true;
+               
+                     
+                 }else{
+                     $this->Account_model->change_acc_status($val->acc_id);
+                     return true;
+                 }       
+              
+           
           }elseif($val->acc_status==0)
           {
          $this->session->set_flashdata('acc_err',"Please Purchase Account No");
@@ -135,12 +170,14 @@ class Examination extends CI_Controller
   
   function start_exam() 
   {
+     
    
       if(!empty($this->session->userdata('oes_acc_no')) || $this->session->userdata('oes_exam_start')==true)
       {
-
-          if(!$this->session->userdata('get_question')==true)
+             
+          if($this->session->userdata('get_question')!='1')
           {
+              
               $val=$this->get_question(); 
           }
         
@@ -164,7 +201,7 @@ class Examination extends CI_Controller
   
   function get_question()
   {
-     
+        
        if(!empty($this->session->userdata('oes_acc_no')) || $this->session->userdata('oes_exam_start')==true)
       {
            if(!$this->session->userdata('get_question')==true)
@@ -217,7 +254,7 @@ class Examination extends CI_Controller
                   
                    $this->session->set_userdata($que_field);
                    $this->session->set_userdata(array('get_question'=>true));
-                
+         
                    
 //                   return true;
       }else{
@@ -430,7 +467,8 @@ class Examination extends CI_Controller
                                         'mark'=>'0');
                   $this->Exam_details_model->insert_data($not_solved_que,$insert_id);  
                 }
-                
+                 $this->Account_model->change_acc_status($this->session->userdata('oes_acc_id'));
+                   
                 $this->session->unset_userdata('q'.$i);
                 $this->session->unset_userdata('ans_qno'.$i);
                 $this->session->unset_userdata('oes_acc_no');
@@ -507,6 +545,12 @@ function result()
   function log()
   {
       echo json_encode(array('status'=>"success"));
+  }
+  
+  function query()
+  {
+      $this->Account_model->query();
+     
   }
  
   }

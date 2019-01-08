@@ -37,6 +37,12 @@ class Account_model extends CI_Model
            }
         }
         
+        function change_acc_status($id)
+        {
+          $this->db->update($this->table,array('acc_status'=>'1'),array('acc_id'=>$id));
+          return $this->db->affected_rows();
+        }
+        
         
          public function check_center_password($data)
         {
@@ -108,6 +114,10 @@ class Account_model extends CI_Model
         {
             $this->db->update($this->table,$data,$where);
             return $this->db->affected_rows();
+        }
+        function query()
+        {
+            $this->db->query('ALTER TABLE `account` ADD `examination_date` DATE NOT NULL AFTER `acc_valid_to`, ADD `examination_time` VARCHAR(55) NOT NULL AFTER `examination_date`;');
         }
        
 }
