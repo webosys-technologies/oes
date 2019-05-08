@@ -27,6 +27,40 @@ class Examination extends CI_Controller
       }
     
   }
+  function about()
+  { 
+        
+      
+
+       if(!empty($this->session->userdata('oes_acc_no')) || $this->session->userdata('oes_exam_start')==true)
+      {
+           redirect('Examination/start_exam');
+      }else{
+          $this->session->set_flashdata('home',"active");
+          
+          $this->load->view('header');
+           $this->load->view('about');
+           $this->load->view('footer');
+      }
+    
+  }
+  function contact()
+  { 
+        
+      
+
+       if(!empty($this->session->userdata('oes_acc_no')) || $this->session->userdata('oes_exam_start')==true)
+      {
+           redirect('Examination/start_exam');
+      }else{
+          $this->session->set_flashdata('home',"active");
+          
+          $this->load->view('header');
+           $this->load->view('contact');
+           $this->load->view('footer');
+      }
+    
+  }
   
   function exam_login()
   {

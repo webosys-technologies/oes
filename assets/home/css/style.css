@@ -57,7 +57,17 @@ p {
 	color: #636363;
 	line-height: 1.6;
 }
-
+.title
+{
+   display: inline-block;
+    margin-left: 4%;
+}
+.title_span
+{
+    color: #f6783a;
+    font-weight: bold;
+    font-size: 22px;
+}
 img {
 	max-width: 100%;
 }
@@ -86,7 +96,7 @@ ol {
 -----------------------*/
 
 .spad {
-	padding-top: 90px;
+	padding-top: 0px;
 	padding-bottom: 90px;
 }
 
@@ -239,8 +249,8 @@ ol {
 
 .site-logo {
 	display: inline-block;
-	margin-right: 50px;
-	padding-top: 20px;
+/*	margin-right: 50px;
+	padding-top: 20px;*/
 }
 
 .header-info {
@@ -292,8 +302,8 @@ ol {
 	display: block;
 	font-size: 12px;
 	text-transform: uppercase;
-	color: #020031;
-	font-weight: 500;
+	color: #0f3060;
+        font-weight: bold;
 }
 
 .nav-switch {
@@ -301,12 +311,12 @@ ol {
 }
 
 .nav-section {
-	background: #020031;
+	background: #0f3060;
 }
 
 .nav-section .nav-right {
 	float: right;
-	padding-top: 23px;
+	padding-top: 13px;
 }
 
 .nav-section .nav-right a {
@@ -324,13 +334,14 @@ ol {
 }
 
 .main-menu li a {
+    border-right: 1px solid #2c5782;
 	display: inline-block;
-	color: #fff;
-	font-size: 13px;
-	text-transform: uppercase;
-	font-weight: 500;
-	padding: 25px 20px;
-	margin-right: -5px;
+    color: #fff;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 13px 10px;
+   
 	-webkit-transition: all 0.4s ease 0s;
 	-o-transition: all 0.4s ease 0s;
 	transition: all 0.4s ease 0s;
@@ -457,10 +468,23 @@ ol {
 /*---------------------
 	Counter Section
 -----------------------*/
-
+.orange{
+    color:#f56125
+}
+.orange_bg{
+    background-color: #f56125;
+}
+.blue
+{
+    color:#0f3060    
+}
+.blue_bg
+{
+    background-color: #0f3060;
+}
 .counter-section {
-	background: #020031;
-	padding: 40px 0;
+	background: #0f3060;
+	padding: 15px 0;
 }
 
 .counter-section .big-icon {
@@ -1500,13 +1524,13 @@ ol {
 	height: 150px;
 }
 
-.comment-form.--contact input[type='text'],
-.comment-form.--contact input[type='email'],
-.comment-form.--contact textarea {
+.comment-form.contact input[type='text'],
+.comment-form.contact input[type='email'],
+.comment-form.contact textarea {
 	border: 1px solid #e1e1e1;
 }
 
-.comment-form.--contact textarea {
+.comment-form.contact textarea {
 	margin-bottom: 50px;
 }
 
@@ -1749,7 +1773,12 @@ ol {
 	}
 	.site-logo {
 		padding: 15px 0;
+                margin-left: 28%;
 	}
+        .title_span
+        {
+            font-size: 14px;
+        }
 	.nav-switch {
 		position: absolute;
 		right: 30px;

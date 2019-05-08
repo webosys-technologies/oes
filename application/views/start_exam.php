@@ -462,7 +462,7 @@ function get_question(id)
     
 </script>
 
-<div class="container-fluid" style="background:#FEF9E7;">
+<div class="container-fluid" style="background: #FEF9E7; padding: 15px; border: 1px solid #e2dada;">
   <div class="row" id="exam_panel">
     <div class="col-sm-12 col-md-4 col-xs-12 sidenav">
         <center><h3>Online Examination</h3></center>

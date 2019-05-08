@@ -28,7 +28,7 @@ function validateForm() {
            
        
             
-      <center>  <h4 style="color:#CA3F07;"><b>DELTO मार्फत विद्यार्थ्यांना Training देण्यासाठी खालील procedure करा.</b></h4></center>
+      <center>  <h4 style="color:#CA3F07;"><b>Online Exam Instruction & procedure</b></h4></center>
       <br>
              <div class="col-md-6 col-sm-6 col-xs-12">
        <span>1) प्रथम delto.in या वेबसाइट ला visit करा.</span><br>
@@ -47,8 +47,7 @@ function validateForm() {
       <span>12) Payment झाल्यानंतर Admission मध्ये त्या students’ चे login details दिसतील.</span><br>
       <span>13) ते login details students ला द्यावेत.</span><br>
       <span>14) delto.in या वेबसाइट च्या Home Page वर Student Login ला click करावे.</span><br>
-      <span>15) Username व Password देऊन Student Login झाल्यानंतर Student Login मध्ये Topic ला click करून Students सर्व topics चे सविस्तर knowledge घेऊ शकतात.</span><br>
-      <span>16) सर्व कोर्से पूर्ण झाल्यानंतर Center Admin ने त्याच्या login मधून EXAM PASSCODE generate करावा व तो student ला द्यावा. Student त्याच्या login मधून EXAM ऑप्शन वापरुन EXAM देऊ शकतो. Pass झाल्यानंतर student चे certificate, Center ला त्यांच्या login मध्ये दिसेल.</span><br>
+     
    
        <br>   
        </div>
@@ -107,21 +106,25 @@ function validateForm() {
     </div>
     
              <div class="col-md-2 col-sm-2 col-xs-2">
-        <div class="form-group">
-            <label></label><br>
+
+            </div>               
+</div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="checkbox" value="" name="term" id="term" checked> I have read and understand the above information<br>
+                <span style="color:red" id="term_err"></span>
+              </div>
+            </div>
+          </div>  
+          <div class="row">
+              <div class="col-md-12">
+               <div class="form-group">
             <button type="submit" class="btn btn-info">Start Exam</button>
        
             </div>
-    </div>               
-</div>
-          <div class="row">
-              <div class="col-md-12">
-              <div class="form-group">
-         <input type="checkbox" value="" name="term" id="term"> I have read and understand the above information<br>
-         <span style="color:red" id="term_err"></span>
-         </div>
                   </div>
-          </div>  
+          </div>
            </form>
                           </div>
                     </div>

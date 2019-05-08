@@ -42,7 +42,7 @@ class Index extends CI_Controller
                     
         }
         else
-		{
+		    {
                    
             
 			list($get_insert,$get_data)=$this->Centers_model->register();
