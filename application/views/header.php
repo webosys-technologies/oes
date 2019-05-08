@@ -104,8 +104,9 @@ left: 12px;
        
         <li id="home"><a href="<?php echo base_url()?>Examination" class="effect-3">Home</a></li>
         <li id="about"><a href="<?php echo base_url()?>Examination/about" class="effect-3 page-scroll">About</a></li>
-        <li id="services"><a href="<?php echo base_url()?>center/Index/login" class="effect-3 page-scroll">Center Login</a></li>
         <li id="result"><a href="<?php echo base_url()?>Examination/result" class="effect-3 page-scroll">Result</a></li>
+        <li id="services"><a href="<?php echo base_url()?>center/Index" class="effect-3 page-scroll">Center SignUp</a></li>
+        <li id="services"><a href="<?php echo base_url()?>center/Index/login" class="effect-3 page-scroll">Center Login</a></li>
          <li id="contact"><a href="<?php echo base_url()?>Examination/contact" class="effect-3 page-scroll">Contact</a></li>
       </ul>
     </div>
