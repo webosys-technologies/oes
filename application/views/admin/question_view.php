@@ -1,4 +1,4 @@
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <style type="text/css">
     
  .modal fade{
@@ -44,6 +44,7 @@
         <tr>
                     <th>ID</th>
                     <th>COURSE NAME</th>
+                    <th>Topic NAME</th>
                     <th>QUESTION</th>
                     <th>OPTION A</th>
                     <th>OPTION B</th>
@@ -64,6 +65,7 @@
                      <tr>
                                         <td><?php echo $ques->question_id;?></td>
                                         <td><?php echo $ques->course_name;?></td>
+                                        <td><?php echo $ques->topic_name;?></td>
                                         <td><?php echo $ques->question_name;?></td>
                                         <td><?php echo $ques->question_option_a;?></td>
                                         <td><?php echo $ques->question_option_b;?></td>
@@ -156,6 +158,7 @@ $("#myName").on("keyup", function() {
             $('[name="id"]').val(data.question_id);
             $('[name="question"]').val(data.question_name);
             $('[name="course_id"]').val(data.course_id);
+           
             $('[name="option_a"]').val(data.question_option_a);
             $('[name="option_b"]').val(data.question_option_b);
             $('[name="option_c"]').val(data.question_option_c);
@@ -165,6 +168,23 @@ $("#myName").on("keyup", function() {
             
             $('#edit_form').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Edit Question'); // Set title to Bootstrap modal title
+
+            course_id=data.course_id;
+            if(course_id != '')
+            {
+                $.ajax({
+                url:"<?php echo site_url('index.php/admin/topics/get_topics/')?>",
+                method:"POST",
+                data:{course_id:course_id},
+                success:function(reg)
+                {
+                  
+                    $('#topic_id_edit').html(reg);
+                     $('[name="topic_id"]').val(data.topic_id);
+                }
+                });
+            }
+            
 
         },
         error: function (jqXHR, textStatus, errorThrown)
@@ -243,7 +263,61 @@ $("#myName").on("keyup", function() {
     }
 
 
-    </script>
+    
+  
+    function get_topics(course_id)
+    {
+
+    
+        var course_id = course_id.value;
+        // alert(course_id);
+        if(course_id != '')
+        {
+            $.ajax({
+            url:"<?php echo site_url('index.php/admin/topics/get_topics/')?>",
+            method:"POST",
+            data:{course_id:course_id},
+            success:function(data)
+            {
+              
+                $('#topic_id').html(data);
+            }
+            });
+        }
+        else
+        {
+            $('#topic_id').html('<option value="">Select Topic</option>');
+        }
+
+ };
+ function get_topics_edit(course_id)
+    {
+
+    
+        var course_id = course_id.value;
+        // alert(course_id);
+        if(course_id != '')
+        {
+            $.ajax({
+            url:"<?php echo site_url('index.php/admin/topics/get_topics_edit/')?>",
+            method:"POST",
+            data:{course_id:course_id},
+            success:function(data)
+            {
+            
+                $('#topic_id_edit').html(data);
+            }
+            });
+        }
+        else
+        {
+            $('#topic_id_edit').html('<option value="">Select Topic tttt</option>');
+        }
+
+ };
+
+
+</script>
 
 
 
@@ -268,12 +342,13 @@ $("#myName").on("keyup", function() {
                 <tr >
                     <td class="col-md-8">
                         <!--div class="top-row"-->
-                        <div class="form-group">
+                        <div class="row form-group">
                             <label class="control-label col-md-3">
                                 Course<span class="req">*</span>
                             </label>
                             <div class="col-md-7">
-                            <select name="course_id[]" class="form-control">
+                            <select name="course_id[]" id="course_id" onchange="get_topics(this)" required class="form-control">
+                              <option value="">--Select Course--</option>
                                 <?php 
                                 foreach($courses as $row)
                                 { 
@@ -282,50 +357,59 @@ $("#myName").on("keyup", function() {
                                 ?>
                             </select>
                             </div>
-                        </div><br><br>
-                        
+                        </div>
+                        <div class="row" form-group>
+                            <label class="control-label col-md-3">
+                                Topic<span class="req">*</span>
+                            </label>
+                            <div class="col-md-7">
+                            <select name="topic_id[]" id="topic_id" required class="form-control">
+                               <option value="">--Select Topic--</option>
+                            </select>
+                            </div>
+                        </div><br>
 
-                        <div class="form-group">
+                        <div class="row form-group">
                             <label class="control-label col-md-3">Question<span class="req">*</span></label>
                             <div class="col-md-9">
                                 <textarea name="question[]" class="form-control"></textarea>
                             </div>
-                        </div><br><br><br>
+                        </div>
 
-                        <div class="form-group">
+                        <div class="row form-group">
                             <label class="control-label col-md-3">Option A</label>
                             <div class="col-md-9">
                             <input type="text"required class="form-control" name="option_a[]"/>
                             </div>
-                        </div><br><br>
+                        </div>
 
-                        <div class="form-group">
+                        <div class="row form-group">
                             <label class="control-label col-md-3">Option B</label>
                             <div class="col-md-9">
                             <input type="text"required class="form-control" name="option_b[]"/>
                             </div>
-                        </div><br><br>
+                        </div>
 
-                        <div class="form-group">
+                        <div class="row form-group">
                             <label class="control-label col-md-3">Option C</label>
                             <div class="col-md-9">
                             <input type="text"required class="form-control" name="option_c[]"/>
                             </div>
-                        </div><br><br>
-                        <div class="form-group">
+                        </div>
+                        <div class="row form-group">
                             <label class="control-label col-md-3">Option D<span class="req">*</span></label>
                             <div class="col-md-9">
                             <input type="text"required class="form-control" name="option_d[]"/>
                             </div>
-                        </div><br><br>
-                        <div class="form-group">
+                        </div>
+                        <div class="row form-group">
                             <label class="control-label col-md-3">Answer<span class="req">*</span></label>
                             <div class="col-md-9">
                             <input type="text"required class="form-control" name="answer[]"/>
                             </div>
                         </div>
-                        <br><br>
-                        <div class="form-group">
+                        
+                        <div class="row form-group">
                           <label class="control-label col-md-3">Status<span style="color:red">*</span></label>
                           <div class="col-md-9">
                               <select name="status[]" class="form-control">
@@ -371,12 +455,13 @@ $("#myName").on("keyup", function() {
         <form id="form2" method="POST" action="">
             
                       <input type="hidden" name="id">
-                        <div class="form-group">
+                        <div class="row form-group">
                             <label class="control-label col-md-3">
                                 Course<span style="color:red">*</span>
                             </label>
                             <div class="col-md-7">
-                            <select name="course_id" class="form-control">
+                            <select name="course_id" id="course_id" onchange="get_topics_edit(this)" required class="form-control">
+                              <option value="">--Select Course--</option>
                                 <?php 
                                 foreach($courses as $row)
                                 { 
@@ -385,49 +470,58 @@ $("#myName").on("keyup", function() {
                                 ?>
                             </select>
                             </div>
-                        </div><br><br><br>
-                        
+                        </div>
+                         <div class="row" form-group>
+                            <label class="control-label col-md-3">
+                                Topic<span class="req">*</span>
+                            </label>
+                            <div class="col-md-7">
+                            <select name="topic_id" id="topic_id_edit" required class="form-control">
+                              <option value="">--Select Topic--</option>
+                               
+                            </select>
+                            </div>
+                          </div><br>
 
-                        <div class="form-group">
+                        <div class="row form-group">
                             <label class="control-label col-md-3">Question<span style="color:red">*</span></label>
                             <div class="col-md-9">
                                 <textarea name="question" class="form-control"></textarea>
                             </div>
-                        </div><br><br><br>
+                        </div>
 
-                        <div class="form-group">
+                        <div class="row form-group">
                             <label class="control-label col-md-3">Option A<span style="color:red">*</span></label>
                             <div class="col-md-9">
                             <input type="text" required class="form-control" name="option_a"/>
                             </div>
-                        </div><br><br>
+                        </div>
 
-                        <div class="form-group">
+                        <div class="row form-group">
                             <label class="control-label col-md-3">Option B<span style="color:red">*</span></label>
                             <div class="col-md-9">
                             <input type="text" required class="form-control" name="option_b"/>
                             </div>
-                        </div><br><br>
-
-                        <div class="form-group">
+                        </div>
+                        <div class="row form-group">
                             <label class="control-label col-md-3">Option C<span style="color:red">*</span></label>
                             <div class="col-md-9">
                             <input type="text" required class="form-control" name="option_c"/>
                             </div>
-                        </div><br><br>
-                        <div class="form-group">
+                        </div>
+                        <div class="row form-group">
                             <label class="control-label col-md-3">Option D<span style="color:red">*</span></label>
                             <div class="col-md-9">
                             <input type="text" required class="form-control" name="option_d"/>
                             </div>
-                        </div><br><br>
-                        <div class="form-group">
+                        </div>
+                        <div class="row form-group">
                             <label class="control-label col-md-3">Answer<span style="color:red">*</span></label>
                             <div class="col-md-9">
                             <input type="text" required class="form-control" name="answer"/>
                             </div>
-                        </div><br><br>
-                         <div class="form-group">
+                        </div>
+                         <div class="row form-group">
                           <label class="control-label col-md-3">Status<span style="color:red">*</span></label>
                           <div class="col-md-9">
                               <select name="status" class="form-control" required>

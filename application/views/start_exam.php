@@ -5,6 +5,16 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
+
+    .que
+    {
+      color: #1bbb20;
+    border-bottom: 1px solid #e6e4e4;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    }
     /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
     .row.content {
         height: 1500px;
@@ -119,7 +129,8 @@
      var tim;
      var submit;
        
-        var min = 99;
+
+        var min = <?php echo $this->session->userdata('oes_no_of_que') -1; ?>;
         var sec = 60;
         var f = new Date();
         function f1() {
@@ -227,7 +238,7 @@ function reset_answer()
         }
         else
         {
-        var r = confirm("Are you sure want to finish the exam...!");
+        var r = confirm("Are you sure you want to finish the exam...!");
         }
         if(r==true)
         {
@@ -477,6 +488,14 @@ function get_question(id)
 </div>
 <div class="row">
     <div class="col-md-5 col-sm-5 col-xs-5">
+        <label>Topic Name : </label>
+    </div>
+     <div class="col-md-7 col-sm-7 col-xs-7">
+         <span> <?php echo $this->session->userdata('oes_topic_name');?> </span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5 col-sm-5 col-xs-5">
         <label>Roll No : </label>
     </div>
      <div class="col-md-7 col-sm-7 col-xs-7">
@@ -497,96 +516,23 @@ function get_question(id)
 <div id="btn_table">
 <center>
       <table width="">
+        <?php 
+        $total_row=$no_of_que/10;
+        $p=1;
+        for($j=1;$j<=$total_row;$j++)
+           { ?>
           <tr>
            <?php
-           for($i=1;$i<=10;$i++)
+           for($i=1;$i<=10;$i++) 
            {
            ?>   
-          <td><button onclick="gen_btn(<?php echo $i;?>)" id="btn_<?php echo $i;?>" class="btn btn-danger btn-sm"><?php if($i==10){echo $i;}else{echo "&nbsp;".$i."&nbsp;";}?></button></td>
+          <td><button onclick="gen_btn(<?php echo $p;?>)" id="btn_<?php echo $p;?>" class="btn btn-danger btn-sm"><?php if($p<10){ echo "&nbsp;".$p."&nbsp;"; }else{ echo $p; }?></button></td>
           <?php 
+          $p++;
            }?>
          </tr>
-          <tr>
-           <?php
-           for($i=11;$i<=20;$i++)
-           {
-           ?>   
-          <td><button onclick="gen_btn(<?php echo $i;?>)" id="btn_<?php echo $i;?>" class="btn btn-danger btn-sm"><?php echo $i;?></button></td>
-           <?php 
-           }?>
-         </tr>
-          <tr>
-           <?php
-           for($i=21;$i<=30;$i++)
-           {
-           ?>   
-          <td><button onclick="gen_btn(<?php echo $i;?>)" id="btn_<?php echo $i;?>" class="btn btn-danger btn-sm"><?php echo $i;?></button></td>
-           <?php 
-           }?>
-         </tr>
-          <tr>
-           <?php
-           for($i=31;$i<=40;$i++)
-           {
-           ?>   
-          <td><button onclick="gen_btn(<?php echo $i;?>)" id="btn_<?php echo $i;?>" class="btn btn-danger btn-sm"><?php echo $i;?></button></td>
-           <?php 
-           }?>
-         </tr>
+       <?php } ?>
          
-          <tr>
-           <?php
-           for($i=41;$i<=50;$i++)
-           {
-           ?>   
-          <td><button onclick="gen_btn(<?php echo $i;?>)" id="btn_<?php echo $i;?>" class="btn btn-danger btn-sm"><?php echo $i;?></button></td>
-           <?php 
-           }?>
-         </tr>
-          <tr>
-           <?php
-           for($i=51;$i<=60;$i++)
-           {
-           ?>   
-          <td><button onclick="gen_btn(<?php echo $i;?>)" id="btn_<?php echo $i;?>" class="btn btn-danger btn-sm"><?php echo $i;?></button></td>
-           <?php 
-           }?>
-         </tr>
-          <tr>
-           <?php
-           for($i=61;$i<=70;$i++)
-           {
-           ?>   
-          <td><button onclick="gen_btn(<?php echo $i;?>)" id="btn_<?php echo $i;?>" class="btn btn-danger btn-sm"><?php echo $i;?></button></td>
-           <?php 
-           }?>
-         </tr>
-          <tr>
-           <?php
-           for($i=71;$i<=80;$i++)
-           {
-           ?>   
-          <td><button onclick="gen_btn(<?php echo $i;?>)" id="btn_<?php echo $i;?>" class="btn btn-danger btn-sm"><?php echo $i;?></button></td>
-           <?php 
-           }?>
-         </tr>
-          <tr>
-           <?php
-           for($i=81;$i<=90;$i++)
-           {
-           ?>   
-          <td><button onclick="gen_btn(<?php echo $i;?>)" id="btn_<?php echo $i;?>" class="btn btn-danger btn-sm"><?php echo $i;?></button></td>
-           <?php 
-           }?>
-         </tr>
-          <tr>
-           <?php
-           for($i=91;$i<=100;$i++)
-           {
-           ?>   
-          <td><button onclick="gen_btn(<?php echo $i;?>)" id="btn_<?php echo $i;?>" class="btn btn-danger btn-sm"><?php echo $i;?></button></td>
-           <?php 
-           }?>
          </tr>
         
       </table>   
@@ -672,16 +618,18 @@ function get_question(id)
     </div>
 
     <div class="col-sm-12 col-md-8 col-xs-12" id="questions">
+       <?php if(isset($no_of_que))
+         { ?>
         <br>
         <div class="row">
             <div class="col-md-4">
-                <label>Total Time :</label><label style="color:red">1 hour 40 minutes</label>
+                <label>Total Time :</label><label style="color:red"> <?php echo $no_of_que; ?> minutes </label>
             </div>
             <div class="col-md-4">
-                 <label>Remaining Time :</label><label id="showtime" style="color:#32CD32;">1 hr 20 min 10 sec</label>
+                 <label>Remaining Time :</label><label id="showtime" style="color:#32CD32;"><?php echo $no_of_que; ?> minutes</label>
             </div>
             <div class="col-md-4">
-                 <label>Total Mark :</label><label style="color:red">100 Marks</label>
+                 <label>Total Mark :</label><label style="color:red"> <?php echo $no_of_que; ?> </label>
             </div>
                     
         </div>
@@ -689,39 +637,47 @@ function get_question(id)
       
      
       <!--<div class="container">-->
-         
-      <form action="#" id="form">
-          <h4 style="color:black" id="que_detail"><span id="qno">  <?php if(isset($qno)){ echo "Question ". $qno;}?></span> Of <span id="no_of_que"><?php echo $no_of_que;?></span></h4>
-      <span id="question"><?php if(isset($qno)){ echo $question_name;}?></span><br/><br>
-     
-        <input type="radio" id="optiona" name="option" value="<?php if(isset($qno)){ echo $question_option_a;}?>"> a) <span id="option_a"><?php if(isset($qno)){ echo $question_option_a;}?></span><br/>
-        <input type="radio" id="optionb" name="option" value="<?php if(isset($qno)){ echo $question_option_b;}?>"> b) <span id="option_b"><?php if(isset($qno)){ echo $question_option_b;}?></span><br/>
-        <input type="radio" id="optionc" name="option" value="<?php if(isset($qno)){ echo $question_option_c;}?>"> c) <span id="option_c"><?php if(isset($qno)){ echo $question_option_c;}?></span><br/>
-        <input type="radio" id="optiond" name="option" value="<?php if(isset($qno)){ echo $question_option_d;}?>"> d) <span id="option_d"><?php if(isset($qno)){ echo $question_option_d;}?></span><br/>
         
-        <input name="question_id" id="question_id" value="<?php echo $question_id; ?>" hidden>
-        <input name="question_num" id="question_num" value="<?php echo $qno; ?>" hidden>
-        <input name="press_btn" id="press_btn" value="" hidden>
-       <input name="press_btn_qno" id="press_btn_qno" value="" hidden>
-       <input name="timestamp" id="timestamp" value="" hidden>
-       <div id="temp"></div>
-        
+          <form action="#" id="form">
+              <h4 class="que" id="que_detail"><span id="qno">  <?php if(isset($qno)){ echo "Question ". $qno;}?></span> Of <span id="no_of_que"><?php if(isset($no_of_que)){ echo $no_of_que; }?></span></h4>
+          <span style="font-weight: bold; color: #144b9c;" id="question">Q:- <?php if(isset($qno)){ echo $question_name;}else{ echo "No question Found"; }?></span><br/><br>
          
-        <br><br>
-        <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-4">
-                <button type="button" class="btn btn-info btn-sm" id="prev" onclick="prev_btn()" value="prev" style="display:none;"><< Prev</button> <button type="button" class="btn btn-info btn-sm" id="next" onclick="next_btn()" value="next" >Next >></button>
-        </div>
-            <div class="col-md-4 col-sm-4 col-xs-4">
-                <button type="button" name="reset" onclick="reset_answer()" class="btn btn-warning btn-sm">Reset Answer</button>
+            <p><input type="radio" id="optiona" name="option" value="<?php if(isset($qno)){ echo $question_option_a;}?>"> (A) <span id="option_a"><?php if(isset($qno)){ echo $question_option_a;}?></span><br/>
+            <input type="radio" id="optionb" name="option" value="<?php if(isset($qno)){ echo $question_option_b;}?>"> (B) <span id="option_b"><?php if(isset($qno)){ echo $question_option_b;}?></span><br/>
+            <input type="radio" id="optionc" name="option" value="<?php if(isset($qno)){ echo $question_option_c;}?>"> (C) <span id="option_c"><?php if(isset($qno)){ echo $question_option_c;}?></span><br/>
+            <input type="radio" id="optiond" name="option" value="<?php if(isset($qno)){ echo $question_option_d;}?>"> (D) <span id="option_d"><?php if(isset($qno)){ echo $question_option_d;}?></span></p><br/>
+            
+            <input name="question_id" id="question_id" value="<?php if(isset($question_id)){ echo $question_id; } ?>" hidden>
+            <input name="question_num" id="question_num" value="<?php if(isset($qno)){  echo $qno; } ?>" hidden>
+            <input name="press_btn" id="press_btn" value="" hidden>
+           <input name="press_btn_qno" id="press_btn_qno" value="" hidden>
+           <input name="timestamp" id="timestamp" value="" hidden>
+           <div id="temp"></div>
+            
+             
+            <br><br>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <button type="button" class="btn btn-success btn-sm" id="prev" onclick="prev_btn()" value="prev" style="display:none;"><< Prev</button> 
+                    <button type="button" class="btn btn-success btn-sm" id="next" onclick="next_btn()" value="next" >Next >></button>
+                    <button type="button" name="reset" onclick="reset_answer()" class="btn btn-warning btn-sm">Reset Answer</button>
+                </div>
+             </div>
+             <br>
+              <div class="row">   
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <button type="button" id="submit_exam" name="submit_exam" value=""  onclick="result()" class="btn btn-primary btn-sm" ><span id="next_label">Submit Exam</span></button>
+                </div>
+                <!--<div class="col-md-4 col-sm-4 col-xs-4">-->
+               
             </div>
-            <!--<div class="col-md-4 col-sm-4 col-xs-4">-->
-            <div class="pull-right" style="padding-right:5px;">
-              <button type="button" id="submit_exam" name="submit_exam" value=""  onclick="result()" class="btn btn-info btn-sm" ><span id="next_label">Submit Exam</span></button>
-             <!--</div>-->
-            </div>
-        </div>
-       </form>
+           </form>
+         <?php 
+      }
+     else
+     {
+        ?> <h2 style="color:red;"> No Questions Found </h2><?php
+     } ?>
        <br>     
       
         </div>

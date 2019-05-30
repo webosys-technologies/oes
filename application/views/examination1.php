@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script>
 function validateForm() {
     var x=$("#term").prop("checked");
@@ -9,6 +10,9 @@ function validateForm() {
         return false;
     }
 }
+  
+
+ 
 </script>
 
 <style>
@@ -65,7 +69,7 @@ function validateForm() {
                           <div class="col-md-6 col-sm-6 col-xs-6">
         <div class="form-group">
         <label>Select Course :</label>
-        <select name="course" class="form-control" required>
+        <select name="course" id="course_id" class="form-control" required>
              <option value="">--Select Course--</option>
             <?php $course=$this->Courses_model->getall_courses();
             {
@@ -97,17 +101,23 @@ function validateForm() {
             
 </div>
             <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-6">
-        <div class="form-group">
-        <label>Enter Roll No :</label>
-        <input type="text" name="acc_no" required="" id="acc_no" class="form-control">  
-        <span id="acc_no_err" style="color:red"><?php echo $this->session->flashdata('acc_err');?></span>
-        </div>
-    </div>
+              <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="form-group">
+              <label id="ern">Enter Roll No :</label>
+              <input type="text" name="acc_no" required="" id="acc_no" class="form-control">  
+              <span id="acc_no_err" style="color:red"><?php echo $this->session->flashdata('acc_err');?></span>
+              </div>
+              </div>
     
-             <div class="col-md-2 col-sm-2 col-xs-2">
-
-            </div>               
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="form-group">
+                  <label>Select Topic / Chapter :</label>
+                  <select name="topic_id" id="topic_id" class="form-control" required>
+                    <option value=""> --Select Topic-- </option>
+                 </select>
+        <span id="course_err" style="color:red"><?php echo $this->session->flashdata('topic_err');?></span>
+                </div>
+              </div>              
 </div>
           <div class="row">
             <div class="col-md-12">
@@ -136,4 +146,29 @@ function validateForm() {
     </div>
     
     
- 
+ <script>
+  
+    $("#course_id").change(function() {
+
+     
+  var course_id = $('#course_id').val();
+  if(course_id != '')
+  {
+   $.ajax({
+    url:"<?php echo site_url('index.php/Examination/get_topics/')?>",
+    method:"POST",
+    data:{course_id:course_id},
+    success:function(data)
+    {
+     $('#topic_id').html(data);
+    }
+   });
+  }
+  else
+  {
+   $('#topic_id').html('<option value="">Select Topic</option>');
+  }
+ });
+
+
+</script>

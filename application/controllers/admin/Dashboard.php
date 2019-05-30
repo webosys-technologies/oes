@@ -33,7 +33,8 @@ class Dashboard extends CI_Controller
             $uid=$this->session->userdata('oes_user_id');
             $result['user_data']=get_user_info($uid);             
             $result['centers']=$this->Centers_model->getall(); 
-             $result['payments']=$this->Payment_model->getall_payment();
+            $result['orders']=$this->Orders_model->getall_orders(); 
+            $result['payments']=$this->Payment_model->getall_payment();
             $result['users']=$this->User_model->getall_user();  
             $result['system']=$this->System_model->get_info();
             $result['accounts']=$this->Account_model->get_by_center(array('acc_status >='=>1));

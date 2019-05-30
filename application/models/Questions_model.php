@@ -17,7 +17,7 @@ class Questions_model extends CI_Model
 	{
 		$this->db->from('questions as ques');
 		$this->db->join('courses as cor','cor.course_id=ques.course_id','LEFT');
-
+		$this->db->join('topics as top','top.topic_id=ques.topic_id','LEFT');
         $this->db->order_by("question_id","desc");
 		$query=$this->db->get();
 
@@ -27,7 +27,7 @@ class Questions_model extends CI_Model
 	{
 		$this->db->from('marathi_questions as ques');
 		$this->db->join('courses as cor','cor.course_id=ques.course_id','LEFT');
-
+		$this->db->join('topics as top','top.topic_id=ques.topic_id','LEFT');
                 $this->db->order_by("question_id","desc");
 		$query=$this->db->get();
 
@@ -37,7 +37,7 @@ class Questions_model extends CI_Model
 	{
 		$this->db->from('hindi_questions as ques');
 		$this->db->join('courses as cor','cor.course_id=ques.course_id','LEFT');
-
+		$this->db->join('topics as top','top.topic_id=ques.topic_id','LEFT');
                 $this->db->order_by("question_id","desc");
 		$query=$this->db->get();
 
@@ -50,8 +50,8 @@ class Questions_model extends CI_Model
         
 		$this->db->from($this->table);
 		$this->db->where('question_id',$qid);
-                $this->db->where('course_id',$course);
-                $this->db->where('question_status','1');
+        $this->db->where('question_status','1');
+        $this->db->where('course_id',$course);
 		$query = $this->db->get();
                  //$this->get
 		return $query->row();
@@ -192,10 +192,14 @@ class Questions_model extends CI_Model
             
         }
         
-        function que_by_course($course)
+        function que_by_course($course,$topic_id)
         {
             $this->db->from($this->table);
             $this->db->where('course_id',$course);
+            if($topic_id!=0)
+            {
+            	$this->db->where('topic_id',$topic_id);
+        	}
             $this->db->where('question_status','1');
             $query=$this->db->get();
             return $query->result();
@@ -213,6 +217,10 @@ class Questions_model extends CI_Model
         {
             $this->db->from('marathi_questions');
             $this->db->where('course_id',$course);
+             if($topic_id!=0)
+            {
+            	$this->db->where('topic_id',$topic_id);
+        	}
             $this->db->where('question_status','1');
             $query=$this->db->get();
             return $query->result();
@@ -222,6 +230,10 @@ class Questions_model extends CI_Model
         {
             $this->db->from('hindi_questions');
             $this->db->where('course_id',$course);
+            if($topic_id!=0)
+            {
+            	$this->db->where('topic_id',$topic_id);
+        	}
             $this->db->where('question_status','1');
             $query=$this->db->get();
             return $query->result();

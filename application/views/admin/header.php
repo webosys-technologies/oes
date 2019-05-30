@@ -177,7 +177,7 @@
             </li>
             
             <li class="treeview">
-              <a href="<?php echo base_url(); ?>admin/Payment" >
+              <a href="<?php echo base_url(); ?>admin/Payment"> 
                 <i class="fa fa-users"></i>
                 <span>Payments</span>
               </a>
@@ -190,7 +190,13 @@
             </span>
           </a>
         </li> 
-        
+        <li>
+          <a href="<?php echo base_url(); ?>admin/Topics">
+            <i class="fa fa-users"></i> <span>Topics</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
          <li>
           <a href="<?php echo base_url(); ?>admin/Courses">
             <i class="fa fa-users"></i> <span>Courses</span>

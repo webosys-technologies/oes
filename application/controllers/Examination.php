@@ -7,7 +7,7 @@ class Examination extends CI_Controller
   function __construct()
   {
     parent::__construct();
-    
+     $this->load->model('Topics_model');
     
   }
   function index()
@@ -74,13 +74,27 @@ class Examination extends CI_Controller
           $res=$this->Account_model->get_by_no($form['acc_no']);
           $centers=$this->Centers_model->get_id($res->center_id);
           $course=$this->Courses_model->get_by_id($res->course_id);
+          $topic=$this->Topics_model->get_by_id($form['topic_id']);
+          if($form['topic_id']==0)
+          {
+            $no_of_qsn=100;
+          }
+          else
+          {
+            $no_of_qsn=30;
+          }
            $data=array('oes_exam_start'=>true,
                       'oes_acc_no'=>$res->acc_no,
                       'oes_acc_id'=>$res->acc_id,
                       'oes_course_id'=>$res->course_id,
                       'oes_course_name'=>$course->course_name,
                       'oes_language'=>$form['language'],
+                      'oes_topic_id'=>$form['topic_id'],
+                      'oes_topic_name'=>$topic->topic_name,
+                      'oes_no_of_que'=>$no_of_qsn,
                       );
+          
+          }
          
          if($centers->center_askfor_password=='disable')
          {
@@ -90,7 +104,7 @@ class Examination extends CI_Controller
          }else{
              $this->load->view('ask_center_password',$data);
          }
-      }
+      
   }
   
   
@@ -240,32 +254,39 @@ class Examination extends CI_Controller
       {
            if(!$this->session->userdata('get_question')==true)
           {
-      if($this->session->userdata('oes_language')=="marathi")
-      {
-          $res=$this->Questions_model->marathi_que_by_course($this->session->userdata('oes_course_id'));
-      }elseif($this->session->userdata('oes_language')=="hindi")
-      {
-        $res=$this->Questions_model->hindi_que_by_course($this->session->userdata('oes_course_id'));  
-      }else{
-      $res=$this->Questions_model->que_by_course($this->session->userdata('oes_course_id'));
-      }
+            if($this->session->userdata('oes_language')=="marathi")
+            {
+                $res=$this->Questions_model->marathi_que_by_course($this->session->userdata('oes_course_id'),$this->session->userdata('oes_topic_id'));
+            }
+            elseif($this->session->userdata('oes_language')=="hindi")
+            {
+                $res=$this->Questions_model->hindi_que_by_course($this->session->userdata('oes_course_id'),$this->session->userdata('oes_topic_id'));  
+            }
+            else
+            {
+                $res=$this->Questions_model->que_by_course($this->session->userdata('oes_course_id'),$this->session->userdata('oes_topic_id'));
+            }
      
       if(count($res)>1)
       {
-      $i=1;
-       while($i<=100)
-                  {
-                      $qid=mt_rand(1,count($res));
-                      
-                      if($this->session->userdata('oes_language')=="marathi")
-                    {
-                        $question=$this->Questions_model->marathi_get_questions($qid,$this->session->userdata('oes_course_id'));
-                    }elseif($this->session->userdata('oes_language')=="hindi")
-                    {
-                      $question=$this->Questions_model->hindi_get_questions($qid,$this->session->userdata('oes_course_id'));
-                    }else{
-                    $question=$this->Questions_model->get_questions($qid,$this->session->userdata('oes_course_id'));
-                    }              
+          $i=1;
+          $no_of_que=$this->session->userdata('oes_no_of_que');
+          while($i<=$no_of_que)
+          {
+              $qid=mt_rand(1,count($res));
+              
+              if($this->session->userdata('oes_language')=="marathi")
+              {
+                  $question=$this->Questions_model->marathi_get_questions($qid,$this->session->userdata('oes_course_id'));
+              }
+              elseif($this->session->userdata('oes_language')=="hindi")
+              {
+                  $question=$this->Questions_model->hindi_get_questions($qid,$this->session->userdata('oes_course_id'));
+              }
+              else
+              {
+                  $question=$this->Questions_model->get_questions($qid,$this->session->userdata('oes_course_id'));
+              }              
                   
                if($question)
                {                         
@@ -277,13 +298,13 @@ class Examination extends CI_Controller
                                     'question_option_b'=>$question->question_option_b,
                                     'question_option_c'=>$question->question_option_c,
                                     'question_option_d'=>$question->question_option_d,
-                                    'no_of_que'=>100
+                                    'no_of_que'=>$no_of_que,
                                    );
                      $i++;
                 
                }
                              
-                  }
+           }
                   
                   
                    $this->session->set_userdata($que_field);
@@ -353,7 +374,7 @@ class Examination extends CI_Controller
                 $solved_question=null;
                 $check=null;
                 $given_ans=null;
-             for($i=1;$i<=100;$i++)
+             for($i=1;$i<=$this->session->userdata('oes_no_of_que');$i++)
              {
                   if(!empty($this->session->userdata('ans_qno'.$i)))
                   {
@@ -385,7 +406,7 @@ class Examination extends CI_Controller
                }
                    
                
-            echo json_encode(array('no_of_que'=>100,
+            echo json_encode(array('no_of_que'=>$this->session->userdata('oes_no_of_que'),
                                    'solved_question'=>$solved_question,     //solved question number
                                    'question'=>$question,                   //which question wants to ask
                                     'given_ans'=>$given_ans)
@@ -446,7 +467,7 @@ class Examination extends CI_Controller
            $this->Exam_details_model->delete_by_id($sid);
            $this->Exams_model->delete_by_id($sid);
            $total_mark=0;
-           for($i=1;$i<=100;$i++)
+           for($i=1;$i<=$this->session->userdata('oes_no_of_que');$i++)
             {
                 if(!empty($this->session->userdata('ans_qno'.$i)))
                 {
@@ -463,7 +484,7 @@ class Examination extends CI_Controller
              {
                  $result="fail";
              }
-             $per=($total_mark/100)*100;
+             $per=($total_mark/$this->session->userdata('oes_no_of_que'))*100;
                         
             
               $result_data=array('acc_id'=>$sid,
@@ -480,7 +501,7 @@ class Examination extends CI_Controller
          
            
            
-            for($i=1;$i<=100;$i++)
+            for($i=1;$i<=$this->session->userdata('oes_no_of_que');$i++)
             {
                 if(!empty($this->session->userdata('ans_qno'.$i)))
                 {
@@ -516,7 +537,7 @@ class Examination extends CI_Controller
             
    
                   echo json_encode(array('exam_result'=>$exam_result,
-                                         'total_questions'=>100,
+                                         'total_questions'=>$this->session->userdata('oes_no_of_que'),
                                          'result'=>$result,
                                          'test_review_id'=>$insert_id));
             
@@ -585,6 +606,16 @@ function result()
   {
       $this->Account_model->query();
      
+  }
+
+  function get_topics()
+  {
+      if($this->input->post('course_id'))
+      {
+
+       echo $this->Topics_model->fetch_all_topics($this->input->post('course_id'));
+
+      }
   }
  
   }
