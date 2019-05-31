@@ -175,7 +175,19 @@
                 <span>Orders</span>
               </a>
             </li>
-            
+            <li class=" treeview">
+          <a href="#">
+            <i class="fa fa-folder"></i> <span>Questions</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+              <li><a href="<?php echo base_url(); ?>admin/Question"><i class="fa fa-circle-o"></i>English</a></li>
+              <li><a href="<?php echo base_url(); ?>admin/Question/marathi_question"><i class="fa fa-circle-o"></i> मराठी</a></li>
+              <li><a href="<?php echo base_url(); ?>admin/Question/hindi_question"><i class="fa fa-circle-o"></i>हिंदी</a></li>
+             </ul>
+        </li>
             <li class="treeview">
               <a href="<?php echo base_url(); ?>admin/Payment"> 
                 <i class="fa fa-users"></i>
@@ -205,20 +217,7 @@
           </a>
         </li> 
         
-           <li class=" treeview">
-          <a href="#">
-            <i class="fa fa-folder"></i> <span>Questions</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-              <li><a href="<?php echo base_url(); ?>admin/Question"><i class="fa fa-circle-o"></i>English</a></li>
-              <li><a href="<?php echo base_url(); ?>admin/Question/marathi_question"><i class="fa fa-circle-o"></i> मराठी</a></li>
-            <!--<li><a href="<?php echo base_url(); ?>admin/Question/hindi_question"><i class="fa fa-circle-o"></i>हिंदी</a></li>-->
-             </ul>
-        </li>
-        
+      
          <li>
           <a href="<?php echo base_url(); ?>admin/Coupon">
             <i class="fa fa-users"></i> <span>Coupons</span>

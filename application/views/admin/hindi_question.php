@@ -18,7 +18,7 @@
 <div class="content-wrapper">
 	<section class="content-header">
       <h1>
-        <i class="fa fa-upload"></i><strong>Question</strong>
+        <i class="fa fa-upload"></i><strong>Hindi Questions</strong>
         <small>Control panel</small>
         </h1>
       <ol class="breadcrumb" >
@@ -29,7 +29,7 @@
     <br>
     <section class="content">
 
-        <button class="btn btn-primary" onclick="add()" data-toggle="tooltip" data-placement="bottom" title="Add Question"><i class="glyphicon glyphicon-plus"></i> Add Question</button>
+        <button class="btn btn-primary" onclick="add()" data-toggle="tooltip" data-placement="bottom" title="Add Question"><i class="glyphicon glyphicon-plus"></i> Add Hindi Question</button>
     <br />
     <br />
     <div class="form-group" style="width:350px" >
@@ -42,6 +42,7 @@
         <tr>
                     <th>ID</th>
                     <th>COURSE NAME</th>
+                    <th>Topic NAME</th>
                     <th>QUESTION</th>
                     <th>OPTION A</th>
                     <th>OPTION B</th>
@@ -62,6 +63,7 @@
                      <tr>
                                         <td><?php echo $ques->question_id;?></td>
                                         <td><?php echo $ques->course_name;?></td>
+                                        <td><?php echo $ques->topic_name;?></td>
                                         <td><?php echo $ques->question_name;?></td>
                                         <td><?php echo $ques->question_option_a;?></td>
                                         <td><?php echo $ques->question_option_b;?></td>
@@ -115,7 +117,7 @@ $("#myName").on("keyup", function() {
                 i++;
                 $('#dynamic_field').append('<tr id="row'+i+'"><td class="col-md-11"><div class="form-group"><label class="control-label col-md-3">      Courses<span class="req">*</span></label><div class="col-md-7"><select name="course_id[]" class="form-control"><?php 
                                 foreach($courses as $row){echo '<option value="'.$row->course_id.'">'.$row->course_name.'</option>';
-                                }?></select></div></div><br><br><div class="form-group"><label class="control-label col-md-3">        Question<span class="req">*</span></label><div class="col-md-9"><input type="text" required class="form-control" name="question[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">     Option A<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_a[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Option B<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_b[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Option C<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_c[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Option D<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_d[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Answer<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="answer[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">Status<span style="color:red">*</span></label><div class="col-md-9"><select name="status[]" class="form-control"><option value="1">Active</option><option value="0">Not Active</option></select></div></div><br><br></td></td><td class="col-md-1"><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+                                }?></select></div></div><br><br><div class="form-group"><label class="control-label col-md-3"> Topics<span class="req">*</span></label><div class="col-md-7"><select name="topic_id[]" class="form-control" id="topic_id"><option value=""></option></select></div></div><br><br><div class="form-group"><label class="control-label col-md-3">        Question<span class="req">*</span></label><div class="col-md-9"><input type="text" required class="form-control" name="question[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">     Option A<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_a[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Option B<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_b[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Option C<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_c[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Option D<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="option_d[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">             Answer<span class="req">*</span></label><div class="col-md-9"><input type="text"required class="form-control" name="answer[]"/></div></div><br><br><div class="form-group"><label class="control-label col-md-3">Status<span style="color:red">*</span></label><div class="col-md-9"><select name="status[]" class="form-control"><option value="1">Active</option><option value="0">Not Active</option></select></div></div><br><br></td></td><td class="col-md-1"><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
             });
 
             $(document).on('click','.btn_remove', function(){
@@ -156,6 +158,7 @@ $("#myName").on("keyup", function() {
             $('[name="id"]').val(data.question_id);
             $('[name="question"]').val(data.question_name);
             $('[name="course_id"]').val(data.course_id);
+
             $('[name="option_a"]').val(data.question_option_a);
             $('[name="option_b"]').val(data.question_option_b);
             $('[name="option_c"]').val(data.question_option_c);
@@ -165,6 +168,22 @@ $("#myName").on("keyup", function() {
             
             $('#edit_form').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Edit Question'); // Set title to Bootstrap modal title
+
+            course_id=data.course_id;
+            if(course_id != '')
+            {
+                $.ajax({
+                url:"<?php echo site_url('index.php/admin/topics/get_topics/')?>",
+                method:"POST",
+                data:{course_id:course_id},
+                success:function(reg)
+                {
+                  
+                    $('#topic_id_edit').html(reg);
+                     $('[name="topic_id"]').val(data.topic_id);
+                }
+                });
+            }
 
         },
         error: function (jqXHR, textStatus, errorThrown)
@@ -202,7 +221,7 @@ $("#myName").on("keyup", function() {
             dataType: "JSON",
             success: function(data)
             {
-              alert("Data Updated successfully..!!");
+             // alert("Data Updated successfully..!!");
                //if success close modal and reload ajax table
                $('#add_form').modal('hide');
               location.reload();// for reload a page
@@ -242,6 +261,57 @@ $("#myName").on("keyup", function() {
        
     }
 
+        function get_topics(course_id)
+    {
+
+    
+        var course_id = course_id.value;
+        // alert(course_id);
+        if(course_id != '')
+        {
+            $.ajax({
+            url:"<?php echo site_url('index.php/admin/topics/get_topics/')?>",
+            method:"POST",
+            data:{course_id:course_id},
+            success:function(data)
+            {
+              
+                $('#topic_id').html(data);
+            }
+            });
+        }
+        else
+        {
+            $('#topic_id').html('<option value="">Select Topic</option>');
+        }
+
+ };
+    function get_topics_edit(course_id)
+    {
+
+    
+        var course_id = course_id.value;
+        // alert(course_id);
+        if(course_id != '')
+        {
+            $.ajax({
+            url:"<?php echo site_url('index.php/admin/topics/get_topics_edit/')?>",
+            method:"POST",
+            data:{course_id:course_id},
+            success:function(data)
+            {
+            
+                $('#topic_id_edit').html(data);
+            }
+            });
+        }
+        else
+        {
+            $('#topic_id_edit').html('<option value="">Select Topic tttt</option>');
+        }
+
+      };
+
 
     </script>
 
@@ -274,7 +344,8 @@ $("#myName").on("keyup", function() {
                                 Course<span class="req">*</span>
                             </label>
                             <div class="col-md-7">
-                            <select name="course_id[]" class="form-control">
+                            <select name="course_id[]" id="course_id" onchange="get_topics(this)" required class="form-control">
+                              <option value="">-- Select Course --</option>
                                 <?php 
                                 foreach($courses as $row)
                                 { 
@@ -285,7 +356,16 @@ $("#myName").on("keyup", function() {
                             </div>
                         </div><br><br>
                         
-
+                        <div class="row" form-group>
+                            <label class="control-label col-md-3">
+                                Topic<span class="req">*</span>
+                            </label>
+                            <div class="col-md-7">
+                            <select name="topic_id[]" id="topic_id" required class="form-control">
+                               <option value="">--Select Topic--</option>
+                            </select>
+                            </div>
+                        </div><br><br>
                         <div class="form-group">
                             <label class="control-label col-md-3">Question<span class="req">*</span></label>
                             <div class="col-md-9">
@@ -376,7 +456,7 @@ $("#myName").on("keyup", function() {
                                 Course<span style="color:red">*</span>
                             </label>
                             <div class="col-md-7">
-                            <select name="course_id" class="form-control">
+                            <select name="course_id" id="course_id" onchange="get_topics_edit(this)" required class="form-control">
                                 <?php 
                                 foreach($courses as $row)
                                 { 
@@ -386,7 +466,17 @@ $("#myName").on("keyup", function() {
                             </select>
                             </div>
                         </div><br><br><br>
-                        
+                        <div class="row" form-group>
+                            <label class="control-label col-md-3">
+                                Topic<span class="req">*</span>
+                            </label>
+                            <div class="col-md-7">
+                            <select name="topic_id" id="topic_id_edit" required class="form-control">
+                              <option value="">--Select Topic--</option>
+                               
+                            </select>
+                            </div>
+                          </div><br><br>
 
                         <div class="form-group">
                             <label class="control-label col-md-3">Question<span style="color:red">*</span></label>
