@@ -16,17 +16,17 @@ class Courses_model extends CI_Model
 
     public function getall_courses()
     {
-    $this->db->from($this->table);
-    $query=$this->db->get();
-    return $query->result();
+	    $this->db->from($this->table);
+	    $query=$this->db->get();
+	    return $query->result();
     }
     
      public function get_course_rows()
     {
-    $this->db->from($this->table);
-    $this->db->where('course_status','1');
-    $query=$this->db->get();
-    return $query->num_rows();
+	    $this->db->from($this->table);
+	    $this->db->where('course_status','1');
+	    $query=$this->db->get();
+	    return $query->num_rows();
     }
 
 
@@ -39,7 +39,7 @@ class Courses_model extends CI_Model
 		return $query->row();
 	}
         
-        public function course_by_id($id)
+    public function course_by_id($id)
 	{
 		$this->db->from($this->table);
 		$this->db->where('course_id',$id);
@@ -63,8 +63,8 @@ class Courses_model extends CI_Model
 	public function delete_by_id($id)
 	{
 		$this->db->where('course_id', $id);
-		$this->db->delete($this->table);
-                return $this->db->affected_rows();
+		$this->db->delete($this->table);   
+        return $this->db->affected_rows();
 	}
 
 	

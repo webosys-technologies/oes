@@ -114,7 +114,8 @@ function validateForm() {
                   <label>Select Topic / Chapter :</label>
                   <select name="topic_id" id="topic_id" class="form-control" required>
                     <option value=""> --Select Topic-- </option>
-                 </select>
+
+ <option value="0"> All </option>                 </select>
         <span id="course_err" style="color:red"><?php echo $this->session->flashdata('topic_err');?></span>
                 </div>
               </div>              
