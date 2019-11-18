@@ -1,18 +1,12 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Examination</title>
+<title>Examination Demo</title>
 <!--/tags -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="Execute Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<meta name="keywords" content="Online Exam Demo for CCC course, CCC course Exam Demo, Exam Demo, Practice demo" />
 
         <!--css-->
 <!--<link href="<?php echo base_url();?>assets/exam/css/bootstrap.min.css" rel="stylesheet">-->

@@ -264,33 +264,26 @@ class Examination extends CI_Controller
             }
             else
             {
-                $res=$this->Questions_model->que_by_course($this->session->userdata('oes_course_id'),$this->session->userdata('oes_topic_id'));
+               $res=$this->Questions_model->que_by_course($this->session->userdata('oes_course_id'),$this->session->userdata('oes_topic_id'));
+                //$res=$this->Questions_model->get_question_count();
+          
             }
      
       if(count($res)>1)
       {
           $i=1;
           $no_of_que=$this->session->userdata('oes_no_of_que');
+              
           while($i<=$no_of_que)
           {
-              $qid=mt_rand(1,count($res));
-              
-              if($this->session->userdata('oes_language')=="marathi")
-              {
-                  $question=$this->Questions_model->marathi_get_questions($qid,$this->session->userdata('oes_course_id'));
-              }
-              elseif($this->session->userdata('oes_language')=="hindi")
-              {
-                  $question=$this->Questions_model->hindi_get_questions($qid,$this->session->userdata('oes_course_id'));
-              }
-              else
-              {
-                  $question=$this->Questions_model->get_questions($qid,$this->session->userdata('oes_course_id'));
-              }              
-                  
+           
+           // $qid=mt_rand(1,count($res));
+            $qsn_rand_no=array_rand($res,1);
+            $question=$res[$qsn_rand_no];
+         
                if($question)
                {                         
-                  
+               
                    $que_field['q'.$i]=array('qno'=>$i,
                                     'question_id'=>$question->question_id,
                                     'question_name'=>$question->question_name,
@@ -300,10 +293,10 @@ class Examination extends CI_Controller
                                     'question_option_d'=>$question->question_option_d,
                                     'no_of_que'=>$no_of_que,
                                    );
-                     $i++;
+                    
                 
                }
-                             
+              $i++;                
            }
                   
                   

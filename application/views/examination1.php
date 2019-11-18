@@ -29,7 +29,7 @@ function validateForm() {
 <div class="row" style="background:#FEF9E7;">
     <div class="container" style="padding-top:20px;">
         <div class="row">
-           
+            
        
             
       <center>  <h4 style="color:#CA3F07;"><b>Online Exam Instruction & procedure</b></h4></center>
@@ -113,8 +113,7 @@ function validateForm() {
                 <div class="form-group">
                   <label>Select Topic / Chapter :</label>
                   <select name="topic_id" id="topic_id" class="form-control" required>
-                    <option value=""> --Select Topic-- </option>
-
+                 
  <option value="0"> All </option>                 </select>
         <span id="course_err" style="color:red"><?php echo $this->session->flashdata('topic_err');?></span>
                 </div>
