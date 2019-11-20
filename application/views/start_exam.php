@@ -186,7 +186,9 @@ function prev_btn()
    
     btn="prev";
     $('#press_btn').val(btn);
+
     get_question(p);
+
 }
     function next_btn()
 {   
@@ -305,7 +307,7 @@ function get_question(id)
          var data = new FormData(document.getElementById("form"));
          var url;
         
-            
+           
              url="<?php echo site_url('index.php/Examination/question/')?>"+id;
               
       //Ajax Load data from ajax
@@ -324,6 +326,13 @@ function get_question(id)
                        $('#exams').hide();
                        $('#start_exam').show();
                        $('#show_button').show();
+
+                       console.log(data.press_btn);
+                       if(data.press_btn=="prev")
+                       {
+                          
+                       }
+
                  
                   if(data.question['qno']=='1')
                   {

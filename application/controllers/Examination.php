@@ -331,14 +331,14 @@ class Examination extends CI_Controller
            $qid=$this->input->post('question_id');
            $option=$this->input->post('option'); 
       
-//           print_r($this->input->post());
+         //  print_r($this->input->post());
 //           die;
              
-                             if(!empty($qid) && !empty($option))
+                if(!empty($qid) && !empty($option))
                 {
                                       
                $answer=$this->Questions_model->get_questions_by_id($qid,$this->session->userdata('oes_language'));
-                
+               
                       $correct_ans=$answer->question_correct_ans;                     
                  
                 
@@ -402,7 +402,8 @@ class Examination extends CI_Controller
             echo json_encode(array('no_of_que'=>$this->session->userdata('oes_no_of_que'),
                                    'solved_question'=>$solved_question,     //solved question number
                                    'question'=>$question,                   //which question wants to ask
-                                    'given_ans'=>$given_ans)
+                                    'given_ans'=>$given_ans,
+                                    'press_btn'=>$press_btn)
                                    );
          
           
@@ -428,7 +429,7 @@ class Examination extends CI_Controller
            $qid=$this->input->post('question_id');
            $option=$this->input->post('option'); 
            
-                       if(!empty($qid) && !empty($option))
+               if(!empty($qid) && !empty($option))
                 {
                                       
                $answer=$this->Questions_model->get_questions_by_id($qid,$this->session->userdata('oes_language'));
@@ -477,10 +478,19 @@ class Examination extends CI_Controller
              {
                  $result="fail";
              }
-             $per=($total_mark/$this->session->userdata('oes_no_of_que'))*100;
+
+             if($total_mark!=0)
+             {
+                $per=($total_mark/$this->session->userdata('oes_no_of_que'))*100;
+             }
+             else
+             {
+                $per=0;
+             }
+             
                         
             
-              $result_data=array('acc_id'=>$sid,
+              $result_data=array('acc_id'=>$this->session->userdata('oes_acc_id'),
                                 'exam_obtain_marks'=>$total_mark,
 //                                'exam_taken_time'=>$min.':'.$sec,
                                 'exam_percentage'=>$per,

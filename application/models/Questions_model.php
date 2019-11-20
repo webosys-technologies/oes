@@ -84,7 +84,7 @@ class Questions_model extends CI_Model
         
         
         
-         public function get_questions_by_id($id,$lang)
+    public function get_questions_by_id($id,$lang)
 	{
                 if($lang=='marathi')
                 {
